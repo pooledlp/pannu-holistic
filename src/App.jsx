@@ -63,6 +63,7 @@ const office = {
 };
 
 function App() {
+  const base = import.meta.env.BASE_URL;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [formState, setFormState] = useState({
