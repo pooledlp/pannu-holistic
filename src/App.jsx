@@ -1090,7 +1090,7 @@ function App() {
             }
           }}
         >
-          <source src="/hero-video.mp4" type="video/mp4" />
+          <source src={`${base}hero-video.mp4`} type="video/mp4" />
         </video>
 
         <div className="hero-overlay" />
