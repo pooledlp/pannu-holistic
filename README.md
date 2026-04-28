@@ -27,11 +27,6 @@ To pull live reviews in the Reviews section **without exposing a Google API key 
 VITE_GOOGLE_REVIEWS_ENDPOINT=https://your-backend.example.com/google-reviews
 ```
 
-The frontend accepts either:
-- Google Places API v1 response shape, or
-- Legacy Place Details shape (`result.reviews`), or
-- A normalized payload containing `reviews`, `rating`, `userRatingCount`, and optional `googleMapsUri`.
-
 Optional direct-browser fallback (not recommended because key is exposed client-side):
 
 ```bash
