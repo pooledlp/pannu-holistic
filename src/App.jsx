@@ -44,7 +44,6 @@ const testimonials = [
   },
 ];
 
-const defaultGooglePlaceId = "ChIJUY5WJ9qDhYARJs7fpxLgji4";
 
 const products = [
   { name: "Dental Probiotics with Hydroxyapatite", price: "$59.00" },
@@ -67,15 +66,8 @@ const office = {
 function App() {
   const base = import.meta.env.BASE_URL;
   const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
-  const googlePlaceId = import.meta.env.VITE_GOOGLE_PLACE_ID || defaultGooglePlaceId;
-  const googleReviewsEmbedUrl = `https://www.google.com/maps?q=place_id:${googlePlaceId}&output=embed`;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [googleReviewsState, setGoogleReviewsState] = useState({
-    loading: false,
-    error: "",
-    place: null,
-  });
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -101,52 +93,6 @@ function App() {
     return () => window.removeEventListener("resize", closeMenu);
   }, []);
 
-  useEffect(() => {
-    const useProxyEndpoint = Boolean(googleReviewsEndpoint);
-    const useDirectGoogleApi = Boolean(googlePlaceId && googleMapsApiKey);
-    if (!useProxyEndpoint && !useDirectGoogleApi) return;
-
-    const controller = new AbortController();
-
-    const loadGoogleReviews = async () => {
-      setGoogleReviewsState({ loading: true, error: "", place: null });
-
-      try {
-        const response = useProxyEndpoint
-          ? await fetch(googleReviewsEndpoint, {
-              signal: controller.signal,
-            })
-          : await fetch(
-              `https://places.googleapis.com/v1/places/${googlePlaceId}?fields=displayName,rating,userRatingCount,reviews,googleMapsUri`,
-              {
-                headers: {
-                  "X-Goog-Api-Key": googleMapsApiKey,
-                },
-                signal: controller.signal,
-              }
-            );
-
-        if (!response.ok) {
-          throw new Error("Unable to load Google reviews right now.");
-        }
-
-        const place = await response.json();
-        setGoogleReviewsState({ loading: false, error: "", place });
-      } catch (error) {
-        if (error.name === "AbortError") return;
-        setGoogleReviewsState({
-          loading: false,
-          error: "Live Google reviews are temporarily unavailable.",
-          place: null,
-        });
-      }
-    };
-
-    loadGoogleReviews();
-
-    return () => controller.abort();
-  }, [googleMapsApiKey, googlePlaceId, googleReviewsEndpoint]);
-
   const navLinks = useMemo(
     () => [
       { label: "Services", href: "#services" },
@@ -163,20 +109,7 @@ function App() {
     return "★".repeat(Math.max(0, Math.min(5, count)));
   };
 
-  const reviewFeed = useMemo(() => {
-    const apiReviews = googleReviewsState.place?.reviews?.map((review, index) => ({
-      quote: review?.text?.text || review?.originalText?.text || "",
-      name: review?.authorAttribution?.displayName || "Google reviewer",
-      rating: review?.rating || 0,
-      when: review?.relativePublishTimeDescription || "",
-      key: `${review?.authorAttribution?.displayName || "review"}-${
-        review?.publishTime || index
-      }`,
-    }));
-
-    const usableApiReviews = apiReviews?.filter((review) => review.quote) || [];
-    return usableApiReviews.length > 0 ? usableApiReviews : testimonials;
-  }, [googleReviewsState.place]);
+  const reviewFeed = testimonials;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -1419,25 +1352,6 @@ function App() {
               Thoughtful, personalized care that helps patients feel supported,
               comfortable, and cared for.
             </p>
-          </div>
-
-          <a
-            className="google-review-cta"
-            href={`https://search.google.com/local/writereview?placeid=${googlePlaceId}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Write a Google review
-          </a>
-
-          <div className="reviews-embed-wrap">
-            <iframe
-              className="reviews-embed"
-              src={googleReviewsEmbedUrl}
-              title="Google Maps reviews for Pannu Holistic Dental Myology"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
           </div>
 
           <div className="reviews-grid">
