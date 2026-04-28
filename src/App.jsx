@@ -85,24 +85,14 @@ const office = {
   addressLine2: "Point Richmond, CA 94801",
   mapsHref:
     "https://www.google.com/maps/search/?api=1&query=229+Tewksbury+Ave+Ste+A+Point+Richmond+CA+94801",
+  mapsEmbedHref:
+    "https://www.google.com/maps?q=229+Tewksbury+Ave+Ste+A+Point+Richmond+CA+94801&output=embed",
 };
 
 function App() {
   const base = import.meta.env.BASE_URL;
-  const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-  const [submitStatus, setSubmitStatus] = useState({
-    loading: false,
-    success: false,
-    error: "",
-  });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -136,68 +126,6 @@ function App() {
   };
 
   const reviewFeed = testimonials;
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormState((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!formspreeEndpoint) {
-      setSubmitStatus({
-        loading: false,
-        success: false,
-        error:
-          "Contact form is not configured yet. Please call or email the office directly.",
-      });
-      return;
-    }
-
-    setSubmitStatus({ loading: true, success: false, error: "" });
-
-    try {
-      const response = await fetch(formspreeEndpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name: formState.name,
-          email: formState.email,
-          phone: formState.phone,
-          message: formState.message,
-        }),
-      });
-
-      if (response.ok) {
-        setSubmitStatus({ loading: false, success: true, error: "" });
-        setFormState({
-          name: "",
-          email: "",
-          phone: "",
-          message: "",
-        });
-      } else {
-        setSubmitStatus({
-          loading: false,
-          success: false,
-          error: "Something went wrong. Please try again.",
-        });
-      }
-    } catch (error) {
-      setSubmitStatus({
-        loading: false,
-        success: false,
-        error: "Unable to send right now. Please try again.",
-      });
-    }
-  };
 
   return (
     <div className="site-shell">
@@ -907,42 +835,40 @@ function App() {
           line-height: 1.65;
         }
 
-        .form-grid {
-          display: grid;
-          gap: 14px;
-          margin-top: 20px;
+        .map-card h3 {
+          margin: 0;
+          font-family: "Cormorant Garamond", Georgia, serif;
+          font-size: 38px;
+          line-height: 1;
         }
 
-        .form-field {
-          width: 100%;
-          border: 1px solid rgba(22,49,58,0.10);
+        .map-card p {
+          margin: 14px 0 0;
+          color: #4f666d;
+          line-height: 1.7;
+        }
+
+        .map-embed-wrap {
+          margin-top: 22px;
+          border-radius: 20px;
+          overflow: hidden;
+          border: 1px solid rgba(22,49,58,0.08);
+          min-height: 380px;
           background: #fff;
-          border-radius: 18px;
-          padding: 15px 16px;
-          color: #17313a;
         }
 
-        textarea.form-field {
-          min-height: 150px;
-          resize: vertical;
+        .map-embed {
+          width: 100%;
+          height: 100%;
+          min-height: 380px;
+          border: 0;
+          display: block;
         }
 
-        .submit-row {
+        .map-actions {
+          margin-top: 16px;
           display: flex;
-          align-items: center;
-          gap: 14px;
-          flex-wrap: wrap;
-          margin-top: 18px;
-        }
-
-        .status-success {
-          color: #215c37;
-          font-size: 14px;
-        }
-
-        .status-error {
-          color: #8f2d2d;
-          font-size: 14px;
+          justify-content: flex-start;
         }
 
         .footer {
@@ -1400,7 +1326,7 @@ function App() {
             <small>Contact</small>
             <h2>We’d love to hear from you. Drop us a message.</h2>
             <p>
-              Reach out by phone, email, or the contact form below.
+              Reach out by phone or email, and view our office location below.
             </p>
           </div>
 
@@ -1444,70 +1370,26 @@ function App() {
               </div>
             </div>
 
-            <div className="form-card">
-              <form onSubmit={handleSubmit}>
-                <div className="form-grid">
-                  <input
-                    className="form-field"
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    value={formState.name}
-                    onChange={handleChange}
-                    required
-                  />
+            <div className="form-card map-card">
+              <h3>Office Location</h3>
+              <p>Find us in Point Richmond and open directions in Google Maps.</p>
 
-                  <input
-                    className="form-field"
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formState.email}
-                    onChange={handleChange}
-                    required
-                  />
+              <div className="map-embed-wrap">
+                <iframe
+                  className="map-embed"
+                  title="Pannu Holistic office location"
+                  src={office.mapsEmbedHref}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
 
-                  <input
-                    className="form-field"
-                    type="text"
-                    name="phone"
-                    placeholder="Phone Number"
-                    value={formState.phone}
-                    onChange={handleChange}
-                  />
-
-                  <textarea
-                    className="form-field"
-                    name="message"
-                    placeholder="Message"
-                    value={formState.message}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <div className="submit-row">
-                  <button
-                    className="button button-light"
-                    type="submit"
-                    disabled={submitStatus.loading}
-                  >
-                    {submitStatus.loading ? "Sending..." : "Send Message"}
-                  </button>
-
-                  {submitStatus.success && (
-                    <div className="status-success" role="status" aria-live="polite">
-                      Thanks, your message has been sent.
-                    </div>
-                  )}
-
-                  {submitStatus.error && (
-                    <div className="status-error" role="alert">
-                      {submitStatus.error}
-                    </div>
-                  )}
-                </div>
-              </form>
+              <div className="map-actions">
+                <a href={office.mapsHref} target="_blank" rel="noreferrer" className="button button-light">
+                  Open in Google Maps
+                </a>
+              </div>
             </div>
           </div>
         </div>
