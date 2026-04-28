@@ -31,16 +31,40 @@ const therapyOptions = [
   "Holistic Teeth Whitening",
 ];
 
+
+
 const testimonials = [
   {
+    key: "yvonne-marroquin",
     quote:
-      "I usually don’t write reviews because I either forget or don’t have the time, but for Taren, I made sure to take the time to write one. She is the warmest and most welcoming person you will meet. She immediately made me feel comfortable. I had been looking for a dentist who is gentle and careful because of my past experiences, and I could never find one. Many dentists are not delicate and don’t take their time with you. Taren not only did a fantastic job on my teeth cleaning, but she also took the time to talk about my health conditions and what little changes I could make to improve my lifestyle. I appreciate her, and I am happy to have found her. Now I can’t wait to go back and get a cleaning, which in the past I would have never said.",
-    name: "Jessica, R.",
+      "We had an amazing experience! The service was above and beyond and my 5 year old is already looking forward to visiting again. I really appreciate the education we received and all of the details that made my daughter feel so comfortable, from playing Frozen songs to gifting her a tiara. I highly recommend!",
+    name: "Yvonne Marroquin",
+    rating: 5,
+    when: "a month ago",
   },
   {
+    key: "erica-garcia",
     quote:
-      "I have been a patient at Pannu Holistic Dental Myology for over a year, and the care and expertise I have received have been truly exceptional. They take a holistic approach to dental care, considering not just my teeth and gums, but how treatment affects my overall well-being. I have seen great improvement in my jaw pain and teeth sensitivity thanks to their Myofunctional Therapy and Mineral Desensitization Treatment. Craniosacral Therapy and Buteyko Breathing have also helped reduce my stress and improve my breathing. The staff is always friendly and professional, making every visit a pleasant experience. I highly recommend Pannu Holistic Dental Myology to anyone looking for comprehensive and individualized dental care.",
-    name: "Abby, P.",
+      "Being under the care and guidance of Taren is something I am so, so grateful for! I was so done with bouncing around different dental offices and not feeling I was truly receiving quality care. I knew exactly what I wanted in my next dental ...",
+    name: "Erica Garcia",
+    rating: 5,
+    when: "8 months ago",
+  },
+  {
+    key: "lorena-castillo",
+    quote:
+      "Wonderful treatments for me and my young daughter. Dr. Pannu truly has a passion for our teeth's health and longevity. Because of her services I have taken a new approach for my teeth and gum health.",
+    name: "Lorena Castillo",
+    rating: 5,
+    when: "9 months ago",
+  },
+  {
+    key: "catherine-munoz",
+    quote:
+      "Taren Pannu’s office was so inviting and clean. She has a very calming and gentle disposition. She explained everything to me while she was doing and was very thorough. My teeth felt great when I left. I think she is exceptional and I make a long drive just to see her for my dental cleanings.",
+    name: "Catherine Munoz",
+    rating: 5,
+    when: "a year ago",
   },
 ];
 
@@ -103,6 +127,8 @@ function App() {
     ],
     []
   );
+
+
 
   const ratingStars = (rating = 0) => {
     const count = Math.round(Number(rating));
