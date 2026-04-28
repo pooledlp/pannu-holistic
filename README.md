@@ -9,16 +9,6 @@ npm install
 npm run dev
 ```
 
-### Troubleshooting
-
-- If you see `sh: 1: vite: not found`, run `npm install` first (or use `npm run build`, which now falls back to `npx vite build`).
-- If npm warns about `Unknown env config "http-proxy"`, clear that stale setting before install:
-
-```bash
-npm config delete http-proxy
-npm config delete https-proxy
-```
-
 ## Contact form configuration
 
 The contact form submits to Formspree. Configure the endpoint using an environment variable:
@@ -36,11 +26,6 @@ To pull live reviews in the Reviews section **without exposing a Google API key 
 ```bash
 VITE_GOOGLE_REVIEWS_ENDPOINT=https://your-backend.example.com/google-reviews
 ```
-
-The frontend accepts either:
-- Google Places API v1 response shape, or
-- Legacy Place Details shape (`result.reviews`), or
-- A normalized payload containing `reviews`, `rating`, `userRatingCount`, and optional `googleMapsUri`.
 
 Optional direct-browser fallback (not recommended because key is exposed client-side):
 

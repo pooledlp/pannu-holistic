@@ -46,51 +46,6 @@ const testimonials = [
 
 const defaultGooglePlaceName = "Pannu Holistic Dental Myology";
 const defaultGooglePlaceId = "ChIJUY5WJ9qDhYARJs7fpxLgji4";
-const googleFieldMask = "displayName,rating,userRatingCount,reviews,googleMapsUri";
-
-const normalizeGooglePlaceResponse = (payload) => {
-  if (!payload) return null;
-
-  if (payload.displayName || payload.reviews) {
-    return payload;
-  }
-
-  if (payload.place) {
-    return payload.place;
-  }
-
-  if (payload.result) {
-    const result = payload.result;
-    return {
-      displayName: { text: result.name || defaultGooglePlaceName },
-      rating: result.rating || 0,
-      userRatingCount: result.user_ratings_total || 0,
-      googleMapsUri: result.url || "",
-      reviews:
-        result.reviews?.map((review) => ({
-          rating: review.rating || 0,
-          relativePublishTimeDescription: review.relative_time_description || "",
-          publishTime: review.time
-            ? new Date(review.time * 1000).toISOString()
-            : undefined,
-          text: { text: review.text || "" },
-          authorAttribution: { displayName: review.author_name || "Google reviewer" },
-        })) || [],
-    };
-  }
-
-  if (Array.isArray(payload.reviews)) {
-    return {
-      displayName: { text: defaultGooglePlaceName },
-      rating: payload.rating || 0,
-      userRatingCount: payload.userRatingCount || payload.totalReviews || 0,
-      googleMapsUri: payload.googleMapsUri || "",
-      reviews: payload.reviews,
-    };
-  }
-
-  return null;
-};
 
 const products = [
   { name: "Dental Probiotics with Hydroxyapatite", price: "$59.00" },
@@ -164,13 +119,10 @@ function App() {
               signal: controller.signal,
             })
           : await fetch(
-              `https://places.googleapis.com/v1/places/${encodeURIComponent(
-                googlePlaceId
-              )}`,
+              `https://places.googleapis.com/v1/places/${googlePlaceId}?fields=displayName,rating,userRatingCount,reviews,googleMapsUri`,
               {
                 headers: {
                   "X-Goog-Api-Key": googleMapsApiKey,
-                  "X-Goog-FieldMask": googleFieldMask,
                 },
                 signal: controller.signal,
               }
@@ -180,13 +132,7 @@ function App() {
           throw new Error("Unable to load Google reviews right now.");
         }
 
-        const payload = await response.json();
-        const place = normalizeGooglePlaceResponse(payload);
-
-        if (!place) {
-          throw new Error("Google review response shape was not recognized.");
-        }
-
+        const place = await response.json();
         setGoogleReviewsState({ loading: false, error: "", place });
       } catch (error) {
         if (error.name === "AbortError") return;
