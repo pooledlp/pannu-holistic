@@ -977,6 +977,12 @@ function App() {
             padding: 160px 0 88px;
           }
 
+
+          .hero-video {
+            object-position: 68% center;
+            transform: scale(1.02);
+          }
+
           .hero h1 {
             font-size: clamp(38px, 12vw, 58px);
           }
