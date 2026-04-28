@@ -713,15 +713,13 @@ function App() {
           border-radius: 36px;
           overflow: hidden;
           position: relative;
-          background: url('/products-ocean.jpg') center center / cover no-repeat;
-          box-shadow: 0 24px 60px rgba(22,49,58,0.12);
+          background: rgba(248,245,239,0.94);
+          box-shadow: 0 20px 50px rgba(22,49,58,0.07);
+          border: 1px solid rgba(22,49,58,0.05);
         }
 
         .products-wrap::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(180deg, rgba(10,28,35,0.28), rgba(10,28,35,0.52));
+          content: none;
         }
 
         .products-inner {
@@ -736,10 +734,9 @@ function App() {
         .glass-box {
           padding: 32px;
           border-radius: 28px;
-          background: rgba(255,255,255,0.12);
-          border: 1px solid rgba(255,255,255,0.18);
-          backdrop-filter: blur(12px);
-          color: #fff;
+          background: #f1ebe0;
+          border: 1px solid rgba(22,49,58,0.05);
+          color: #17313a;
         }
 
         .glass-box small {
@@ -748,7 +745,7 @@ function App() {
           font-size: 12px;
           letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.72);
+          color: #6f93a0;
         }
 
         .glass-box h2 {
@@ -762,7 +759,7 @@ function App() {
 
         .glass-box p {
           margin: 18px 0 0;
-          color: rgba(255,255,255,0.86);
+          color: #4f666d;
           line-height: 1.85;
         }
 
@@ -775,8 +772,8 @@ function App() {
         .product-card {
           padding: 16px 18px;
           border-radius: 18px;
-          background: rgba(255,255,255,0.12);
-          border: 1px solid rgba(255,255,255,0.16);
+          background: #f7f3ec;
+          border: 1px solid rgba(22,49,58,0.05);
         }
 
         .product-card strong {
@@ -787,7 +784,7 @@ function App() {
 
         .product-card span {
           display: block;
-          color: rgba(255,255,255,0.78);
+          color: #4f666d;
           margin-bottom: 10px;
         }
 
@@ -797,8 +794,8 @@ function App() {
           justify-content: center;
           padding: 10px 14px;
           border-radius: 999px;
-          background: rgba(255,255,255,0.16);
-          border: 1px solid rgba(255,255,255,0.18);
+          background: #fff;
+          border: 1px solid rgba(22,49,58,0.08);
           font-size: 13px;
         }
 
