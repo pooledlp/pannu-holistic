@@ -31,16 +31,40 @@ const therapyOptions = [
   "Holistic Teeth Whitening",
 ];
 
+
+
 const testimonials = [
   {
+    key: "yvonne-marroquin",
     quote:
-      "I usually don’t write reviews because I either forget or don’t have the time, but for Taren, I made sure to take the time to write one. She is the warmest and most welcoming person you will meet. She immediately made me feel comfortable. I had been looking for a dentist who is gentle and careful because of my past experiences, and I could never find one. Many dentists are not delicate and don’t take their time with you. Taren not only did a fantastic job on my teeth cleaning, but she also took the time to talk about my health conditions and what little changes I could make to improve my lifestyle. I appreciate her, and I am happy to have found her. Now I can’t wait to go back and get a cleaning, which in the past I would have never said.",
-    name: "Jessica, R.",
+      "We had an amazing experience! The service was above and beyond and my 5 year old is already looking forward to visiting again. I really appreciate the education we received and all of the details that made my daughter feel so comfortable, from playing Frozen songs to gifting her a tiara. I highly recommend!",
+    name: "Yvonne Marroquin",
+    rating: 5,
+    when: "a month ago",
   },
   {
+    key: "erica-garcia",
     quote:
-      "I have been a patient at Pannu Holistic Dental Myology for over a year, and the care and expertise I have received have been truly exceptional. They take a holistic approach to dental care, considering not just my teeth and gums, but how treatment affects my overall well-being. I have seen great improvement in my jaw pain and teeth sensitivity thanks to their Myofunctional Therapy and Mineral Desensitization Treatment. Craniosacral Therapy and Buteyko Breathing have also helped reduce my stress and improve my breathing. The staff is always friendly and professional, making every visit a pleasant experience. I highly recommend Pannu Holistic Dental Myology to anyone looking for comprehensive and individualized dental care.",
-    name: "Abby, P.",
+      "Being under the care and guidance of Taren is something I am so, so grateful for! I was so done with bouncing around different dental offices and not feeling I was truly receiving quality care. I knew exactly what I wanted in my next dental ...",
+    name: "Erica Garcia",
+    rating: 5,
+    when: "8 months ago",
+  },
+  {
+    key: "lorena-castillo",
+    quote:
+      "Wonderful treatments for me and my young daughter. Dr. Pannu truly has a passion for our teeth's health and longevity. Because of her services I have taken a new approach for my teeth and gum health.",
+    name: "Lorena Castillo",
+    rating: 5,
+    when: "9 months ago",
+  },
+  {
+    key: "catherine-munoz",
+    quote:
+      "Taren Pannu’s office was so inviting and clean. She has a very calming and gentle disposition. She explained everything to me while she was doing and was very thorough. My teeth felt great when I left. I think she is exceptional and I make a long drive just to see her for my dental cleanings.",
+    name: "Catherine Munoz",
+    rating: 5,
+    when: "a year ago",
   },
 ];
 
@@ -61,24 +85,14 @@ const office = {
   addressLine2: "Point Richmond, CA 94801",
   mapsHref:
     "https://www.google.com/maps/search/?api=1&query=229+Tewksbury+Ave+Ste+A+Point+Richmond+CA+94801",
+  mapsEmbedHref:
+    "https://www.google.com/maps?q=229+Tewksbury+Ave+Ste+A+Point+Richmond+CA+94801&output=embed",
 };
 
 function App() {
   const base = import.meta.env.BASE_URL;
-  const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-  const [submitStatus, setSubmitStatus] = useState({
-    loading: false,
-    success: false,
-    error: "",
-  });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -104,74 +118,14 @@ function App() {
     []
   );
 
+
+
   const ratingStars = (rating = 0) => {
     const count = Math.round(Number(rating));
     return "★".repeat(Math.max(0, Math.min(5, count)));
   };
 
   const reviewFeed = testimonials;
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormState((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!formspreeEndpoint) {
-      setSubmitStatus({
-        loading: false,
-        success: false,
-        error:
-          "Contact form is not configured yet. Please call or email the office directly.",
-      });
-      return;
-    }
-
-    setSubmitStatus({ loading: true, success: false, error: "" });
-
-    try {
-      const response = await fetch(formspreeEndpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name: formState.name,
-          email: formState.email,
-          phone: formState.phone,
-          message: formState.message,
-        }),
-      });
-
-      if (response.ok) {
-        setSubmitStatus({ loading: false, success: true, error: "" });
-        setFormState({
-          name: "",
-          email: "",
-          phone: "",
-          message: "",
-        });
-      } else {
-        setSubmitStatus({
-          loading: false,
-          success: false,
-          error: "Something went wrong. Please try again.",
-        });
-      }
-    } catch (error) {
-      setSubmitStatus({
-        loading: false,
-        success: false,
-        error: "Unable to send right now. Please try again.",
-      });
-    }
-  };
 
   return (
     <div className="site-shell">
@@ -312,6 +266,8 @@ function App() {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          object-position: center;
+          transform: scale(1.14);
         }
 
         .brand-copy small {
@@ -687,15 +643,13 @@ function App() {
           border-radius: 36px;
           overflow: hidden;
           position: relative;
-          background: url('/products-ocean.jpg') center center / cover no-repeat;
-          box-shadow: 0 24px 60px rgba(22,49,58,0.12);
+          background: rgba(248,245,239,0.94);
+          box-shadow: 0 20px 50px rgba(22,49,58,0.07);
+          border: 1px solid rgba(22,49,58,0.05);
         }
 
         .products-wrap::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(180deg, rgba(10,28,35,0.28), rgba(10,28,35,0.52));
+          content: none;
         }
 
         .products-inner {
@@ -710,10 +664,9 @@ function App() {
         .glass-box {
           padding: 32px;
           border-radius: 28px;
-          background: rgba(255,255,255,0.12);
-          border: 1px solid rgba(255,255,255,0.18);
-          backdrop-filter: blur(12px);
-          color: #fff;
+          background: #f1ebe0;
+          border: 1px solid rgba(22,49,58,0.05);
+          color: #17313a;
         }
 
         .glass-box small {
@@ -722,7 +675,7 @@ function App() {
           font-size: 12px;
           letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.72);
+          color: #6f93a0;
         }
 
         .glass-box h2 {
@@ -736,7 +689,7 @@ function App() {
 
         .glass-box p {
           margin: 18px 0 0;
-          color: rgba(255,255,255,0.86);
+          color: #4f666d;
           line-height: 1.85;
         }
 
@@ -749,8 +702,8 @@ function App() {
         .product-card {
           padding: 16px 18px;
           border-radius: 18px;
-          background: rgba(255,255,255,0.12);
-          border: 1px solid rgba(255,255,255,0.16);
+          background: #f7f3ec;
+          border: 1px solid rgba(22,49,58,0.05);
         }
 
         .product-card strong {
@@ -761,7 +714,7 @@ function App() {
 
         .product-card span {
           display: block;
-          color: rgba(255,255,255,0.78);
+          color: #4f666d;
           margin-bottom: 10px;
         }
 
@@ -771,8 +724,8 @@ function App() {
           justify-content: center;
           padding: 10px 14px;
           border-radius: 999px;
-          background: rgba(255,255,255,0.16);
-          border: 1px solid rgba(255,255,255,0.18);
+          background: #fff;
+          border: 1px solid rgba(22,49,58,0.08);
           font-size: 13px;
         }
 
@@ -882,42 +835,40 @@ function App() {
           line-height: 1.65;
         }
 
-        .form-grid {
-          display: grid;
-          gap: 14px;
-          margin-top: 20px;
+        .map-card h3 {
+          margin: 0;
+          font-family: "Cormorant Garamond", Georgia, serif;
+          font-size: 38px;
+          line-height: 1;
         }
 
-        .form-field {
-          width: 100%;
-          border: 1px solid rgba(22,49,58,0.10);
+        .map-card p {
+          margin: 14px 0 0;
+          color: #4f666d;
+          line-height: 1.7;
+        }
+
+        .map-embed-wrap {
+          margin-top: 22px;
+          border-radius: 20px;
+          overflow: hidden;
+          border: 1px solid rgba(22,49,58,0.08);
+          min-height: 380px;
           background: #fff;
-          border-radius: 18px;
-          padding: 15px 16px;
-          color: #17313a;
         }
 
-        textarea.form-field {
-          min-height: 150px;
-          resize: vertical;
+        .map-embed {
+          width: 100%;
+          height: 100%;
+          min-height: 380px;
+          border: 0;
+          display: block;
         }
 
-        .submit-row {
+        .map-actions {
+          margin-top: 16px;
           display: flex;
-          align-items: center;
-          gap: 14px;
-          flex-wrap: wrap;
-          margin-top: 18px;
-        }
-
-        .status-success {
-          color: #215c37;
-          font-size: 14px;
-        }
-
-        .status-error {
-          color: #8f2d2d;
-          font-size: 14px;
+          justify-content: flex-start;
         }
 
         .footer {
@@ -1026,6 +977,12 @@ function App() {
             padding: 160px 0 88px;
           }
 
+
+          .hero-video {
+            object-position: 68% center;
+            transform: scale(1.02);
+          }
+
           .hero h1 {
             font-size: clamp(38px, 12vw, 58px);
           }
@@ -1082,7 +1039,7 @@ function App() {
             <a href="#home" className="brand" onClick={() => setMenuOpen(false)}>
               <div className="brand-mark">
                 <img
-                  src={`${base}logosite_centered.png`}
+                  src={`${base}logosite.png`}
                   alt="Pannu Holistic logo"
                 />
               </div>
@@ -1375,7 +1332,7 @@ function App() {
             <small>Contact</small>
             <h2>We’d love to hear from you. Drop us a message.</h2>
             <p>
-              Reach out by phone, email, or the contact form below.
+              Reach out by phone or email, and view our office location below.
             </p>
           </div>
 
@@ -1419,70 +1376,26 @@ function App() {
               </div>
             </div>
 
-            <div className="form-card">
-              <form onSubmit={handleSubmit}>
-                <div className="form-grid">
-                  <input
-                    className="form-field"
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    value={formState.name}
-                    onChange={handleChange}
-                    required
-                  />
+            <div className="form-card map-card">
+              <h3>Office Location</h3>
+              <p>Find us in Point Richmond and open directions in Google Maps.</p>
 
-                  <input
-                    className="form-field"
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formState.email}
-                    onChange={handleChange}
-                    required
-                  />
+              <div className="map-embed-wrap">
+                <iframe
+                  className="map-embed"
+                  title="Pannu Holistic office location"
+                  src={office.mapsEmbedHref}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
 
-                  <input
-                    className="form-field"
-                    type="text"
-                    name="phone"
-                    placeholder="Phone Number"
-                    value={formState.phone}
-                    onChange={handleChange}
-                  />
-
-                  <textarea
-                    className="form-field"
-                    name="message"
-                    placeholder="Message"
-                    value={formState.message}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <div className="submit-row">
-                  <button
-                    className="button button-light"
-                    type="submit"
-                    disabled={submitStatus.loading}
-                  >
-                    {submitStatus.loading ? "Sending..." : "Send Message"}
-                  </button>
-
-                  {submitStatus.success && (
-                    <div className="status-success" role="status" aria-live="polite">
-                      Thanks, your message has been sent.
-                    </div>
-                  )}
-
-                  {submitStatus.error && (
-                    <div className="status-error" role="alert">
-                      {submitStatus.error}
-                    </div>
-                  )}
-                </div>
-              </form>
+              <div className="map-actions">
+                <a href={office.mapsHref} target="_blank" rel="noreferrer" className="button button-light">
+                  Open in Google Maps
+                </a>
+              </div>
             </div>
           </div>
         </div>
