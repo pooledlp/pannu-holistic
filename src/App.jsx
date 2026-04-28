@@ -44,7 +44,6 @@ const testimonials = [
   },
 ];
 
-const defaultGooglePlaceName = "Pannu Holistic Dental Myology";
 const defaultGooglePlaceId = "ChIJUY5WJ9qDhYARJs7fpxLgji4";
 
 const products = [
@@ -68,9 +67,8 @@ const office = {
 function App() {
   const base = import.meta.env.BASE_URL;
   const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
-  const googleReviewsEndpoint = import.meta.env.VITE_GOOGLE_REVIEWS_ENDPOINT;
   const googlePlaceId = import.meta.env.VITE_GOOGLE_PLACE_ID || defaultGooglePlaceId;
-  const googleMapsApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+  const googleReviewsEmbedUrl = `https://www.google.com/maps?q=place_id:${googlePlaceId}&output=embed`;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [googleReviewsState, setGoogleReviewsState] = useState({
@@ -850,33 +848,21 @@ function App() {
           grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 22px;
         }
-        .google-reviews-meta {
+        .reviews-embed-wrap {
           border: 1px solid var(--line);
           border-radius: var(--radius);
-          padding: 18px;
+          padding: 10px;
           background: #fff;
           margin-bottom: 24px;
-          display: grid;
-          gap: 8px;
         }
-        .google-rating-row {
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          gap: 12px;
-          color: var(--ink);
+        .reviews-embed {
+          width: 100%;
+          min-height: 420px;
+          border: 0;
+          border-radius: calc(var(--radius) - 10px);
+          display: block;
         }
-        .google-rating-row strong {
-          font-size: 36px;
-          line-height: 1;
-          font-family: "Cormorant Garamond", Georgia, serif;
-        }
-        .google-rating-row span {
-          letter-spacing: 0.06em;
-          color: #d49b00;
-          font-weight: 700;
-        }
-        .google-reviews-link {
+        .google-review-cta {
           width: fit-content;
           padding: 10px 16px;
           border: 1px solid var(--line);
@@ -884,6 +870,8 @@ function App() {
           text-decoration: none;
           color: var(--ink);
           font-weight: 600;
+          display: inline-flex;
+          margin-bottom: 18px;
         }
 
         .review-card {
@@ -1330,12 +1318,11 @@ function App() {
           <div className="about-copy">
             <div className="section-head" style={{ marginBottom: 0 }}>
               <small>About</small>
-              <h2>Interview with Taren Pannu RDHAP</h2>
+              <h2>Meet Taren Pannu, RDHAP</h2>
               <p>
-                Join us for an insightful conversation with Taren Pannu, RDHAP,
-                as she shares her journey and experiences in the dental hygiene
-                field. Learn about the challenges and triumphs of being a
-                Registered Dental Hygienist.
+                Taren provides compassionate, personalized dental hygiene care
+                through a holistic lens, supporting oral health as part of
+                whole-body wellness.
               </p>
             </div>
 
@@ -1434,44 +1421,24 @@ function App() {
             </p>
           </div>
 
-          {googleReviewsState.place ? (
-            <div className="google-reviews-meta">
-              <strong>
-                {googleReviewsState.place?.displayName?.text || defaultGooglePlaceName}
-              </strong>
-              <div className="google-rating-row">
-                <strong>{googleReviewsState.place?.rating || "5.0"}</strong>
-                <span>{ratingStars(googleReviewsState.place?.rating)}</span>
-                <p style={{ margin: 0 }}>
-                  {googleReviewsState.place?.userRatingCount || 0} Google reviews
-                </p>
-              </div>
-              {googleReviewsState.place?.googleMapsUri ? (
-                <a
-                  className="google-reviews-link"
-                  href={googleReviewsState.place.googleMapsUri}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Write a Google review
-                </a>
-              ) : (
-                <a
-                  className="google-reviews-link"
-                  href={`https://search.google.com/local/writereview?placeid=${googlePlaceId}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Write a Google review
-                </a>
-              )}
-            </div>
-          ) : null}
+          <a
+            className="google-review-cta"
+            href={`https://search.google.com/local/writereview?placeid=${googlePlaceId}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Write a Google review
+          </a>
 
-          {googleReviewsState.loading ? (
-            <p aria-live="polite">Loading Google reviews...</p>
-          ) : null}
-          {googleReviewsState.error ? <p role="alert">{googleReviewsState.error}</p> : null}
+          <div className="reviews-embed-wrap">
+            <iframe
+              className="reviews-embed"
+              src={googleReviewsEmbedUrl}
+              title="Google Maps reviews for Pannu Holistic Dental Myology"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
 
           <div className="reviews-grid">
             {reviewFeed.map((review) => (
