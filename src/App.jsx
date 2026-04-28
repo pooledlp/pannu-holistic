@@ -338,6 +338,8 @@ function App() {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          object-position: center;
+          transform: scale(1.14);
         }
 
         .brand-copy small {
@@ -1105,7 +1107,7 @@ function App() {
             <a href="#home" className="brand" onClick={() => setMenuOpen(false)}>
               <div className="brand-mark">
                 <img
-                  src={`${base}logosite_centered.png`}
+                  src={`${base}logosite.png`}
                   alt="Pannu Holistic logo"
                 />
               </div>
