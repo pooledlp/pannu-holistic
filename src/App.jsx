@@ -45,6 +45,7 @@ const testimonials = [
 ];
 
 const defaultGooglePlaceName = "Pannu Holistic Dental Myology";
+const defaultGooglePlaceId = "ChIJUY5WJ9qDhYARJs7fpxLgji4";
 
 const products = [
   { name: "Dental Probiotics with Hydroxyapatite", price: "$59.00" },
@@ -68,7 +69,7 @@ function App() {
   const base = import.meta.env.BASE_URL;
   const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
   const googleReviewsEndpoint = import.meta.env.VITE_GOOGLE_REVIEWS_ENDPOINT;
-  const googlePlaceId = import.meta.env.VITE_GOOGLE_PLACE_ID;
+  const googlePlaceId = import.meta.env.VITE_GOOGLE_PLACE_ID || defaultGooglePlaceId;
   const googleMapsApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -1454,7 +1455,16 @@ function App() {
                 >
                   Write a Google review
                 </a>
-              ) : null}
+              ) : (
+                <a
+                  className="google-reviews-link"
+                  href={`https://search.google.com/local/writereview?placeid=${googlePlaceId}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Write a Google review
+                </a>
+              )}
             </div>
           ) : null}
 

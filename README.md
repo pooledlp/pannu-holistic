@@ -30,8 +30,9 @@ VITE_GOOGLE_REVIEWS_ENDPOINT=https://your-backend.example.com/google-reviews
 Optional direct-browser fallback (not recommended because key is exposed client-side):
 
 ```bash
-VITE_GOOGLE_PLACE_ID=<google-place-id>
 VITE_GOOGLE_MAPS_API_KEY=<google-maps-api-key>
 ```
+
+The app is preconfigured with your Place ID (`ChIJUY5WJ9qDhYARJs7fpxLgji4`), so `VITE_GOOGLE_PLACE_ID` is optional unless you want to override it.
 
 If no Google review config is set, the site automatically falls back to built-in testimonial content.
