@@ -71,6 +71,11 @@ function App() {
   const googleReviewsEmbedUrl = `https://www.google.com/maps?q=place_id:${googlePlaceId}&output=embed`;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [googleReviewsState, setGoogleReviewsState] = useState({
+    loading: false,
+    error: "",
+    place: null,
+  });
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -96,6 +101,52 @@ function App() {
     return () => window.removeEventListener("resize", closeMenu);
   }, []);
 
+  useEffect(() => {
+    const useProxyEndpoint = Boolean(googleReviewsEndpoint);
+    const useDirectGoogleApi = Boolean(googlePlaceId && googleMapsApiKey);
+    if (!useProxyEndpoint && !useDirectGoogleApi) return;
+
+    const controller = new AbortController();
+
+    const loadGoogleReviews = async () => {
+      setGoogleReviewsState({ loading: true, error: "", place: null });
+
+      try {
+        const response = useProxyEndpoint
+          ? await fetch(googleReviewsEndpoint, {
+              signal: controller.signal,
+            })
+          : await fetch(
+              `https://places.googleapis.com/v1/places/${googlePlaceId}?fields=displayName,rating,userRatingCount,reviews,googleMapsUri`,
+              {
+                headers: {
+                  "X-Goog-Api-Key": googleMapsApiKey,
+                },
+                signal: controller.signal,
+              }
+            );
+
+        if (!response.ok) {
+          throw new Error("Unable to load Google reviews right now.");
+        }
+
+        const place = await response.json();
+        setGoogleReviewsState({ loading: false, error: "", place });
+      } catch (error) {
+        if (error.name === "AbortError") return;
+        setGoogleReviewsState({
+          loading: false,
+          error: "Live Google reviews are temporarily unavailable.",
+          place: null,
+        });
+      }
+    };
+
+    loadGoogleReviews();
+
+    return () => controller.abort();
+  }, [googleMapsApiKey, googlePlaceId, googleReviewsEndpoint]);
+
   const navLinks = useMemo(
     () => [
       { label: "Services", href: "#services" },
@@ -106,6 +157,26 @@ function App() {
     ],
     []
   );
+
+  const ratingStars = (rating = 0) => {
+    const count = Math.round(Number(rating));
+    return "★".repeat(Math.max(0, Math.min(5, count)));
+  };
+
+  const reviewFeed = useMemo(() => {
+    const apiReviews = googleReviewsState.place?.reviews?.map((review, index) => ({
+      quote: review?.text?.text || review?.originalText?.text || "",
+      name: review?.authorAttribution?.displayName || "Google reviewer",
+      rating: review?.rating || 0,
+      when: review?.relativePublishTimeDescription || "",
+      key: `${review?.authorAttribution?.displayName || "review"}-${
+        review?.publishTime || index
+      }`,
+    }));
+
+    const usableApiReviews = apiReviews?.filter((review) => review.quote) || [];
+    return usableApiReviews.length > 0 ? usableApiReviews : testimonials;
+  }, [googleReviewsState.place]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -823,6 +894,17 @@ function App() {
           font-weight: 700;
           color: #17313a;
         }
+        .review-rating {
+          color: #d49b00;
+          letter-spacing: 0.08em;
+          margin-bottom: 8px;
+          font-weight: 700;
+        }
+        .review-when {
+          font-size: 12px;
+          color: var(--muted);
+          margin-top: 8px;
+        }
 
         .contact-shell {
           display: grid;
@@ -1359,10 +1441,14 @@ function App() {
           </div>
 
           <div className="reviews-grid">
-            {testimonials.map((review) => (
-              <article className="review-card" key={review.name}>
+            {reviewFeed.map((review) => (
+              <article className="review-card" key={review.key || review.name}>
+                {review.rating ? (
+                  <div className="review-rating">{ratingStars(review.rating)}</div>
+                ) : null}
                 <p>{review.quote}</p>
                 <div className="review-name">{review.name}</div>
+                {review.when ? <div className="review-when">{review.when}</div> : null}
               </article>
             ))}
           </div>

@@ -9,7 +9,9 @@ npm install
 npm run dev
 ```
 
-The Vite base path is set to a relative value (`./`) so assets resolve when deployed at root domains, custom domains, or subpaths.
+The Vite base path is automatic:
+- local/dev builds use `/`
+- GitHub Actions deploy builds use `/pannu-holistic/`
 
 ### Troubleshooting
 
