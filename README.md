@@ -9,6 +9,10 @@ npm install
 npm run dev
 ```
 
+The Vite base path is automatic:
+- local/dev builds use `/`
+- GitHub Actions deploy builds use `/pannu-holistic/`
+
 ### Troubleshooting
 
 - If you see `sh: 1: vite: not found`, run `npm install` first (or use `npm run build`, which now falls back to `npx vite build`).
