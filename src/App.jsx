@@ -44,6 +44,8 @@ const testimonials = [
   },
 ];
 
+const defaultGooglePlaceName = "Pannu Holistic Dental Myology";
+
 const products = [
   { name: "Dental Probiotics with Hydroxyapatite", price: "$59.00" },
   { name: "Detox Whitening Hydroxyapatite Mineral Toothpaste", price: "$29.00" },
@@ -65,8 +67,16 @@ const office = {
 function App() {
   const base = import.meta.env.BASE_URL;
   const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
+  const googleReviewsEndpoint = import.meta.env.VITE_GOOGLE_REVIEWS_ENDPOINT;
+  const googlePlaceId = import.meta.env.VITE_GOOGLE_PLACE_ID;
+  const googleMapsApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [googleReviewsState, setGoogleReviewsState] = useState({
+    loading: false,
+    error: "",
+    place: null,
+  });
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -92,6 +102,52 @@ function App() {
     return () => window.removeEventListener("resize", closeMenu);
   }, []);
 
+  useEffect(() => {
+    const useProxyEndpoint = Boolean(googleReviewsEndpoint);
+    const useDirectGoogleApi = Boolean(googlePlaceId && googleMapsApiKey);
+    if (!useProxyEndpoint && !useDirectGoogleApi) return;
+
+    const controller = new AbortController();
+
+    const loadGoogleReviews = async () => {
+      setGoogleReviewsState({ loading: true, error: "", place: null });
+
+      try {
+        const response = useProxyEndpoint
+          ? await fetch(googleReviewsEndpoint, {
+              signal: controller.signal,
+            })
+          : await fetch(
+              `https://places.googleapis.com/v1/places/${googlePlaceId}?fields=displayName,rating,userRatingCount,reviews,googleMapsUri`,
+              {
+                headers: {
+                  "X-Goog-Api-Key": googleMapsApiKey,
+                },
+                signal: controller.signal,
+              }
+            );
+
+        if (!response.ok) {
+          throw new Error("Unable to load Google reviews right now.");
+        }
+
+        const place = await response.json();
+        setGoogleReviewsState({ loading: false, error: "", place });
+      } catch (error) {
+        if (error.name === "AbortError") return;
+        setGoogleReviewsState({
+          loading: false,
+          error: "Live Google reviews are temporarily unavailable.",
+          place: null,
+        });
+      }
+    };
+
+    loadGoogleReviews();
+
+    return () => controller.abort();
+  }, [googleMapsApiKey, googlePlaceId, googleReviewsEndpoint]);
+
   const navLinks = useMemo(
     () => [
       { label: "Services", href: "#services" },
@@ -102,6 +158,26 @@ function App() {
     ],
     []
   );
+
+  const ratingStars = (rating = 0) => {
+    const count = Math.round(Number(rating));
+    return "★".repeat(Math.max(0, Math.min(5, count)));
+  };
+
+  const reviewFeed = useMemo(() => {
+    const apiReviews = googleReviewsState.place?.reviews?.map((review, index) => ({
+      quote: review?.text?.text || review?.originalText?.text || "",
+      name: review?.authorAttribution?.displayName || "Google reviewer",
+      rating: review?.rating || 0,
+      when: review?.relativePublishTimeDescription || "",
+      key: `${review?.authorAttribution?.displayName || "review"}-${
+        review?.publishTime || index
+      }`,
+    }));
+
+    const usableApiReviews = apiReviews?.filter((review) => review.quote) || [];
+    return usableApiReviews.length > 0 ? usableApiReviews : testimonials;
+  }, [googleReviewsState.place]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -773,6 +849,41 @@ function App() {
           grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 22px;
         }
+        .google-reviews-meta {
+          border: 1px solid var(--line);
+          border-radius: var(--radius);
+          padding: 18px;
+          background: #fff;
+          margin-bottom: 24px;
+          display: grid;
+          gap: 8px;
+        }
+        .google-rating-row {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 12px;
+          color: var(--ink);
+        }
+        .google-rating-row strong {
+          font-size: 36px;
+          line-height: 1;
+          font-family: "Cormorant Garamond", Georgia, serif;
+        }
+        .google-rating-row span {
+          letter-spacing: 0.06em;
+          color: #d49b00;
+          font-weight: 700;
+        }
+        .google-reviews-link {
+          width: fit-content;
+          padding: 10px 16px;
+          border: 1px solid var(--line);
+          border-radius: 999px;
+          text-decoration: none;
+          color: var(--ink);
+          font-weight: 600;
+        }
 
         .review-card {
           background: rgba(248,245,239,0.94);
@@ -793,6 +904,17 @@ function App() {
           margin-top: 20px;
           font-weight: 700;
           color: #17313a;
+        }
+        .review-rating {
+          color: #d49b00;
+          letter-spacing: 0.08em;
+          margin-bottom: 8px;
+          font-weight: 700;
+        }
+        .review-when {
+          font-size: 12px;
+          color: var(--muted);
+          margin-top: 8px;
         }
 
         .contact-shell {
@@ -1311,11 +1433,45 @@ function App() {
             </p>
           </div>
 
+          {googleReviewsState.place ? (
+            <div className="google-reviews-meta">
+              <strong>
+                {googleReviewsState.place?.displayName?.text || defaultGooglePlaceName}
+              </strong>
+              <div className="google-rating-row">
+                <strong>{googleReviewsState.place?.rating || "5.0"}</strong>
+                <span>{ratingStars(googleReviewsState.place?.rating)}</span>
+                <p style={{ margin: 0 }}>
+                  {googleReviewsState.place?.userRatingCount || 0} Google reviews
+                </p>
+              </div>
+              {googleReviewsState.place?.googleMapsUri ? (
+                <a
+                  className="google-reviews-link"
+                  href={googleReviewsState.place.googleMapsUri}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Write a Google review
+                </a>
+              ) : null}
+            </div>
+          ) : null}
+
+          {googleReviewsState.loading ? (
+            <p aria-live="polite">Loading Google reviews...</p>
+          ) : null}
+          {googleReviewsState.error ? <p role="alert">{googleReviewsState.error}</p> : null}
+
           <div className="reviews-grid">
-            {testimonials.map((review) => (
-              <article className="review-card" key={review.name}>
+            {reviewFeed.map((review) => (
+              <article className="review-card" key={review.key || review.name}>
+                {review.rating ? (
+                  <div className="review-rating">{ratingStars(review.rating)}</div>
+                ) : null}
                 <p>{review.quote}</p>
                 <div className="review-name">{review.name}</div>
+                {review.when ? <div className="review-when">{review.when}</div> : null}
               </article>
             ))}
           </div>
