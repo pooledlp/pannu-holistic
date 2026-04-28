@@ -9,7 +9,9 @@ npm install
 npm run dev
 ```
 
-The Vite base path is set to a relative value (`./`) so assets resolve when deployed at root domains, custom domains, or subpaths.
+The Vite base path is automatic:
+- local/dev builds use `/`
+- GitHub Actions deploy builds use `/pannu-holistic/`
 
 ### Troubleshooting
 
@@ -31,6 +33,12 @@ VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/<your-form-id>
 
 You can place this in a local `.env` file for development.
 
-## Reviews section
+## Google reviews configuration
 
-The reviews section currently uses built-in testimonials in `src/App.jsx`.
+The Reviews section now uses an embedded Google Maps reviews view (no API key required).
+
+```bash
+VITE_GOOGLE_PLACE_ID=ChIJUY5WJ9qDhYARJs7fpxLgji4
+```
+
+If `VITE_GOOGLE_PLACE_ID` is not set, the app defaults to `ChIJUY5WJ9qDhYARJs7fpxLgji4`.
