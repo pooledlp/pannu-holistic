@@ -21,11 +21,17 @@ You can place this in a local `.env` file for development.
 
 ## Google reviews configuration
 
-To pull live reviews from Google in the Reviews section, configure:
+To pull live reviews in the Reviews section **without exposing a Google API key in the browser**, configure a server-side endpoint:
+
+```bash
+VITE_GOOGLE_REVIEWS_ENDPOINT=https://your-backend.example.com/google-reviews
+```
+
+Optional direct-browser fallback (not recommended because key is exposed client-side):
 
 ```bash
 VITE_GOOGLE_PLACE_ID=<google-place-id>
 VITE_GOOGLE_MAPS_API_KEY=<google-maps-api-key>
 ```
 
-If these values are not set, the site automatically falls back to built-in testimonial content.
+If no Google review config is set, the site automatically falls back to built-in testimonial content.

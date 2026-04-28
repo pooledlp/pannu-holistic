@@ -67,6 +67,7 @@ const office = {
 function App() {
   const base = import.meta.env.BASE_URL;
   const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
+  const googleReviewsEndpoint = import.meta.env.VITE_GOOGLE_REVIEWS_ENDPOINT;
   const googlePlaceId = import.meta.env.VITE_GOOGLE_PLACE_ID;
   const googleMapsApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const [menuOpen, setMenuOpen] = useState(false);
@@ -102,7 +103,9 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!googlePlaceId || !googleMapsApiKey) return;
+    const useProxyEndpoint = Boolean(googleReviewsEndpoint);
+    const useDirectGoogleApi = Boolean(googlePlaceId && googleMapsApiKey);
+    if (!useProxyEndpoint && !useDirectGoogleApi) return;
 
     const controller = new AbortController();
 
@@ -110,15 +113,19 @@ function App() {
       setGoogleReviewsState({ loading: true, error: "", place: null });
 
       try {
-        const response = await fetch(
-          `https://places.googleapis.com/v1/places/${googlePlaceId}?fields=displayName,rating,userRatingCount,reviews,googleMapsUri`,
-          {
-            headers: {
-              "X-Goog-Api-Key": googleMapsApiKey,
-            },
-            signal: controller.signal,
-          }
-        );
+        const response = useProxyEndpoint
+          ? await fetch(googleReviewsEndpoint, {
+              signal: controller.signal,
+            })
+          : await fetch(
+              `https://places.googleapis.com/v1/places/${googlePlaceId}?fields=displayName,rating,userRatingCount,reviews,googleMapsUri`,
+              {
+                headers: {
+                  "X-Goog-Api-Key": googleMapsApiKey,
+                },
+                signal: controller.signal,
+              }
+            );
 
         if (!response.ok) {
           throw new Error("Unable to load Google reviews right now.");
@@ -139,7 +146,7 @@ function App() {
     loadGoogleReviews();
 
     return () => controller.abort();
-  }, [googleMapsApiKey, googlePlaceId]);
+  }, [googleMapsApiKey, googlePlaceId, googleReviewsEndpoint]);
 
   const navLinks = useMemo(
     () => [
