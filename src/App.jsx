@@ -64,6 +64,7 @@ const office = {
 
 function App() {
   const base = import.meta.env.BASE_URL;
+  const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [formState, setFormState] = useState({
@@ -112,10 +113,21 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formspreeEndpoint) {
+      setSubmitStatus({
+        loading: false,
+        success: false,
+        error:
+          "Contact form is not configured yet. Please call or email the office directly.",
+      });
+      return;
+    }
+
     setSubmitStatus({ loading: true, success: false, error: "" });
 
     try {
-      const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      const response = await fetch(formspreeEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -1025,7 +1037,10 @@ function App() {
           <nav className="nav" aria-label="Primary navigation">
             <a href="#home" className="brand" onClick={() => setMenuOpen(false)}>
               <div className="brand-mark">
-                <img src="/logosite_centered.png" alt="Pannu Holistic logo" />
+                <img
+                  src={`${base}logosite_centered.png`}
+                  alt="Pannu Holistic logo"
+                />
               </div>
               <div className="brand-copy">
                 <small>Holistic Dentistry</small>
@@ -1182,7 +1197,7 @@ function App() {
           <div className="about-visual">
             <div className="about-frame">
               <img
-                src="/taren.png"
+                src={`${base}taren.png`}
                 alt="Portrait of Taren Pannu"
                 className="about-img"
               />
@@ -1409,13 +1424,15 @@ function App() {
                   </button>
 
                   {submitStatus.success && (
-                    <div className="status-success">
+                    <div className="status-success" role="status" aria-live="polite">
                       Thanks, your message has been sent.
                     </div>
                   )}
 
                   {submitStatus.error && (
-                    <div className="status-error">{submitStatus.error}</div>
+                    <div className="status-error" role="alert">
+                      {submitStatus.error}
+                    </div>
                   )}
                 </div>
               </form>
