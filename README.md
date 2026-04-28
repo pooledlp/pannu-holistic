@@ -1,16 +1,38 @@
-# React + Vite
+# Pannu Holistic Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React + Vite single-page website for Pannu Holistic Dental Myology.
 
-Currently, two official plugins are available:
+## Local development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+## Contact form configuration
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The contact form submits to Formspree. Configure the endpoint using an environment variable:
 
-## Expanding the ESLint configuration
+```bash
+VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/<your-form-id>
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+You can place this in a local `.env` file for development.
+
+## Google reviews configuration
+
+To pull live reviews in the Reviews section **without exposing a Google API key in the browser**, configure a server-side endpoint:
+
+```bash
+VITE_GOOGLE_REVIEWS_ENDPOINT=https://your-backend.example.com/google-reviews
+```
+
+Optional direct-browser fallback (not recommended because key is exposed client-side):
+
+```bash
+VITE_GOOGLE_MAPS_API_KEY=<google-maps-api-key>
+```
+
+The app is preconfigured with your Place ID (`ChIJUY5WJ9qDhYARJs7fpxLgji4`), so `VITE_GOOGLE_PLACE_ID` is optional unless you want to override it.
+
+If no Google review config is set, the site automatically falls back to built-in testimonial content.
