@@ -1,16 +1,36 @@
-# React + Vite
+# Pannu Holistic Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React + Vite single-page website for Pannu Holistic Dental Myology.
 
-Currently, two official plugins are available:
+## Local development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+The Vite base path is set to a relative value (`./`) so assets resolve when deployed at root domains, custom domains, or subpaths.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Troubleshooting
 
-## Expanding the ESLint configuration
+- If you see `sh: 1: vite: not found`, run `npm install` first (or use `npm run build`, which now falls back to `npx vite build`).
+- If npm warns about `Unknown env config "http-proxy"`, clear that stale setting before install:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm config delete http-proxy
+npm config delete https-proxy
+```
+
+## Contact form configuration
+
+The contact form submits to Formspree. Configure the endpoint using an environment variable:
+
+```bash
+VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/<your-form-id>
+```
+
+You can place this in a local `.env` file for development.
+
+## Reviews section
+
+The reviews section currently uses built-in testimonials in `src/App.jsx`.
