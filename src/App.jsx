@@ -44,6 +44,8 @@ const testimonials = [
   },
 ];
 
+const defaultGooglePlaceId = "ChIJUY5WJ9qDhYARJs7fpxLgji4";
+
 const products = [
   { name: "Dental Probiotics with Hydroxyapatite", price: "$59.00" },
   { name: "Detox Whitening Hydroxyapatite Mineral Toothpaste", price: "$29.00" },
@@ -64,6 +66,9 @@ const office = {
 
 function App() {
   const base = import.meta.env.BASE_URL;
+  const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
+  const googlePlaceId = import.meta.env.VITE_GOOGLE_PLACE_ID || defaultGooglePlaceId;
+  const googleReviewsEmbedUrl = `https://www.google.com/maps?q=place_id:${googlePlaceId}&output=embed`;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [formState, setFormState] = useState({
@@ -112,10 +117,21 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formspreeEndpoint) {
+      setSubmitStatus({
+        loading: false,
+        success: false,
+        error:
+          "Contact form is not configured yet. Please call or email the office directly.",
+      });
+      return;
+    }
+
     setSubmitStatus({ loading: true, success: false, error: "" });
 
     try {
-      const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      const response = await fetch(formspreeEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -761,6 +777,31 @@ function App() {
           grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 22px;
         }
+        .reviews-embed-wrap {
+          border: 1px solid var(--line);
+          border-radius: var(--radius);
+          padding: 10px;
+          background: #fff;
+          margin-bottom: 24px;
+        }
+        .reviews-embed {
+          width: 100%;
+          min-height: 420px;
+          border: 0;
+          border-radius: calc(var(--radius) - 10px);
+          display: block;
+        }
+        .google-review-cta {
+          width: fit-content;
+          padding: 10px 16px;
+          border: 1px solid var(--line);
+          border-radius: 999px;
+          text-decoration: none;
+          color: var(--ink);
+          font-weight: 600;
+          display: inline-flex;
+          margin-bottom: 18px;
+        }
 
         .review-card {
           background: rgba(248,245,239,0.94);
@@ -1025,7 +1066,10 @@ function App() {
           <nav className="nav" aria-label="Primary navigation">
             <a href="#home" className="brand" onClick={() => setMenuOpen(false)}>
               <div className="brand-mark">
-                <img src="/logosite_centered.png" alt="Pannu Holistic logo" />
+                <img
+                  src={`${base}logosite_centered.png`}
+                  alt="Pannu Holistic logo"
+                />
               </div>
               <div className="brand-copy">
                 <small>Holistic Dentistry</small>
@@ -1182,7 +1226,7 @@ function App() {
           <div className="about-visual">
             <div className="about-frame">
               <img
-                src="/taren.png"
+                src={`${base}taren.png`}
                 alt="Portrait of Taren Pannu"
                 className="about-img"
               />
@@ -1192,12 +1236,11 @@ function App() {
           <div className="about-copy">
             <div className="section-head" style={{ marginBottom: 0 }}>
               <small>About</small>
-              <h2>Interview with Taren Pannu RDHAP</h2>
+              <h2>Meet Taren Pannu, RDHAP</h2>
               <p>
-                Join us for an insightful conversation with Taren Pannu, RDHAP,
-                as she shares her journey and experiences in the dental hygiene
-                field. Learn about the challenges and triumphs of being a
-                Registered Dental Hygienist.
+                Taren provides compassionate, personalized dental hygiene care
+                through a holistic lens, supporting oral health as part of
+                whole-body wellness.
               </p>
             </div>
 
@@ -1294,6 +1337,25 @@ function App() {
               Thoughtful, personalized care that helps patients feel supported,
               comfortable, and cared for.
             </p>
+          </div>
+
+          <a
+            className="google-review-cta"
+            href={`https://search.google.com/local/writereview?placeid=${googlePlaceId}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Write a Google review
+          </a>
+
+          <div className="reviews-embed-wrap">
+            <iframe
+              className="reviews-embed"
+              src={googleReviewsEmbedUrl}
+              title="Google Maps reviews for Pannu Holistic Dental Myology"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
 
           <div className="reviews-grid">
@@ -1409,13 +1471,15 @@ function App() {
                   </button>
 
                   {submitStatus.success && (
-                    <div className="status-success">
+                    <div className="status-success" role="status" aria-live="polite">
                       Thanks, your message has been sent.
                     </div>
                   )}
 
                   {submitStatus.error && (
-                    <div className="status-error">{submitStatus.error}</div>
+                    <div className="status-error" role="alert">
+                      {submitStatus.error}
+                    </div>
                   )}
                 </div>
               </form>
