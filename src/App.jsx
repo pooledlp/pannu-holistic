@@ -1246,18 +1246,6 @@ function App() {
           .header { transition: none; }
           .hero-video { transform: none; }
           .hero-chip { animation: none; }
-          .intro-panel,
-          .service-card,
-          .about-copy,
-          .glass-box,
-          .review-card,
-          .contact-card,
-          .form-card,
-          .benefit,
-          .faq-card,
-          .product-card,
-          .detail-item,
-          .contact-item { animation: none; transform: none !important; }
         }
       `}</style>
 
