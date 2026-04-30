@@ -93,6 +93,7 @@ function App() {
   const base = import.meta.env.BASE_URL;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -339,6 +340,7 @@ function App() {
 
         .hero {
           position: relative;
+          isolation: isolate;
           min-height: 100vh;
           width: 100%;
           overflow: hidden;
@@ -349,12 +351,18 @@ function App() {
 
         .hero-video {
           position: absolute;
+          opacity: 0;
+          transition: opacity 500ms ease;
           inset: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
           transform: scale(1.14);
           transform-origin: center center;
+        }
+
+        .hero-video.ready {
+          opacity: 1;
         }
 
         .hero-overlay {
@@ -461,6 +469,7 @@ function App() {
 
         .hero-chip {
           display: inline-flex;
+          animation: floatUp 900ms ease both;
           align-items: center;
           min-height: 40px;
           padding: 10px 14px;
@@ -530,11 +539,32 @@ function App() {
 
         .service-card {
           padding: 34px;
+          position: relative;
+          overflow: hidden;
           border-radius: 30px;
           background: rgba(248,245,239,0.94);
           box-shadow: 0 20px 50px rgba(22,49,58,0.07);
           border: 1px solid rgba(22,49,58,0.05);
           transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .service-card::after {
+          content: "";
+          position: absolute;
+          inset: -60% auto auto -20%;
+          width: 180px;
+          height: 180px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(141,183,192,0.35), transparent 72%);
+          transform: scale(0.7);
+          opacity: 0;
+          transition: opacity 280ms ease, transform 280ms ease;
+          pointer-events: none;
+        }
+
+        .service-card:hover::after {
+          opacity: 1;
+          transform: scale(1);
         }
 
         .service-card:hover {
@@ -1024,12 +1054,18 @@ function App() {
           }
         }
 
+                @keyframes floatUp {
+          from { transform: translateY(10px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+
         @media (prefers-reduced-motion: reduce) {
           html { scroll-behavior: auto; }
           .button,
           .service-card,
           .header { transition: none; }
           .hero-video { transform: none; }
+          .hero-chip { animation: none; }
         }
       `}</style>
 
@@ -1092,11 +1128,14 @@ function App() {
 
       <section className="hero" id="home">
         <video
-          className="hero-video"
+          className={`hero-video ${videoReady ? "ready" : ""}`}
           autoPlay
           muted
           loop
           playsInline
+          preload="metadata"
+          poster={`${base}products-ocean.jpg`}
+          onLoadedData={() => setVideoReady(true)}
           ref={(video) => {
             if (video) {
               video.playbackRate = 0.6;
@@ -1137,8 +1176,8 @@ function App() {
             </div>
 
             <div className="hero-meta" aria-label="Practice highlights">
-              {highlights.map((item) => (
-                <div className="hero-chip" key={item}>
+              {highlights.map((item, index) => (
+                <div className="hero-chip" key={item} style={{ animationDelay: `${index * 120}ms` }}>
                   {item}
                 </div>
               ))}
