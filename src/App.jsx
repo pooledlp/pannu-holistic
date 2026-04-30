@@ -76,6 +76,30 @@ const products = [
   { name: "Super Ozone Oil", price: "$19.00" },
 ];
 
+
+
+const seo = {
+  canonical: "https://www.pannuholistic.com/",
+  title: "Pannu Holistic | Holistic Dental Hygiene & Myofunctional Therapy in Point Richmond, CA",
+  description:
+    "Pannu Holistic provides holistic dental hygiene, preventative dentistry, myofunctional therapy, and non-toxic oral wellness care in Point Richmond, California.",
+};
+
+const faqs = [
+  {
+    q: "Where is Pannu Holistic located?",
+    a: "We are located at 229 Tewksbury Ave. Ste A., Point Richmond, CA 94801, and serve patients across Richmond, the East Bay, and the greater Bay Area.",
+  },
+  {
+    q: "What makes your holistic dental approach different?",
+    a: "Our care is prevention-first and whole-body focused, using non-toxic materials and therapies that support breathing, comfort, and long-term oral health.",
+  },
+  {
+    q: "Do you offer services for children and families?",
+    a: "Yes. We provide gentle, personalized hygiene and wellness-oriented support for adults and children.",
+  },
+];
+
 const office = {
   phoneDisplay: "415.755.5549",
   phoneHref: "tel:4157555549",
@@ -93,6 +117,7 @@ function App() {
   const base = import.meta.env.BASE_URL;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -107,12 +132,42 @@ function App() {
     return () => window.removeEventListener("resize", closeMenu);
   }, []);
 
+  useEffect(() => {
+    document.title = seo.title;
+
+    const setMeta = (name, content, attr = "name") => {
+      let node = document.head.querySelector(`meta[${attr}="${name}"]`);
+      if (!node) {
+        node = document.createElement("meta");
+        node.setAttribute(attr, name);
+        document.head.appendChild(node);
+      }
+      node.setAttribute("content", content);
+    };
+
+    setMeta("description", seo.description);
+    setMeta("og:title", seo.title, "property");
+    setMeta("og:description", seo.description, "property");
+    setMeta("og:type", "website", "property");
+    setMeta("og:locale", "en_US", "property");
+
+    let canonical = document.head.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute("href", seo.canonical);
+  }, []);
+
   const navLinks = useMemo(
     () => [
       { label: "Services", href: "#services" },
       { label: "About", href: "#about" },
       { label: "Products", href: "#products" },
       { label: "Reviews", href: "#reviews" },
+      { label: "Why Us", href: "#why-us" },
+      { label: "FAQ", href: "#faq" },
       { label: "Contact", href: "#contact" },
     ],
     []
@@ -127,8 +182,28 @@ function App() {
 
   const reviewFeed = testimonials;
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Dentist",
+    name: "Pannu Holistic",
+    url: seo.canonical,
+    telephone: office.phoneDisplay,
+    email: office.emailDisplay,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: office.addressLine1,
+      addressLocality: "Point Richmond",
+      addressRegion: "CA",
+      postalCode: "94801",
+      addressCountry: "US",
+    },
+    areaServed: ["Point Richmond", "Richmond", "East Bay", "San Francisco Bay Area"],
+  };
+
+
   return (
     <div className="site-shell">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <style>{`
         * { box-sizing: border-box; }
 
@@ -339,6 +414,7 @@ function App() {
 
         .hero {
           position: relative;
+          isolation: isolate;
           min-height: 100vh;
           width: 100%;
           overflow: hidden;
@@ -349,12 +425,18 @@ function App() {
 
         .hero-video {
           position: absolute;
+          opacity: 0;
+          transition: opacity 500ms ease;
           inset: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
           transform: scale(1.14);
           transform-origin: center center;
+        }
+
+        .hero-video.ready {
+          opacity: 1;
         }
 
         .hero-overlay {
@@ -461,6 +543,7 @@ function App() {
 
         .hero-chip {
           display: inline-flex;
+          animation: floatUp 900ms ease both;
           align-items: center;
           min-height: 40px;
           padding: 10px 14px;
@@ -530,11 +613,32 @@ function App() {
 
         .service-card {
           padding: 34px;
+          position: relative;
+          overflow: hidden;
           border-radius: 30px;
           background: rgba(248,245,239,0.94);
           box-shadow: 0 20px 50px rgba(22,49,58,0.07);
           border: 1px solid rgba(22,49,58,0.05);
           transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .service-card::after {
+          content: "";
+          position: absolute;
+          inset: -60% auto auto -20%;
+          width: 180px;
+          height: 180px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(141,183,192,0.35), transparent 72%);
+          transform: scale(0.7);
+          opacity: 0;
+          transition: opacity 280ms ease, transform 280ms ease;
+          pointer-events: none;
+        }
+
+        .service-card:hover::after {
+          opacity: 1;
+          transform: scale(1);
         }
 
         .service-card:hover {
@@ -871,6 +975,16 @@ function App() {
           justify-content: flex-start;
         }
 
+
+        .benefits-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+        .benefit { padding: 24px; border-radius: 22px; background: rgba(248,245,239,0.94); border: 1px solid rgba(22,49,58,0.05); box-shadow: 0 18px 40px rgba(22,49,58,0.06); }
+        .benefit h3 { margin: 0 0 10px; font-size: 22px; font-family: "Cormorant Garamond", Georgia, serif; }
+        .benefit p { margin: 0; line-height: 1.8; color: #4f666d; }
+        .faq-grid { display: grid; gap: 16px; }
+        .faq-card { border-radius: 20px; padding: 22px; background: #f7f3ec; border: 1px solid rgba(22,49,58,0.06); }
+        .faq-card h3 { margin: 0 0 8px; font-size: 20px; }
+        .faq-card p { margin: 0; color: #4f666d; line-height: 1.8; }
+
         .footer {
           padding: 34px 0 48px;
           color: #667a80;
@@ -901,6 +1015,10 @@ function App() {
 
           .services-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+
+          .benefits-grid {
+            grid-template-columns: 1fr;
           }
         }
 
@@ -1024,12 +1142,18 @@ function App() {
           }
         }
 
+                @keyframes floatUp {
+          from { transform: translateY(10px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+
         @media (prefers-reduced-motion: reduce) {
           html { scroll-behavior: auto; }
           .button,
           .service-card,
           .header { transition: none; }
           .hero-video { transform: none; }
+          .hero-chip { animation: none; }
         }
       `}</style>
 
@@ -1092,11 +1216,14 @@ function App() {
 
       <section className="hero" id="home">
         <video
-          className="hero-video"
+          className={`hero-video ${videoReady ? "ready" : ""}`}
           autoPlay
           muted
           loop
           playsInline
+          preload="metadata"
+          poster={`${base}products-ocean.jpg`}
+          onLoadedData={() => setVideoReady(true)}
           ref={(video) => {
             if (video) {
               video.playbackRate = 0.6;
@@ -1121,10 +1248,7 @@ function App() {
             <h1>Specialized in Preventative Dentistry</h1>
 
             <p>
-              At our practice, we offer a range of holistic therapy options,
-              including Ozone Therapy, Myofunctional Therapy, Buteyko Breathing,
-              Mineral Treatment for decay prevention, desensitization treatment
-              for sensitive teeth, and Holistic Teeth Whitening.
+              Patients in Point Richmond and the greater Bay Area choose our holistic, prevention-first care for cleaner ingredients, personalized treatment plans, and gentle support for long-term oral and whole-body wellness.
             </p>
 
             <div className="hero-actions">
@@ -1137,8 +1261,8 @@ function App() {
             </div>
 
             <div className="hero-meta" aria-label="Practice highlights">
-              {highlights.map((item) => (
-                <div className="hero-chip" key={item}>
+              {highlights.map((item, index) => (
+                <div className="hero-chip" key={item} style={{ animationDelay: `${index * 120}ms` }}>
                   {item}
                 </div>
               ))}
@@ -1320,6 +1444,40 @@ function App() {
                 <p>{review.quote}</p>
                 <div className="review-name">{review.name}</div>
                 {review.when ? <div className="review-when">{review.when}</div> : null}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="why-us">
+        <div className="container">
+          <div className="section-head">
+            <small>Why Patients Choose Us</small>
+            <h2>Easy, clear care that feels modern and deeply personal.</h2>
+            <p>
+              Every visit is designed to be comfortable, educational, and supportive—so you always understand your options and next steps.
+            </p>
+          </div>
+          <div className="benefits-grid">
+            <article className="benefit"><h3>Clear Communication</h3><p>We explain treatment in plain language and help you make confident decisions for your oral health.</p></article>
+            <article className="benefit"><h3>Non-Toxic Focus</h3><p>From products to techniques, we prioritize biocompatible options aligned with a wellness-centered lifestyle.</p></article>
+            <article className="benefit"><h3>Local, Convenient Care</h3><p>Located in Point Richmond, we proudly serve families and wellness-minded patients across Richmond and the East Bay.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="faq">
+        <div className="container">
+          <div className="section-head">
+            <small>FAQ</small>
+            <h2>Questions patients ask before their first visit.</h2>
+          </div>
+          <div className="faq-grid">
+            {faqs.map((item) => (
+              <article className="faq-card" key={item.q}>
+                <h3>{item.q}</h3>
+                <p>{item.a}</p>
               </article>
             ))}
           </div>
