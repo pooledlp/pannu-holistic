@@ -321,7 +321,7 @@ function App() {
           display: inline-flex;
           align-items: center;
           gap: 12px;
-          color: #fff;
+          color: #f8fdff;
           min-width: 0;
         }
 
@@ -443,7 +443,7 @@ function App() {
           position: absolute;
           inset: 0;
           background:
-            linear-gradient(180deg, rgba(7,20,25,0.26) 0%, rgba(7,20,25,0.56) 58%, rgba(7,20,25,0.74) 100%),
+            linear-gradient(180deg, rgba(8,24,30,0.12) 0%, rgba(8,24,30,0.28) 58%, rgba(8,24,30,0.44) 100%),
             radial-gradient(circle at 18% 18%, rgba(255,255,255,0.08), transparent 24%);
         }
 
@@ -480,6 +480,7 @@ function App() {
         }
 
         .hero h1 {
+          text-shadow: 0 14px 40px rgba(6,16,24,0.45);
           margin: 0;
           font-family: "Cormorant Garamond", Georgia, serif;
           font-size: clamp(42px, 5.2vw, 72px);
@@ -491,6 +492,7 @@ function App() {
         }
 
         .hero p {
+          text-shadow: 0 10px 24px rgba(6,16,24,0.38);
           margin: 24px 0 0;
           font-size: 16px;
           line-height: 1.9;
@@ -548,9 +550,9 @@ function App() {
           min-height: 40px;
           padding: 10px 14px;
           border-radius: 999px;
-          background: rgba(255,255,255,0.10);
+          background: rgba(12,41,52,0.34);
           border: 1px solid rgba(255,255,255,0.16);
-          color: rgba(255,255,255,0.92);
+          color: rgba(244,252,255,0.96);
           font-size: 13px;
           backdrop-filter: blur(10px);
         }
@@ -1005,6 +1007,94 @@ function App() {
           flex-wrap: wrap;
         }
 
+
+        .intro-panel,
+        .service-card,
+        .about-copy,
+        .glass-box,
+        .review-card,
+        .contact-card,
+        .form-card,
+        .benefit,
+        .faq-card,
+        .product-card,
+        .detail-item,
+        .contact-item {
+          position: relative;
+          overflow: hidden;
+          transition: transform 280ms cubic-bezier(.2,.8,.2,1), box-shadow 280ms ease, border-color 280ms ease;
+        }
+
+        .intro-panel::before,
+        .service-card::before,
+        .about-copy::before,
+        .glass-box::before,
+        .review-card::before,
+        .contact-card::before,
+        .form-card::before,
+        .benefit::before,
+        .faq-card::before,
+        .product-card::before,
+        .detail-item::before,
+        .contact-item::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.38) 45%, transparent 70%);
+          transform: translateX(-140%);
+          transition: transform 700ms ease;
+          pointer-events: none;
+        }
+
+        .intro-panel:hover,
+        .service-card:hover,
+        .about-copy:hover,
+        .glass-box:hover,
+        .review-card:hover,
+        .contact-card:hover,
+        .form-card:hover,
+        .benefit:hover,
+        .faq-card:hover,
+        .product-card:hover,
+        .detail-item:hover,
+        .contact-item:hover {
+          transform: translateY(-6px) scale(1.01);
+          box-shadow: 0 24px 54px rgba(20, 52, 66, 0.16);
+          border-color: rgba(118, 170, 184, 0.42);
+        }
+
+        .intro-panel:hover::before,
+        .service-card:hover::before,
+        .about-copy:hover::before,
+        .glass-box:hover::before,
+        .review-card:hover::before,
+        .contact-card:hover::before,
+        .form-card:hover::before,
+        .benefit:hover::before,
+        .faq-card:hover::before,
+        .product-card:hover::before,
+        .detail-item:hover::before,
+        .contact-item:hover::before {
+          transform: translateX(140%);
+        }
+
+        .reviews-grid .review-card:nth-child(odd),
+        .services-grid .service-card:nth-child(odd),
+        .benefits-grid .benefit:nth-child(odd) {
+          animation: cardFloat 6s ease-in-out infinite;
+        }
+
+        .reviews-grid .review-card:nth-child(even),
+        .services-grid .service-card:nth-child(even),
+        .benefits-grid .benefit:nth-child(even) {
+          animation: cardFloat 6.5s ease-in-out infinite reverse;
+        }
+
+        @keyframes cardFloat {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-4px); }
+        }
+
         @media (max-width: 1100px) {
           .intro-panel,
           .about-wrap,
@@ -1102,10 +1192,12 @@ function App() {
           }
 
           .hero h1 {
+          text-shadow: 0 14px 40px rgba(6,16,24,0.45);
             font-size: clamp(38px, 12vw, 58px);
           }
 
           .hero p {
+          text-shadow: 0 10px 24px rgba(6,16,24,0.38);
             font-size: 16px;
           }
 
