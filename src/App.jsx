@@ -976,35 +976,32 @@ function App() {
 
 
         .smile-journey {
-          margin-top: 28px;
-          border-radius: 30px;
-          padding: 28px;
-          background: rgba(248,245,239,0.94);
-          border: 1px solid rgba(22,49,58,0.06);
-          box-shadow: 0 20px 50px rgba(22,49,58,0.07);
+          margin-top: 10px;
         }
         .smile-track {
           display: grid;
           grid-template-columns: repeat(3, minmax(0,1fr));
           gap: 18px;
-          align-items: center;
         }
         .tooth-stage {
           text-align: center;
+          padding: 22px;
+          border-radius: 24px;
+          background: rgba(248,245,239,0.94);
+          border: 1px solid rgba(22,49,58,0.06);
+          box-shadow: 0 18px 40px rgba(22,49,58,0.06);
         }
         .tooth-image {
-          width: 118px;
-          height: 118px;
-          margin: 0 auto 10px;
+          width: 100%;
+          max-width: 280px;
+          aspect-ratio: 1 / 1;
+          margin: 0 auto 14px;
           display: block;
-          border-radius: 24px;
+          border-radius: 20px;
           object-fit: cover;
-          animation: toothRecover 3.4s ease-in-out infinite;
+          background: #efe8dc;
         }
-        .tooth-stage:nth-child(1) .tooth-image { animation-delay: -0.2s; }
-        .tooth-stage:nth-child(2) .tooth-image { animation-delay: -1.2s; }
-        .tooth-stage:nth-child(3) .tooth-image { animation-delay: -2.3s; }
-        .tooth-stage p { margin: 0; color: #4f666d; font-size: 14px; }
+        .tooth-stage p { margin: 0; color: #4f666d; font-size: 14px; line-height: 1.7; }
 
         .footer {
           padding: 34px 0 48px;
@@ -1654,14 +1651,16 @@ function App() {
       </section>
 
       <section className="section" id="smile-journey">
-        <div className="container reveal">
-          <div className="eyebrow">Smile Transformation</div>
-          <h2 className="section-title">All real results. No braces. No surgery.</h2>
-          <div className="smile-journey">
-            <p style={{ margin: "0 0 18px", color: "#37545d", fontSize: "1.02rem" }}>
+        <div className="container">
+          <div className="section-head">
+            <small>Smile Transformation</small>
+            <h2>All real results. No braces. No surgery.</h2>
+            <p>
               These are real before-and-after outcomes from focused myofunctional therapy — just consistent muscle
               retraining, breathing support, and holistic oral care.
             </p>
+          </div>
+          <div className="smile-journey reveal">
             <div className="smile-track">
               {smileCases.map((item, index) => (
                 <div className="tooth-stage" key={item.file}>
