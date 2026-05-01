@@ -109,6 +109,7 @@ const office = {
 function App() {
   const smileImage = "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1800&q=80";
   const base = import.meta.env.BASE_URL;
+  const smileImage = `${base}teeth.png`;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
