@@ -106,7 +106,7 @@ const seo = {
 const faqs = [
   {
     q: "Where is Pannu Holistic located?",
-    a: "We are located at 229 Tewksbury Ave. Ste A., Point Richmond, CA 94801, and serve patients across Richmond, the East Bay, and the greater Bay Area.",
+    a: "We serve patients across Richmond, the East Bay, and the greater Bay Area.",
   },
   {
     q: "What makes your holistic dental approach different?",
@@ -121,14 +121,6 @@ const faqs = [
 const office = {
   phoneDisplay: "415.755.5549",
   phoneHref: "tel:4157555549",
-  emailDisplay: "info@pannuholistic.com",
-  emailHref: "mailto:info@pannuholistic.com",
-  addressLine1: "229 Tewksbury Ave. Ste A.",
-  addressLine2: "Point Richmond, CA 94801",
-  mapsHref:
-    "https://www.google.com/maps/search/?api=1&query=229+Tewksbury+Ave+Ste+A+Point+Richmond+CA+94801",
-  mapsEmbedHref:
-    "https://www.google.com/maps?q=229+Tewksbury+Ave+Ste+A+Point+Richmond+CA+94801&output=embed",
 };
 
 function App() {
@@ -206,15 +198,6 @@ function App() {
     name: "Pannu Holistic",
     url: seo.canonical,
     telephone: office.phoneDisplay,
-    email: office.emailDisplay,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: office.addressLine1,
-      addressLocality: "Point Richmond",
-      addressRegion: "CA",
-      postalCode: "94801",
-      addressCountry: "US",
-    },
     areaServed: ["Point Richmond", "Richmond", "East Bay", "San Francisco Bay Area"],
   };
 
@@ -1739,7 +1722,7 @@ function App() {
             <small>Contact</small>
             <h2>We’d love to hear from you. Drop us a message.</h2>
             <p>
-              Reach out by phone or email, and view our office location below.
+              Reach out by phone to connect with our team.
             </p>
           </div>
 
@@ -1762,75 +1745,26 @@ function App() {
                   <strong>{office.phoneDisplay}</strong>
                 </a>
 
-                <a href={office.emailHref} className="contact-item">
-                  <span>Email</span>
-                  <strong>{office.emailDisplay}</strong>
-                </a>
-
-                <a
-                  href={office.mapsHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="contact-item"
-                >
-                  <span>Address</span>
-                  <strong>
-                    {office.addressLine1}
-                    <br />
-                    {office.addressLine2}
-                  </strong>
-                </a>
               </div>
 
               <form
                 className="contact-form"
-                action="https://formsubmit.co/info@pannuholistic.com"
-                method="POST"
+                onSubmit={(event) => event.preventDefault()}
               >
-                <input type="hidden" name="_subject" value="New message from pannu holistic website" />
-                <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_template" value="table" />
                 <input type="text" name="name" placeholder="Your name" required />
                 <input type="email" name="email" placeholder="Your email" required />
                 <textarea name="message" placeholder="How can we help?" required />
                 <button type="submit" className="button button-light">Send Message</button>
               </form>
-              <p className="contact-form-note">
-                This form sends directly to {office.emailDisplay} via FormSubmit (free SMTP delivery).
-              </p>
             </div>
 
-            <div className="form-card map-card">
-              <h3>Office Location</h3>
-              <p>Find us in Point Richmond and open directions in Google Maps.</p>
-
-              <div className="map-embed-wrap">
-                <iframe
-                  className="map-embed"
-                  title="Pannu Holistic office location"
-                  src={office.mapsEmbedHref}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen
-                />
-              </div>
-
-              <div className="map-actions">
-                <a href={office.mapsHref} target="_blank" rel="noreferrer" className="button button-light">
-                  Open in Google Maps
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
       <footer className="footer">
         <div className="container footer-inner">
-          <div>
-            COPYRIGHT © 2026 • Pannu Holistic • {office.addressLine1},{" "}
-            {office.addressLine2}
-          </div>
+          <div>COPYRIGHT © 2026 • Pannu Holistic</div>
           <div className="footer-links">
             <a href="#home">Homepage</a>
             <a href="#products">Products</a>
