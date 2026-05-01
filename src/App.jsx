@@ -68,10 +68,30 @@ const testimonials = [
 
 
 const products = [
-  { name: "Dental Probiotics with Hydroxyapatite", price: "$59.00" },
-  { name: "Detox Whitening Hydroxyapatite Mineral Toothpaste", price: "$29.00" },
-  { name: "Holistic Gum Oil Pulling", price: "$13.00" },
-  { name: "Super Ozone Oil", price: "$19.00" },
+  {
+    name: "Dental Probiotics with Hydroxyapatite",
+    price: "$59.00",
+    details:
+      "Supports oral microbiome balance while helping strengthen enamel with hydroxyapatite minerals.",
+  },
+  {
+    name: "Detox Whitening Hydroxyapatite Mineral Toothpaste",
+    price: "$29.00",
+    details:
+      "A non-toxic daily toothpaste designed for gentle whitening, remineralization, and fresh breath support.",
+  },
+  {
+    name: "Holistic Gum Oil Pulling",
+    price: "$13.00",
+    details:
+      "Traditional botanical oil blend to support gum comfort, oral cleansing, and daily wellness routines.",
+  },
+  {
+    name: "Super Ozone Oil",
+    price: "$19.00",
+    details:
+      "Concentrated ozone-infused oil often used for targeted oral care and supportive gum maintenance.",
+  },
 ];
 
 
@@ -748,7 +768,7 @@ function App() {
           position: relative;
           z-index: 1;
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr;
           gap: 24px;
           padding: 40px;
         }
@@ -810,15 +830,17 @@ function App() {
           margin-bottom: 10px;
         }
 
-        .order-pill {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 10px 14px;
-          border-radius: 999px;
-          background: #fff;
-          border: 1px solid rgba(22,49,58,0.08);
+        .product-card p {
+          margin: 0 0 14px;
+          color: #4f666d;
+          line-height: 1.7;
+          font-size: 14px;
+        }
+
+        .product-card .button {
+          padding: 10px 16px;
           font-size: 13px;
+          letter-spacing: 0.08em;
         }
 
         .reviews-grid {
@@ -1566,11 +1588,13 @@ function App() {
             <div className="products-inner">
               <div className="glass-box">
                 <small>Products</small>
-                <h2>Featured wellness products available through the office.</h2>
+                <h2>Featured wellness products for holistic oral care.</h2>
                 <p>
-                  To place an order, please call or email the office directly.
-                  We will be happy to assist you with product availability and
-                  ordering.
+                  Our product collection is selected to support preventive,
+                  non-toxic oral wellness at home between visits. Each option is
+                  chosen to align with our whole-body approach to dental care.
+                  For best results, we can help guide you to the right product
+                  based on your goals and oral health needs.
                 </p>
 
                 <div className="product-grid">
@@ -1578,46 +1602,19 @@ function App() {
                     <div className="product-card" key={product.name}>
                       <strong>{product.name}</strong>
                       <span>{product.price}</span>
-                      <div className="order-pill">Call or email to order</div>
+                      <p>{product.details}</p>
+                      <a href="#contact" className="button button-primary">
+                        Contact to order
+                      </a>
                     </div>
                   ))}
                 </div>
-              </div>
 
-              <div className="glass-box">
-                <small>Order Information</small>
-                <h2>Call or email the office to place your order.</h2>
                 <p>
-                  If you would like to purchase any available product, contact
-                  the office directly and we will help you with ordering and
-                  questions.
+                  Need help deciding? Visit our Contact section and share your
+                  current concerns (sensitivity, gum support, whitening goals,
+                  or remineralization) so we can recommend the best fit.
                 </p>
-
-                <div className="contact-list" style={{ marginTop: "24px" }}>
-                  <a href={office.phoneHref} className="contact-item">
-                    <span>Phone</span>
-                    <strong>{office.phoneDisplay}</strong>
-                  </a>
-
-                  <a href={office.emailHref} className="contact-item">
-                    <span>Email</span>
-                    <strong>{office.emailDisplay}</strong>
-                  </a>
-
-                  <a
-                    href={office.mapsHref}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="contact-item"
-                  >
-                    <span>Address</span>
-                    <strong>
-                      {office.addressLine1}
-                      <br />
-                      {office.addressLine2}
-                    </strong>
-                  </a>
-                </div>
               </div>
             </div>
           </div>
