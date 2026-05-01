@@ -308,14 +308,14 @@ function App() {
 
         .nav {
           display: flex;
-          align-items: center;
+          align-items: stretch;
           justify-content: space-between;
           gap: 24px;
         }
 
         .brand {
           display: inline-flex;
-          align-items: center;
+          align-items: stretch;
           gap: 12px;
           color: #f8fdff;
           min-width: 0;
@@ -657,9 +657,9 @@ function App() {
 
         .about-wrap {
           display: grid;
-          grid-template-columns: 0.82fr 1.18fr;
+          grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
           gap: 34px;
-          align-items: center;
+          align-items: stretch;
         }
 
         .about-visual {
@@ -668,11 +668,12 @@ function App() {
         }
 
         .about-frame {
-          width: min(430px, 100%);
+          width: min(520px, 100%);
           border-radius: 34px;
           background: linear-gradient(180deg, #f1ebdf 0%, #e7dfd2 100%);
           box-shadow: 0 24px 60px rgba(22,49,58,0.10);
-          padding: 28px 20px 0;
+          padding: 18px;
+          min-height: 100%;
           overflow: hidden;
           border: 1px solid rgba(22,49,58,0.05);
         }
@@ -680,8 +681,9 @@ function App() {
         .about-img {
           display: block;
           width: 100%;
-          height: auto;
-          object-fit: contain;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 24px;
           filter: grayscale(100%) sepia(8%) brightness(1.03) contrast(0.96);
         }
 
@@ -689,6 +691,9 @@ function App() {
           background: rgba(248,245,239,0.94);
           border-radius: 34px;
           padding: 42px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
           box-shadow: 0 20px 50px rgba(22,49,58,0.07);
           border: 1px solid rgba(22,49,58,0.05);
         }
@@ -1514,7 +1519,7 @@ function App() {
           <div className="about-visual">
             <div className="about-frame">
               <img
-                src={`${base}taren.png`}
+                src={`${base}Taren2.png`}
                 alt="Portrait of Taren Pannu"
                 className="about-img"
               />
