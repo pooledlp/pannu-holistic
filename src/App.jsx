@@ -1,4 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
+import smileBefore from "./assets/smile-before.svg";
+import smileHealing from "./assets/smile-healing.svg";
+import smileAfter from "./assets/smile-after.svg";
 
 const services = [
   {
@@ -107,9 +110,7 @@ const office = {
 };
 
 function App() {
-  const smileImage = "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1800&q=80";
   const base = import.meta.env.BASE_URL;
-  const smileImage = `${base}teeth.png`;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
@@ -980,35 +981,18 @@ function App() {
         .tooth-stage {
           text-align: center;
         }
-        .tooth {
-          width: 86px;
-          height: 98px;
+        .tooth-image {
+          width: 140px;
+          height: 140px;
           margin: 0 auto 10px;
-          background: linear-gradient(180deg, #f4eee1 0%, #ded0b9 100%);
-          border-radius: 44px 44px 30px 30px;
-          position: relative;
-          box-shadow: inset 0 -8px 14px rgba(89,63,34,0.12);
+          display: block;
+          border-radius: 24px;
+          object-fit: cover;
           animation: toothRecover 3.4s ease-in-out infinite;
         }
-        .tooth::before,
-        .tooth::after {
-          content: "";
-          position: absolute;
-          bottom: -8px;
-          width: 22px;
-          height: 30px;
-          background: inherit;
-          border-radius: 0 0 16px 16px;
-        }
-        .tooth::before { left: 14px; }
-        .tooth::after { right: 14px; }
-        .tooth-stage:nth-child(1) .tooth { filter: saturate(0.7) brightness(0.86); animation-delay: -0.2s; }
-        .tooth-stage:nth-child(2) .tooth { filter: saturate(0.95) brightness(0.98); animation-delay: -1.2s; }
-        .tooth-stage:nth-child(3) .tooth {
-          background: linear-gradient(180deg, #fcfdf9 0%, #e7f2ea 100%);
-          box-shadow: inset 0 -6px 12px rgba(79,140,111,0.16), 0 0 22px rgba(168,218,187,0.45);
-          animation-delay: -2.3s;
-        }
+        .tooth-stage:nth-child(1) .tooth-image { animation-delay: -0.2s; }
+        .tooth-stage:nth-child(2) .tooth-image { animation-delay: -1.2s; }
+        .tooth-stage:nth-child(3) .tooth-image { animation-delay: -2.3s; }
         .tooth-stage p { margin: 0; color: #4f666d; font-size: 14px; }
 
         .footer {
@@ -1665,15 +1649,15 @@ function App() {
           <div className="smile-journey">
             <div className="smile-track">
               <div className="tooth-stage">
-                <div className="tooth" aria-hidden="true"></div>
+                <img className="tooth-image" src={smileBefore} alt="Before care tooth illustration" loading="lazy" />
                 <p>Before care</p>
               </div>
               <div className="tooth-stage">
-                <div className="tooth" aria-hidden="true"></div>
+                <img className="tooth-image" src={smileHealing} alt="Detox and healing support tooth illustration" loading="lazy" />
                 <p>Detox + healing support</p>
               </div>
               <div className="tooth-stage">
-                <div className="tooth" aria-hidden="true"></div>
+                <img className="tooth-image" src={smileAfter} alt="Brighter and stronger smile tooth illustration" loading="lazy" />
                 <p>Brighter, stronger smile</p>
               </div>
             </div>

@@ -1,0 +1,11 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tooth with healing support">
+  <rect width="240" height="240" rx="30" fill="#f3eee6"/>
+  <g transform="translate(50 24)">
+    <path d="M70 16c-30 0-52 24-52 54 0 24 14 47 14 72 0 13 10 24 23 24 9 0 16-6 20-13l4-9 4 9c4 7 11 13 20 13 13 0 23-11 23-24 0-25 14-48 14-72 0-30-22-54-52-54h-18z" fill="#e5ddcd" stroke="#cabfae" stroke-width="6"/>
+    <path d="M58 62c10-12 34-13 46-3" stroke="#b7ab97" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <ellipse cx="70" cy="96" rx="8" ry="11" fill="#c7bbab"/>
+    <ellipse cx="98" cy="94" rx="8" ry="11" fill="#c7bbab"/>
+    <circle cx="114" cy="58" r="14" fill="#b8ddc8" fill-opacity="0.55"/>
+    <path d="M111 52v12M105 58h12" stroke="#7fb394" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>
