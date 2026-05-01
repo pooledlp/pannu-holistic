@@ -985,6 +985,35 @@ function App() {
           justify-content: flex-start;
         }
 
+        .contact-form {
+          margin-top: 24px;
+          display: grid;
+          gap: 12px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+          width: 100%;
+          border: 1px solid rgba(22,49,58,0.14);
+          border-radius: 14px;
+          background: #fff;
+          padding: 12px 14px;
+          font-size: 15px;
+          color: #17313a;
+        }
+
+        .contact-form textarea {
+          min-height: 120px;
+          resize: vertical;
+        }
+
+        .contact-form-note {
+          margin: 10px 0 0;
+          color: #5e7278;
+          font-size: 13px;
+          line-height: 1.6;
+        }
+
 
         .benefits-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
         .benefit { padding: 24px; border-radius: 22px; background: rgba(248,245,239,0.94); border: 1px solid rgba(22,49,58,0.05); box-shadow: 0 18px 40px rgba(22,49,58,0.06); }
@@ -1752,6 +1781,23 @@ function App() {
                   </strong>
                 </a>
               </div>
+
+              <form
+                className="contact-form"
+                action="https://formsubmit.co/info@pannuholistic.com"
+                method="POST"
+              >
+                <input type="hidden" name="_subject" value="New message from pannu holistic website" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_template" value="table" />
+                <input type="text" name="name" placeholder="Your name" required />
+                <input type="email" name="email" placeholder="Your email" required />
+                <textarea name="message" placeholder="How can we help?" required />
+                <button type="submit" className="button button-light">Send Message</button>
+              </form>
+              <p className="contact-form-note">
+                This form sends directly to {office.emailDisplay} via FormSubmit (free SMTP delivery).
+              </p>
             </div>
 
             <div className="form-card map-card">
