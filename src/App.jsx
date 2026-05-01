@@ -982,8 +982,8 @@ function App() {
           text-align: center;
         }
         .tooth-image {
-          width: 140px;
-          height: 140px;
+          width: 118px;
+          height: 118px;
           margin: 0 auto 10px;
           display: block;
           border-radius: 24px;

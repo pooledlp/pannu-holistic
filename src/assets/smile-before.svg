@@ -1,11 +1,7 @@
-<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tooth before care">
-  <rect width="240" height="240" rx="30" fill="#f3eee6"/>
-  <g transform="translate(50 24)">
-    <path d="M70 16c-30 0-52 24-52 54 0 24 14 47 14 72 0 13 10 24 23 24 9 0 16-6 20-13l4-9 4 9c4 7 11 13 20 13 13 0 23-11 23-24 0-25 14-48 14-72 0-30-22-54-52-54h-18z" fill="#d4cec2" stroke="#b9b1a3" stroke-width="6"/>
-    <path d="M58 62c10-12 34-13 46-3" stroke="#a89f92" stroke-width="8" stroke-linecap="round" fill="none"/>
-    <ellipse cx="70" cy="96" rx="9" ry="12" fill="#b4ac9f"/>
-    <ellipse cx="98" cy="94" rx="9" ry="12" fill="#b4ac9f"/>
-    <circle cx="58" cy="118" r="8" fill="#9f9587"/>
-    <circle cx="100" cy="122" r="7" fill="#a4998a"/>
-  </g>
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="240" height="240" rx="40" fill="#F4EFE7"/>
+  <ellipse cx="120" cy="116" rx="62" ry="74" fill="#C5BEB2"/>
+  <rect x="80" y="142" width="32" height="58" rx="14" fill="#E1DBD0"/>
+  <rect x="128" y="142" width="32" height="58" rx="14" fill="#E1DBD0"/>
+  <path d="M84 84C98 66 142 64 158 84" stroke="#B0A89A" stroke-width="10" stroke-linecap="round"/>
 </svg>
