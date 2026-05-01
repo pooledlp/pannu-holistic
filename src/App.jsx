@@ -121,6 +121,8 @@ const faqs = [
 const office = {
   phoneDisplay: "415.755.5549",
   phoneHref: "tel:4157555549",
+  addressDisplay: "229 Tewksbury Ave. Ste A. Point Richmond, CA 94801",
+  mapQuery: "229 Tewksbury Ave Ste A Point Richmond CA 94801",
 };
 
 function App() {
@@ -1158,6 +1160,12 @@ function App() {
           animation: cardDrift 7.5s ease-in-out infinite;
         }
 
+        .contact-card,
+        .form-card,
+        .contact-item {
+          animation: none;
+        }
+
         .services-grid .service-card:nth-child(2n),
         .reviews-grid .review-card:nth-child(2n),
         .benefits-grid .benefit:nth-child(2n),
@@ -1501,6 +1509,30 @@ function App() {
               </a>
             </div>
 
+            <div className="form-card map-card">
+              <h3>Visit Our Office</h3>
+              <p>{office.addressDisplay}</p>
+              <div className="map-embed-wrap">
+                <iframe
+                  title="Pannu Holistic office location"
+                  className="map-embed"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src={`https://www.google.com/maps?q=${encodeURIComponent(office.mapQuery)}&output=embed`}
+                />
+              </div>
+              <div className="map-actions">
+                <a
+                  className="button button-light"
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(office.mapQuery)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open in Google Maps
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -1756,6 +1788,30 @@ function App() {
                 <textarea name="message" placeholder="How can we help?" required />
                 <button type="submit" className="button button-light">Send Message</button>
               </form>
+            </div>
+
+            <div className="form-card map-card">
+              <h3>Visit Our Office</h3>
+              <p>{office.addressDisplay}</p>
+              <div className="map-embed-wrap">
+                <iframe
+                  title="Pannu Holistic office location"
+                  className="map-embed"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src={`https://www.google.com/maps?q=${encodeURIComponent(office.mapQuery)}&output=embed`}
+                />
+              </div>
+              <div className="map-actions">
+                <a
+                  className="button button-light"
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(office.mapQuery)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open in Google Maps
+                </a>
+              </div>
             </div>
 
           </div>
