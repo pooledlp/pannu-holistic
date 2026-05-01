@@ -959,6 +959,56 @@ function App() {
         .faq-card h3 { margin: 0 0 8px; font-size: 20px; }
         .faq-card p { margin: 0; color: #4f666d; line-height: 1.8; }
 
+
+
+        .smile-journey {
+          margin-top: 28px;
+          border-radius: 30px;
+          padding: 28px;
+          background: rgba(248,245,239,0.94);
+          border: 1px solid rgba(22,49,58,0.06);
+          box-shadow: 0 20px 50px rgba(22,49,58,0.07);
+        }
+        .smile-track {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0,1fr));
+          gap: 18px;
+          align-items: center;
+        }
+        .tooth-stage {
+          text-align: center;
+        }
+        .tooth {
+          width: 86px;
+          height: 98px;
+          margin: 0 auto 10px;
+          background: linear-gradient(180deg, #f4eee1 0%, #ded0b9 100%);
+          border-radius: 44px 44px 30px 30px;
+          position: relative;
+          box-shadow: inset 0 -8px 14px rgba(89,63,34,0.12);
+          animation: toothRecover 3.4s ease-in-out infinite;
+        }
+        .tooth::before,
+        .tooth::after {
+          content: "";
+          position: absolute;
+          bottom: -8px;
+          width: 22px;
+          height: 30px;
+          background: inherit;
+          border-radius: 0 0 16px 16px;
+        }
+        .tooth::before { left: 14px; }
+        .tooth::after { right: 14px; }
+        .tooth-stage:nth-child(1) .tooth { filter: saturate(0.7) brightness(0.86); animation-delay: -0.2s; }
+        .tooth-stage:nth-child(2) .tooth { filter: saturate(0.95) brightness(0.98); animation-delay: -1.2s; }
+        .tooth-stage:nth-child(3) .tooth {
+          background: linear-gradient(180deg, #fcfdf9 0%, #e7f2ea 100%);
+          box-shadow: inset 0 -6px 12px rgba(79,140,111,0.16), 0 0 22px rgba(168,218,187,0.45);
+          animation-delay: -2.3s;
+        }
+        .tooth-stage p { margin: 0; color: #4f666d; font-size: 14px; }
+
         .footer {
           padding: 34px 0 48px;
           color: #667a80;
@@ -1065,6 +1115,37 @@ function App() {
         @keyframes cardFloat {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-4px); }
+        }
+
+        .service-card,
+        .review-card,
+        .benefit,
+        .product-card,
+        .contact-card,
+        .form-card,
+        .faq-card,
+        .detail-item,
+        .contact-item,
+        .bio-card {
+          animation: cardDrift 7.5s ease-in-out infinite;
+        }
+
+        .services-grid .service-card:nth-child(2n),
+        .reviews-grid .review-card:nth-child(2n),
+        .benefits-grid .benefit:nth-child(2n),
+        .product-grid .product-card:nth-child(2n),
+        .faq-grid .faq-card:nth-child(2n) {
+          animation-delay: -2.6s;
+        }
+
+        @keyframes cardDrift {
+          0%, 100% { transform: translateY(0px) translateX(0px); }
+          50% { transform: translateY(-7px) translateX(2px); }
+        }
+
+        @keyframes toothRecover {
+          0%,100% { transform: translateY(0) scale(1); }
+          50% { transform: translateY(-6px) scale(1.03); }
         }
 
 
@@ -1571,6 +1652,29 @@ function App() {
                 {review.when ? <div className="review-when">{review.when}</div> : null}
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="smile-journey">
+        <div className="container reveal">
+          <div className="eyebrow">Smile Transformation</div>
+          <h2 className="section-title">Watch oral health improve visit after visit.</h2>
+          <div className="smile-journey">
+            <div className="smile-track">
+              <div className="tooth-stage">
+                <div className="tooth" aria-hidden="true"></div>
+                <p>Before care</p>
+              </div>
+              <div className="tooth-stage">
+                <div className="tooth" aria-hidden="true"></div>
+                <p>Detox + healing support</p>
+              </div>
+              <div className="tooth-stage">
+                <div className="tooth" aria-hidden="true"></div>
+                <p>Brighter, stronger smile</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
