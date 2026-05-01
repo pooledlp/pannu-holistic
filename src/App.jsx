@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 const smileCases = [
-  { src: "/case1.png", alt: "Case 1 smile transformation before and after" },
-  { src: "/case2.png", alt: "Case 2 smile transformation before and after" },
-  { src: "/case3.png", alt: "Case 3 smile transformation before and after" },
+  { file: "case1.png", alt: "Case 1 smile transformation before and after" },
+  { file: "case2.png", alt: "Case 2 smile transformation before and after" },
+  { file: "case3.png", alt: "Case 3 smile transformation before and after" },
 ];
 
 const services = [
@@ -474,6 +474,10 @@ function App() {
           font-size: 12px;
           letter-spacing: 0.24em;
           text-transform: uppercase;
+          color: #6f93a0;
+        }
+
+        .hero .eyebrow {
           color: rgba(255,255,255,0.84);
         }
 
@@ -1660,8 +1664,8 @@ function App() {
             </p>
             <div className="smile-track">
               {smileCases.map((item, index) => (
-                <div className="tooth-stage" key={item.src}>
-                  <img className="tooth-image" src={item.src} alt={item.alt} loading="lazy" />
+                <div className="tooth-stage" key={item.file}>
+                  <img className="tooth-image" src={`${base}${item.file}`} alt={item.alt} loading="lazy" />
                   <p>Case {index + 1}: Myofunctional therapy transformation</p>
                 </div>
               ))}
