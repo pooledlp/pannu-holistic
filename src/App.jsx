@@ -1067,6 +1067,66 @@ function App() {
           50% { transform: translateY(-4px); }
         }
 
+
+        .hero-orb {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(3px);
+          pointer-events: none;
+          mix-blend-mode: screen;
+          opacity: 0.5;
+          animation: orbDrift 14s ease-in-out infinite;
+        }
+
+        .hero-orb-one {
+          width: 280px;
+          height: 280px;
+          top: 16%;
+          right: 8%;
+          background: radial-gradient(circle, rgba(137, 215, 232, 0.45), rgba(137, 215, 232, 0));
+        }
+
+        .hero-orb-two {
+          width: 220px;
+          height: 220px;
+          bottom: 18%;
+          right: 34%;
+          background: radial-gradient(circle, rgba(220, 241, 197, 0.42), rgba(220, 241, 197, 0));
+          animation-delay: -4s;
+        }
+
+        .hero-orb-three {
+          width: 320px;
+          height: 320px;
+          left: -4%;
+          top: 26%;
+          background: radial-gradient(circle, rgba(255, 248, 231, 0.45), rgba(255, 248, 231, 0));
+          animation-delay: -8s;
+        }
+
+        .reveal {
+          animation: fadeLift 0.9s cubic-bezier(.2,.7,.2,1) both;
+        }
+
+        .button-light {
+          animation: softPulse 3.2s ease-in-out infinite;
+        }
+
+        @keyframes fadeLift {
+          from { opacity: 0; transform: translateY(24px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes orbDrift {
+          0%,100% { transform: translate3d(0,0,0) scale(1); }
+          50% { transform: translate3d(0,-18px,0) scale(1.06); }
+        }
+
+        @keyframes softPulse {
+          0%, 100% { box-shadow: 0 18px 40px rgba(0,0,0,0.14); }
+          50% { box-shadow: 0 20px 54px rgba(112, 178, 194, 0.36); }
+        }
+
         @media (max-width: 1100px) {
           .intro-panel,
           .about-wrap,
@@ -1217,6 +1277,12 @@ function App() {
           .service-card,
           .header { transition: none; }
           .hero-video { transform: none; }
+          .hero-orb,
+          .button-light,
+          .reveal,
+          .reviews-grid .review-card,
+          .services-grid .service-card,
+          .benefits-grid .benefit { animation: none !important; }
         }
       `}</style>
 
@@ -1300,10 +1366,13 @@ function App() {
         </video>
 
         <div className="hero-overlay" />
+        <div className="hero-orb hero-orb-one" />
+        <div className="hero-orb hero-orb-two" />
+        <div className="hero-orb hero-orb-three" />
         <div className="hero-bottom-fade" />
 
         <div className="hero-inner">
-          <div className="container hero-copy">
+          <div className="container hero-copy reveal">
             <div className="eyebrow">
               Holistic Therapy • Preventative Dentistry • Whole-Body Wellness
             </div>
@@ -1329,7 +1398,7 @@ function App() {
 
       <div className="intro-band">
         <div className="container">
-          <div className="intro-panel">
+          <div className="intro-panel reveal">
             <div>
               <h2>Holistic therapies designed to support a healthier, more balanced life.</h2>
               <p>
@@ -1352,7 +1421,7 @@ function App() {
 
       <section className="section" id="services">
         <div className="container">
-          <div className="section-head">
+          <div className="section-head reveal">
             <small>Services</small>
             <h2>Holistic therapies rooted in comfort, prevention, and well-being.</h2>
             <p>
@@ -1361,7 +1430,7 @@ function App() {
             </p>
           </div>
 
-          <div className="services-grid">
+          <div className="services-grid reveal">
             {services.map((service, index) => (
               <article className="service-card" key={service.title}>
                 <div className="num">0{index + 1}</div>
@@ -1374,7 +1443,7 @@ function App() {
       </section>
 
       <section className="about-section" id="about">
-        <div className="container about-wrap">
+        <div className="container about-wrap reveal">
           <div className="about-visual">
             <div className="about-frame">
               <img
@@ -1418,7 +1487,7 @@ function App() {
 
       <section className="section" id="products">
         <div className="container">
-          <div className="products-wrap">
+          <div className="products-wrap reveal">
             <div className="products-inner">
               <div className="glass-box">
                 <small>Products</small>
@@ -1491,7 +1560,7 @@ function App() {
             </p>
           </div>
 
-          <div className="reviews-grid">
+          <div className="reviews-grid reveal">
             {reviewFeed.map((review) => (
               <article className="review-card" key={review.key || review.name}>
                 {review.rating ? (
@@ -1515,7 +1584,7 @@ function App() {
               Every visit is designed to be comfortable, educational, and supportive—so you always understand your options and next steps.
             </p>
           </div>
-          <div className="benefits-grid">
+          <div className="benefits-grid reveal">
             <article className="benefit"><h3>Clear Communication</h3><p>We explain treatment in plain language and help you make confident decisions for your oral health.</p></article>
             <article className="benefit"><h3>Non-Toxic Focus</h3><p>From products to techniques, we prioritize biocompatible options aligned with a wellness-centered lifestyle.</p></article>
             <article className="benefit"><h3>Local, Convenient Care</h3><p>Located in Point Richmond, we proudly serve families and wellness-minded patients across Richmond and the East Bay.</p></article>
@@ -1529,7 +1598,7 @@ function App() {
             <small>FAQ</small>
             <h2>Questions patients ask before their first visit.</h2>
           </div>
-          <div className="faq-grid">
+          <div className="faq-grid reveal">
             {faqs.map((item) => (
               <article className="faq-card" key={item.q}>
                 <h3>{item.q}</h3>
@@ -1550,7 +1619,7 @@ function App() {
             </p>
           </div>
 
-          <div className="contact-shell">
+          <div className="contact-shell reveal">
             <div className="contact-card">
               <h3
                 style={{
