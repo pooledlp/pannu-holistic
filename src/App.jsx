@@ -1,7 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
-import smileBefore from "./assets/smile-before.svg";
-import smileHealing from "./assets/smile-healing.svg";
-import smileAfter from "./assets/smile-after.svg";
+const smileCases = [
+  { src: "/case1.png", alt: "Case 1 smile transformation before and after" },
+  { src: "/case2.png", alt: "Case 2 smile transformation before and after" },
+  { src: "/case3.png", alt: "Case 3 smile transformation before and after" },
+];
 
 const services = [
   {
@@ -1650,21 +1652,19 @@ function App() {
       <section className="section" id="smile-journey">
         <div className="container reveal">
           <div className="eyebrow">Smile Transformation</div>
-          <h2 className="section-title">Watch oral health improve visit after visit.</h2>
+          <h2 className="section-title">All real results. No braces. No surgery.</h2>
           <div className="smile-journey">
+            <p style={{ margin: "0 0 18px", color: "#37545d", fontSize: "1.02rem" }}>
+              These are real before-and-after outcomes from focused myofunctional therapy — just consistent muscle
+              retraining, breathing support, and holistic oral care.
+            </p>
             <div className="smile-track">
-              <div className="tooth-stage">
-                <img className="tooth-image" src={smileBefore} alt="Before care tooth illustration" loading="lazy" />
-                <p>Before care</p>
-              </div>
-              <div className="tooth-stage">
-                <img className="tooth-image" src={smileHealing} alt="Detox and healing support tooth illustration" loading="lazy" />
-                <p>Detox + healing support</p>
-              </div>
-              <div className="tooth-stage">
-                <img className="tooth-image" src={smileAfter} alt="Brighter and stronger smile tooth illustration" loading="lazy" />
-                <p>Brighter, stronger smile</p>
-              </div>
+              {smileCases.map((item, index) => (
+                <div className="tooth-stage" key={item.src}>
+                  <img className="tooth-image" src={item.src} alt={item.alt} loading="lazy" />
+                  <p>Case {index + 1}: Myofunctional therapy transformation</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
