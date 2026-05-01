@@ -15,13 +15,6 @@ const services = [
   },
 ];
 
-const highlights = [
-  "Specialized in Preventative Dentistry",
-  "Organic and non-toxic therapies",
-  "Whole-body wellness approach",
-  "Personalized care",
-];
-
 const therapyOptions = [
   "Ozone Therapy",
   "Myofunctional Therapy",
@@ -533,27 +526,6 @@ function App() {
           color: #fff;
           background: rgba(255,255,255,0.12);
           border: 1px solid rgba(255,255,255,0.18);
-          backdrop-filter: blur(10px);
-        }
-
-        .hero-meta {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 14px;
-          margin-top: 28px;
-        }
-
-        .hero-chip {
-          display: inline-flex;
-          animation: floatUp 900ms ease both;
-          align-items: center;
-          min-height: 40px;
-          padding: 10px 14px;
-          border-radius: 999px;
-          background: rgba(12,41,52,0.34);
-          border: 1px solid rgba(255,255,255,0.16);
-          color: rgba(244,252,255,0.96);
-          font-size: 13px;
           backdrop-filter: blur(10px);
         }
 
@@ -1245,7 +1217,6 @@ function App() {
           .service-card,
           .header { transition: none; }
           .hero-video { transform: none; }
-          .hero-chip { animation: none; }
         }
       `}</style>
 
@@ -1352,13 +1323,6 @@ function App() {
               </a>
             </div>
 
-            <div className="hero-meta" aria-label="Practice highlights">
-              {highlights.map((item, index) => (
-                <div className="hero-chip" key={item} style={{ animationDelay: `${index * 120}ms` }}>
-                  {item}
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
