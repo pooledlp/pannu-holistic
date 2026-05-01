@@ -1509,30 +1509,6 @@ function App() {
               </a>
             </div>
 
-            <div className="form-card map-card">
-              <h3>Visit Our Office</h3>
-              <p>{office.addressDisplay}</p>
-              <div className="map-embed-wrap">
-                <iframe
-                  title="Pannu Holistic office location"
-                  className="map-embed"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  src={`https://www.google.com/maps?q=${encodeURIComponent(office.mapQuery)}&output=embed`}
-                />
-              </div>
-              <div className="map-actions">
-                <a
-                  className="button button-light"
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(office.mapQuery)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Open in Google Maps
-                </a>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>
