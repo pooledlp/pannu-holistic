@@ -107,6 +107,7 @@ const office = {
 };
 
 function App() {
+  const smileImage = "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1800&q=80";
   const base = import.meta.env.BASE_URL;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -959,6 +960,48 @@ function App() {
         .faq-card h3 { margin: 0 0 8px; font-size: 20px; }
         .faq-card p { margin: 0; color: #4f666d; line-height: 1.8; }
 
+
+
+        .smile-journey {
+          margin-top: 28px;
+          border-radius: 30px;
+          padding: 28px;
+          background: rgba(248,245,239,0.94);
+          border: 1px solid rgba(22,49,58,0.06);
+          box-shadow: 0 20px 50px rgba(22,49,58,0.07);
+        }
+        .smile-track {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0,1fr));
+          gap: 18px;
+          align-items: stretch;
+        }
+        .smile-stage {
+          border-radius: 24px;
+          overflow: hidden;
+          border: 1px solid rgba(22,49,58,0.08);
+          background: #fff;
+          box-shadow: 0 14px 36px rgba(22,49,58,0.10);
+          animation: stageLift 4.6s ease-in-out infinite;
+        }
+        .smile-stage:nth-child(2) { animation-delay: -1.2s; }
+        .smile-stage:nth-child(3) { animation-delay: -2.4s; }
+        .smile-image {
+          height: 210px;
+          background-image: var(--smile-image);
+          background-size: 300% 100%;
+          background-repeat: no-repeat;
+        }
+        .smile-stage.stage-1 .smile-image { background-position: 0% 50%; filter: saturate(0.7) brightness(0.9); }
+        .smile-stage.stage-2 .smile-image { background-position: 50% 50%; filter: saturate(0.95) brightness(1); }
+        .smile-stage.stage-3 .smile-image { background-position: 100% 50%; filter: saturate(1.05) brightness(1.08); }
+        .smile-caption {
+          padding: 14px 16px 16px;
+          color: #39535c;
+          font-weight: 600;
+          text-align: center;
+          background: linear-gradient(180deg, rgba(255,255,255,0.85), #f5eee3);
+        }
         .footer {
           padding: 34px 0 48px;
           color: #667a80;
@@ -1065,6 +1108,37 @@ function App() {
         @keyframes cardFloat {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-4px); }
+        }
+
+        .service-card,
+        .review-card,
+        .benefit,
+        .product-card,
+        .contact-card,
+        .form-card,
+        .faq-card,
+        .detail-item,
+        .contact-item,
+        .bio-card {
+          animation: cardDrift 7.5s ease-in-out infinite;
+        }
+
+        .services-grid .service-card:nth-child(2n),
+        .reviews-grid .review-card:nth-child(2n),
+        .benefits-grid .benefit:nth-child(2n),
+        .product-grid .product-card:nth-child(2n),
+        .faq-grid .faq-card:nth-child(2n) {
+          animation-delay: -2.6s;
+        }
+
+        @keyframes cardDrift {
+          0%, 100% { transform: translateY(0px) translateX(0px); }
+          50% { transform: translateY(-7px) translateX(2px); }
+        }
+
+        @keyframes stageLift {
+          0%,100% { transform: translateY(0px); }
+          50% { transform: translateY(-6px); }
         }
 
 
@@ -1571,6 +1645,29 @@ function App() {
                 {review.when ? <div className="review-when">{review.when}</div> : null}
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="smile-journey">
+        <div className="container reveal">
+          <div className="eyebrow">Smile Transformation</div>
+          <h2 className="section-title">Watch oral health improve visit after visit.</h2>
+          <div className="smile-journey" style={{ "--smile-image": `url(${smileImage})` }}>
+            <div className="smile-track">
+              <article className="smile-stage stage-1">
+                <div className="smile-image" aria-hidden="true"></div>
+                <div className="smile-caption">Before first visit</div>
+              </article>
+              <article className="smile-stage stage-2">
+                <div className="smile-image" aria-hidden="true"></div>
+                <div className="smile-caption">After personalized care</div>
+              </article>
+              <article className="smile-stage stage-3">
+                <div className="smile-image" aria-hidden="true"></div>
+                <div className="smile-caption">Healthy, brighter smile</div>
+              </article>
+            </div>
           </div>
         </div>
       </section>
