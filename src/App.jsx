@@ -107,6 +107,7 @@ const office = {
 };
 
 function App() {
+  const smileImage = "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1800&q=80";
   const base = import.meta.env.BASE_URL;
   const smileImage = `${base}teeth.png`;
   const [menuOpen, setMenuOpen] = useState(false);
@@ -974,34 +975,42 @@ function App() {
           display: grid;
           grid-template-columns: repeat(3, minmax(0,1fr));
           gap: 18px;
-          align-items: stretch;
+          align-items: center;
         }
-        .smile-stage {
-          border-radius: 24px;
-          overflow: hidden;
-          border: 1px solid rgba(22,49,58,0.08);
-          background: #fff;
-          box-shadow: 0 14px 36px rgba(22,49,58,0.10);
-          animation: stageLift 4.6s ease-in-out infinite;
-        }
-        .smile-stage:nth-child(2) { animation-delay: -1.2s; }
-        .smile-stage:nth-child(3) { animation-delay: -2.4s; }
-        .smile-image {
-          height: 210px;
-          background-image: var(--smile-image);
-          background-size: 300% 100%;
-          background-repeat: no-repeat;
-        }
-        .smile-stage.stage-1 .smile-image { background-position: 0% 50%; filter: saturate(0.7) brightness(0.9); }
-        .smile-stage.stage-2 .smile-image { background-position: 50% 50%; filter: saturate(0.95) brightness(1); }
-        .smile-stage.stage-3 .smile-image { background-position: 100% 50%; filter: saturate(1.05) brightness(1.08); }
-        .smile-caption {
-          padding: 14px 16px 16px;
-          color: #39535c;
-          font-weight: 600;
+        .tooth-stage {
           text-align: center;
-          background: linear-gradient(180deg, rgba(255,255,255,0.85), #f5eee3);
         }
+        .tooth {
+          width: 86px;
+          height: 98px;
+          margin: 0 auto 10px;
+          background: linear-gradient(180deg, #f4eee1 0%, #ded0b9 100%);
+          border-radius: 44px 44px 30px 30px;
+          position: relative;
+          box-shadow: inset 0 -8px 14px rgba(89,63,34,0.12);
+          animation: toothRecover 3.4s ease-in-out infinite;
+        }
+        .tooth::before,
+        .tooth::after {
+          content: "";
+          position: absolute;
+          bottom: -8px;
+          width: 22px;
+          height: 30px;
+          background: inherit;
+          border-radius: 0 0 16px 16px;
+        }
+        .tooth::before { left: 14px; }
+        .tooth::after { right: 14px; }
+        .tooth-stage:nth-child(1) .tooth { filter: saturate(0.7) brightness(0.86); animation-delay: -0.2s; }
+        .tooth-stage:nth-child(2) .tooth { filter: saturate(0.95) brightness(0.98); animation-delay: -1.2s; }
+        .tooth-stage:nth-child(3) .tooth {
+          background: linear-gradient(180deg, #fcfdf9 0%, #e7f2ea 100%);
+          box-shadow: inset 0 -6px 12px rgba(79,140,111,0.16), 0 0 22px rgba(168,218,187,0.45);
+          animation-delay: -2.3s;
+        }
+        .tooth-stage p { margin: 0; color: #4f666d; font-size: 14px; }
+
         .footer {
           padding: 34px 0 48px;
           color: #667a80;
@@ -1136,9 +1145,9 @@ function App() {
           50% { transform: translateY(-7px) translateX(2px); }
         }
 
-        @keyframes stageLift {
-          0%,100% { transform: translateY(0px); }
-          50% { transform: translateY(-6px); }
+        @keyframes toothRecover {
+          0%,100% { transform: translateY(0) scale(1); }
+          50% { transform: translateY(-6px) scale(1.03); }
         }
 
 
@@ -1653,20 +1662,20 @@ function App() {
         <div className="container reveal">
           <div className="eyebrow">Smile Transformation</div>
           <h2 className="section-title">Watch oral health improve visit after visit.</h2>
-          <div className="smile-journey" style={{ "--smile-image": `url(${smileImage})` }}>
+          <div className="smile-journey">
             <div className="smile-track">
-              <article className="smile-stage stage-1">
-                <div className="smile-image" aria-hidden="true"></div>
-                <div className="smile-caption">Before first visit</div>
-              </article>
-              <article className="smile-stage stage-2">
-                <div className="smile-image" aria-hidden="true"></div>
-                <div className="smile-caption">After personalized care</div>
-              </article>
-              <article className="smile-stage stage-3">
-                <div className="smile-image" aria-hidden="true"></div>
-                <div className="smile-caption">Healthy, brighter smile</div>
-              </article>
+              <div className="tooth-stage">
+                <div className="tooth" aria-hidden="true"></div>
+                <p>Before care</p>
+              </div>
+              <div className="tooth-stage">
+                <div className="tooth" aria-hidden="true"></div>
+                <p>Detox + healing support</p>
+              </div>
+              <div className="tooth-stage">
+                <div className="tooth" aria-hidden="true"></div>
+                <p>Brighter, stronger smile</p>
+              </div>
             </div>
           </div>
         </div>
