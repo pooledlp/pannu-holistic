@@ -255,7 +255,7 @@ function App() {
         }
 
         .section {
-          padding: 116px 0;
+          padding: 88px 0;
           position: relative;
         }
 
@@ -1307,7 +1307,7 @@ function App() {
 
           .section,
           .about-section {
-            padding: 84px 0;
+            padding: 64px 0;
           }
 
           .intro-panel,
