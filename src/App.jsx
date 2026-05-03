@@ -1004,6 +1004,15 @@ function App() {
           margin-top: 24px;
         }
 
+        .contact-title {
+          margin: 0;
+          font-family: Inter, Arial, sans-serif;
+          font-size: 38px;
+          line-height: 1;
+          font-weight: 600;
+          letter-spacing: 0.02em;
+        }
+
         .contact-item {
           display: block;
           padding: 16px 18px;
@@ -1876,24 +1885,11 @@ function App() {
         <div className="container">
           <div className="section-head">
             <small>Contact</small>
-            <h2>We’d love to hear from you. Drop us a message.</h2>
-            <p>
-              Reach out by phone to connect with our team.
-            </p>
           </div>
 
           <div className="contact-shell reveal">
             <div className="contact-card">
-              <h3
-                style={{
-                  margin: 0,
-                  fontFamily: '"Cormorant Garamond", Georgia, serif',
-                  fontSize: "38px",
-                  lineHeight: 1,
-                }}
-              >
-                Get in Touch
-              </h3>
+              <h3 className="contact-title">Get in Touch</h3>
 
               <div className="contact-list">
                 <a href={office.phoneHref} className="contact-item">
