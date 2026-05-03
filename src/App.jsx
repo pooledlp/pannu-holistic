@@ -245,7 +245,6 @@ function App() {
     () => [
       { label: "Services", href: "#services" },
       { label: "About", href: "#about" },
-      { label: "Products", href: "#products" },
       { label: "Reviews", href: "#reviews" },
       { label: "Why Us", href: "#why-us" },
       { label: "Contact", href: "#contact" },
@@ -545,12 +544,12 @@ function App() {
         .hero-copy {
           max-width: 760px;
           color: #fff;
-          padding: 26px 30px;
-          border-radius: 22px;
-          background: linear-gradient(135deg, rgba(6,18,24,0.62), rgba(6,18,24,0.34));
-          border: 1px solid rgba(255,255,255,0.16);
-          box-shadow: 0 22px 50px rgba(2,10,14,0.36);
-          backdrop-filter: blur(4px);
+          padding: 0;
+          border-radius: 0;
+          background: transparent;
+          border: none;
+          box-shadow: none;
+          backdrop-filter: none;
         }
 
         .eyebrow {
@@ -1577,9 +1576,6 @@ function App() {
                   {link.label}
                 </a>
               ))}
-              <a href="#contact" className="nav-cta">
-                Contact Us
-              </a>
             </div>
 
             <button
@@ -1640,14 +1636,6 @@ function App() {
           <div className="container hero-copy reveal">
             <h1>New standard in dentistry: advanced, data-driven, systemically aligned, integrative holistic modalities.</h1>
 
-            <div className="hero-actions">
-              <a href="#products" className="button button-light">
-                View Products
-              </a>
-              <a href="#contact" className="button button-glass">
-                Contact Us
-              </a>
-            </div>
 
           </div>
         </div>
