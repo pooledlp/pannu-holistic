@@ -98,25 +98,59 @@ const socialLinks = [
   {
     name: "Instagram",
     href: "https://www.instagram.com/holistic_dental_wellness?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr",
-    icon: "IG",
+    icon: "instagram",
   },
   {
     name: "Facebook",
     href: "https://www.facebook.com/PannuHolistic?mibextid=wwXIfr",
-    icon: "f",
+    icon: "facebook",
   },
   {
     name: "Yelp",
     href: "https://www.yelp.com/biz/pannu-holistic-dental-myology-point-richmond?utm_source=ishare",
-    icon: "Y",
+    icon: "yelp",
   },
   {
     name: "Google Reviews",
     href: "https://www.google.com/search?client=safari&hs=PaCp&sca_esv=59623aa993e8ccae&hl=en-us&sxsrf=ANbL-n78wlYdRrB3Uj-PztWmTH3uAeN0mg:1768951989126&q=pannu+holistic+dental+myology+reviews&uds=ALYpb_kZB5BOMUFlRqxCQelgPO46HLqUsKbBDhWkTzA928o8qe3buKYCxWuxEffC1s54UDE7B2wqGyRr416oSB598Vu4FMo9jFyTJsqWmF3FCf7yK6FDl6_TvBIHu1R6_N05w99Hp_j0NdAfiQ7Su6Bh0YOwwOFYZyI4lqoeZO2kkjk3Ej08Uia0BOteQHDLoVtyUPe-Sg8YavS9dLtS5SPzSUm2p-h_EfzPiBiMbw2am6ju7DULr1VOK33dovzAuWh3o4C8mnGJ_u1ngz5ALyEB6-dmbv-uirFe0OWq6jfJ_8CiMVzz7H2U919fFCDiBYJYTfWR6R-Y7KSbVcYYoVoJRYuxKPOVdr2aK4kAZjMRJG9i-kre5IrphEiWoqHtofO4gkUKWERoEGRC5ZlqESdPtNHNfpjaIWJjZhxGQSRkwdLucLlR6QwRgGX2_4TYCfUIRQsNOxMTzp--cDYXeyKa20y2jV6TjqKheHj94iY1QgdDcZkaSHU&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOZ-lSIQqaJ_raeYAy8sJMN_HAR9bYI3GKKx4MeIQ3Op0cOE72O-Lwsc0tj2UF5T2TTkGOPdtd6Z4BgrwjvkaRfb0TVlYYzQnpAtCAO25NxcpyRFNRg%3D%3D&sa=X&ved=2ahUKEwi8677Xo5uSAxUTIUQIHRuODZEQk8gLegQIFhAB&ictx=1&biw=375&bih=703&dpr=3&aic=0#ebo=1",
-    icon: "G",
+    icon: "google",
   },
 ];
 
+
+
+function SocialIcon({ icon, name }) {
+  if (icon === "instagram") {
+    return (
+      <svg viewBox="0 0 24 24" aria-label={name} role="img">
+        <rect x="3" y="3" width="18" height="18" rx="5" ry="5" fill="none" stroke="currentColor" strokeWidth="2" />
+        <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="2" />
+        <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" />
+      </svg>
+    );
+  }
+
+  if (icon === "facebook") {
+    return (
+      <svg viewBox="0 0 24 24" aria-label={name} role="img">
+        <path fill="currentColor" d="M13.6 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.6 1.6-1.6h1.7V3.8c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 4v2.3H8.2v3h2.6v8h2.8Z"/>
+      </svg>
+    );
+  }
+
+  if (icon === "yelp") {
+    return <span aria-label={name} role="img" style={{ fontWeight: 800, fontSize: 13 }}>Yelp</span>;
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" aria-label={name} role="img">
+      <path fill="#4285F4" d="M21.8 12.2c0-.7-.1-1.2-.2-1.8H12v3.3h5.5a4.8 4.8 0 0 1-2 3.1v2.6h3.2c1.9-1.7 3.1-4.2 3.1-7.2Z"/>
+      <path fill="#34A853" d="M12 22c2.7 0 5-.9 6.7-2.6l-3.2-2.6c-.9.6-2 1-3.5 1-2.7 0-4.9-1.8-5.7-4.2H3v2.6A10 10 0 0 0 12 22Z"/>
+      <path fill="#FBBC05" d="M6.3 13.6a6 6 0 0 1 0-3.2V7.8H3a10 10 0 0 0 0 8.8l3.3-3Z"/>
+      <path fill="#EA4335" d="M12 6a5.4 5.4 0 0 1 3.8 1.5l2.8-2.8A9.5 9.5 0 0 0 12 2 10 10 0 0 0 3 7.8l3.3 2.6C7.1 7.8 9.3 6 12 6Z"/>
+    </svg>
+  );
+}
 
 
 const seo = {
@@ -296,6 +330,11 @@ function App() {
           font-weight: 600;
           letter-spacing: -0.03em;
           text-wrap: balance;
+        }
+
+        .reviews-head h2 {
+          font-size: clamp(28px, 3.6vw, 48px);
+          line-height: 1.05;
         }
 
         .section-head p {
@@ -925,18 +964,24 @@ function App() {
           box-shadow: 0 10px 24px rgba(22,49,58,0.12);
         }
         .social-pill-icon {
-          width: 26px;
-          height: 26px;
+          width: 28px;
+          height: 28px;
           border-radius: 50%;
-          background: linear-gradient(145deg, #2a5362, #17313a);
-          color: #f7efe3;
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 0.04em;
+          color: #ffffff;
+          overflow: hidden;
         }
+        .social-pill-icon svg {
+          width: 16px;
+          height: 16px;
+          display: block;
+        }
+        .social-pill-icon-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+        .social-pill-icon-facebook { background: #1877f2; }
+        .social-pill-icon-yelp { background: #d32323; font-size: 10px; }
+        .social-pill-icon-google { background: #ffffff; border: 1px solid rgba(0,0,0,0.1); }
 
         .contact-shell {
           display: grid;
@@ -1712,14 +1757,16 @@ function App() {
 
       <section className="section" id="reviews">
         <div className="container">
-          <div className="section-head">
+          <div className="section-head reviews-head">
             <small>Reviews</small>
             <h2>What patients are saying.</h2>
           </div>
           <div className="reviews-socials reveal">
             {socialLinks.map((social) => (
               <a key={social.name} className="social-pill" href={social.href} target="_blank" rel="noreferrer">
-                <span className="social-pill-icon" aria-hidden="true">{social.icon}</span>
+                <span className={`social-pill-icon social-pill-icon-${social.icon}`} aria-hidden="true">
+                  <SocialIcon icon={social.icon} name={social.name} />
+                </span>
                 <span>{social.name}</span>
               </a>
             ))}
