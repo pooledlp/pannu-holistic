@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 const smileCases = [
   { file: "case1.png", alt: "Case 1 smile transformation before and after" },
   { file: "case2.png", alt: "Case 2 smile transformation before and after" },
@@ -173,6 +173,7 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+  const heroVideoRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -213,6 +214,31 @@ function App() {
       document.head.appendChild(canonical);
     }
     canonical.setAttribute("href", seo.canonical);
+  }, []);
+
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (!video) {
+      return undefined;
+    }
+
+    const startVideo = () => {
+      video.defaultMuted = true;
+      video.muted = true;
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {});
+      }
+    };
+
+    startVideo();
+
+    const events = ["touchstart", "pointerdown", "visibilitychange"];
+    events.forEach((eventName) => document.addEventListener(eventName, startVideo, { passive: true }));
+
+    return () => {
+      events.forEach((eventName) => document.removeEventListener(eventName, startVideo));
+    };
   }, []);
 
   const navLinks = useMemo(
@@ -1579,18 +1605,15 @@ function App() {
           className={`hero-video ${videoReady ? "ready" : ""}`}
           autoPlay
           muted
+          defaultMuted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           poster={`${base}products-ocean.jpg`}
-          onLoadedData={() => setVideoReady(true)}
-          ref={(video) => {
-            if (video) {
-              video.playbackRate = 0.6;
-              video.onplay = () => {
-                video.playbackRate = 0.6;
-              };
-            }
+          onCanPlay={() => setVideoReady(true)}
+          ref={heroVideoRef}
+          onPlay={(event) => {
+            event.currentTarget.playbackRate = 0.6;
           }}
         >
           <source src={`${base}hero-video.mp4`} type="video/mp4" />
