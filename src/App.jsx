@@ -1604,11 +1604,7 @@ function App() {
 
         <div className="hero-inner">
           <div className="container hero-copy reveal">
-            <h1>New standard in dentistry, an advanced approach to promoting function with an integrative, data-driven, systemically aligned, holistic approach.</h1>
-
-            <p>
-              As a non-conventional practice in the San Francisco Bay Area, we operate with a unique motto. We go beyond traditional dentistry to address the deeper connections between oral health, sleep, breathing, and function.
-            </p>
+            <h1>New standard in dentistry: an advanced approach through a data-driven, systemically aligned, integrative, holistic model.</h1>
 
             <div className="hero-actions">
               <a href="#products" className="button button-light">
