@@ -660,7 +660,7 @@ function App() {
 
         .about-visual {
           display: flex;
-          justify-content: center;
+          justify-content: flex-start;
         }
 
         .about-frame {
@@ -1575,55 +1575,36 @@ function App() {
 
             <div className="bio-card">
               <p>
-                Taren Pannu is a dedicated dental and airway health practitioner
-                with a passion for holistic, functional, and integrative care.
-                Her journey into holistic dentistry has been shaped by extensive
-                clinical experience and a strong belief that oral health is
-                inseparable from whole-body wellness.
+                Taren Pannu is a dental and airway health practitioner dedicated
+                to holistic, functional, and integrative dental care. Her
+                approach is grounded in the belief that oral health is closely
+                connected to overall wellness.
               </p>
 
               <p>
-                She began her career as a dentist in India, where she built a
-                strong clinical foundation in dental surgery. Her early training
-                was influenced by the integration of natural, Ayurvedic, and
-                homeopathic approaches commonly practiced in India an
-                experience that continues to shape her appreciation for
-                prevention-focused and natural healing systems.
+                She began her career as a dentist in India, building a strong
+                foundation in dental surgery. Her early training was influenced
+                by Ayurvedic and homeopathic practices, shaping her appreciation
+                for prevention-focused and natural healing approaches. After
+                moving to the United States, Mrs. Pannu earned her Bachelor of
+                Science with honors from Thomas Edison State University in New
+                Jersey and Registered Dental Hygienist in Alternative Practice
+                (RDHAP) certification from the University of the Pacific.
               </p>
 
               <p>
-                After moving to the United States, Mrs. Pannu continued her
-                academic journey by completing the Registered Dental Hygienist
-                in Alternative Practice (RDHAP) program at the University of
-                the Pacific and earning a Bachelor of Science from Thomas Edison
-                State University with honors. In 2018, she founded her practice
-                with a mission to provide personalized, prevention-focused, and
-                whole-body dental care.
+                She pursued advanced training in myofunctional therapy and
+                became certified in Buteyko breathing, expanding her focus to
+                include airway health, breathing, jaw development, and sleep as
+                essential components of dental care.
               </p>
 
               <p>
-                As her clinical experience evolved, so did her perspective. She
-                began to view dentistry not just as the treatment of teeth, but
-                as an essential component of breathing, jaw development, sleep,
-                and overall systemic health. This led her to pursue advanced
-                training in myofunctional therapy and certification in Buteyko
-                breathing, allowing her to take a more integrative,
-                airway-centered approach to care.
-              </p>
-
-              <p>
-                Today, Pannu Holistic is built on this philosophy. Mrs. Pannu
-                focuses on identifying root causes rather than simply treating
-                symptoms. Her services and treatment approaches are clinically
-                researched and evidence-based, grounded in established
-                scientific principles.
-              </p>
-
-              <p>
-                At the core of her practice is a simple belief: dentistry should
-                support the whole person. Her goal is to provide thoughtful,
-                evidence-informed care centered on long-term oral and holistic
-                wellness.
+                Today, her practice reflects this philosophy, taking an
+                integrative, airway-centered approach that focuses on
+                identifying root causes rather than simply treating symptoms.
+                Her care is evidence-based and centered on long-term oral and
+                overall health, to support holistic wellness.
               </p>
             </div>
           </div>
