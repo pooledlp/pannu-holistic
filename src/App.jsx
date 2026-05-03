@@ -1301,6 +1301,10 @@ function App() {
           .services-grid {
             grid-template-columns: 1fr;
           }
+
+          .smile-track {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
         }
 
         @media (max-width: 720px) {
@@ -1371,6 +1375,19 @@ function App() {
 
           .detail-grid {
             grid-template-columns: 1fr;
+          }
+
+          .smile-track {
+            grid-template-columns: 1fr;
+            gap: 16px;
+          }
+
+          .tooth-stage {
+            padding: 20px;
+          }
+
+          .tooth-image {
+            max-width: min(100%, 420px);
           }
 
           .about-name {
