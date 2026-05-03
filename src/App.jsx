@@ -1511,10 +1511,10 @@ function App() {
               Holistic Therapy • Preventative Dentistry • Whole-Body Wellness
             </div>
 
-            <h1>Specialized in Preventative Dentistry</h1>
+            <h1>Functional, Integrative & Holistic Approach to Dentistry</h1>
 
             <p>
-              Patients in Point Richmond and the greater Bay Area choose our holistic, prevention-first care for cleaner ingredients, personalized treatment plans, and gentle support for long-term oral and whole-body wellness.
+              Where Preventive Dentistry Meets Whole-Body Wellness, serving the San Francisco Bay Area, we use biocompatible materials and personalized treatment plans designed to support lasting oral health and holistic whole-body wellness for all ages.
             </p>
 
             <div className="hero-actions">
