@@ -1604,7 +1604,7 @@ function App() {
 
         <div className="hero-inner">
           <div className="container hero-copy reveal">
-            <h1>New standard in dentistry: an advanced approach through a data-driven, systemically aligned, integrative, holistic model.</h1>
+            <h1>New standard in dentistry: advanced, data-driven, systemically aligned, integrative holistic modalities.</h1>
 
             <div className="hero-actions">
               <a href="#products" className="button button-light">
