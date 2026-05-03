@@ -325,17 +325,13 @@ function App() {
         .section-head h2 {
           margin: 0;
           font-family: Inter, Arial, sans-serif;
-          font-size: clamp(38px, 5vw, 68px);
+          font-size: clamp(28px, 3.6vw, 48px);
           line-height: 0.98;
           font-weight: 600;
           letter-spacing: -0.03em;
           text-wrap: balance;
         }
 
-        .reviews-head h2 {
-          font-size: clamp(28px, 3.6vw, 48px);
-          line-height: 1.05;
-        }
 
         .section-head p {
           margin: 18px 0 0;
