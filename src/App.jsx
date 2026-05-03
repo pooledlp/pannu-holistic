@@ -507,8 +507,9 @@ function App() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transform: scale(1.14);
+          transform: scale(1.1);
           transform-origin: center center;
+          filter: brightness(1.35) saturate(1.15) contrast(1.05);
         }
 
         .hero-video.ready {
@@ -519,8 +520,8 @@ function App() {
           position: absolute;
           inset: 0;
           background:
-            linear-gradient(180deg, rgba(4,14,18,0.56) 0%, rgba(6,18,24,0.52) 42%, rgba(8,24,30,0.50) 100%),
-            radial-gradient(circle at 18% 18%, rgba(255,255,255,0.08), transparent 24%);
+            linear-gradient(180deg, rgba(8, 24, 30, 0.22) 0%, rgba(10, 28, 34, 0.18) 44%, rgba(8, 24, 30, 0.2) 100%),
+            radial-gradient(circle at 18% 18%, rgba(255,255,255,0.12), transparent 26%);
         }
 
         .hero-bottom-fade {
@@ -562,11 +563,11 @@ function App() {
         }
 
         .hero .eyebrow {
-          color: rgba(255,255,255,0.84);
+          color: rgba(255,255,255,0.98);
         }
 
         .hero h1 {
-          text-shadow: 0 14px 40px rgba(6,16,24,0.45);
+          text-shadow: none;
           margin: 0;
           font-family: var(--font-display);
           font-size: clamp(30px, 3.8vw, 52px);
@@ -578,11 +579,11 @@ function App() {
         }
 
         .hero p {
-          text-shadow: 0 10px 24px rgba(6,16,24,0.38);
+          text-shadow: none;
           margin: 24px 0 0;
           font-size: 16px;
           line-height: 1.9;
-          color: rgba(255,255,255,0.88);
+          color: rgba(255,255,255,0.94);
           max-width: 620px;
         }
 
@@ -1473,7 +1474,7 @@ function App() {
           }
 
           .hero h1 {
-            text-shadow: 0 14px 40px rgba(6,16,24,0.45);
+            text-shadow: none;
             font-size: clamp(30px, 9vw, 42px);
           }
 
@@ -1483,7 +1484,7 @@ function App() {
           }
 
           .hero p {
-          text-shadow: 0 10px 24px rgba(6,16,24,0.38);
+          text-shadow: none;
             font-size: 16px;
           }
 
