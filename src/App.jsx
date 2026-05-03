@@ -94,6 +94,29 @@ const products = [
   },
 ];
 
+const socialLinks = [
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/holistic_dental_wellness?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr",
+    icon: "IG",
+  },
+  {
+    name: "Facebook",
+    href: "https://www.facebook.com/PannuHolistic?mibextid=wwXIfr",
+    icon: "f",
+  },
+  {
+    name: "Yelp",
+    href: "https://www.yelp.com/biz/pannu-holistic-dental-myology-point-richmond?utm_source=ishare",
+    icon: "Y",
+  },
+  {
+    name: "Google Reviews",
+    href: "https://www.google.com/search?client=safari&hs=PaCp&sca_esv=59623aa993e8ccae&hl=en-us&sxsrf=ANbL-n78wlYdRrB3Uj-PztWmTH3uAeN0mg:1768951989126&q=pannu+holistic+dental+myology+reviews&uds=ALYpb_kZB5BOMUFlRqxCQelgPO46HLqUsKbBDhWkTzA928o8qe3buKYCxWuxEffC1s54UDE7B2wqGyRr416oSB598Vu4FMo9jFyTJsqWmF3FCf7yK6FDl6_TvBIHu1R6_N05w99Hp_j0NdAfiQ7Su6Bh0YOwwOFYZyI4lqoeZO2kkjk3Ej08Uia0BOteQHDLoVtyUPe-Sg8YavS9dLtS5SPzSUm2p-h_EfzPiBiMbw2am6ju7DULr1VOK33dovzAuWh3o4C8mnGJ_u1ngz5ALyEB6-dmbv-uirFe0OWq6jfJ_8CiMVzz7H2U919fFCDiBYJYTfWR6R-Y7KSbVcYYoVoJRYuxKPOVdr2aK4kAZjMRJG9i-kre5IrphEiWoqHtofO4gkUKWERoEGRC5ZlqESdPtNHNfpjaIWJjZhxGQSRkwdLucLlR6QwRgGX2_4TYCfUIRQsNOxMTzp--cDYXeyKa20y2jV6TjqKheHj94iY1QgdDcZkaSHU&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOZ-lSIQqaJ_raeYAy8sJMN_HAR9bYI3GKKx4MeIQ3Op0cOE72O-Lwsc0tj2UF5T2TTkGOPdtd6Z4BgrwjvkaRfb0TVlYYzQnpAtCAO25NxcpyRFNRg%3D%3D&sa=X&ved=2ahUKEwi8677Xo5uSAxUTIUQIHRuODZEQk8gLegQIFhAB&ictx=1&biw=375&bih=703&dpr=3&aic=0#ebo=1",
+    icon: "G",
+  },
+];
+
 
 
 const seo = {
@@ -877,6 +900,43 @@ function App() {
           color: var(--muted);
           margin-top: 8px;
         }
+        .reviews-socials {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          margin: 0 0 28px;
+        }
+        .social-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 9px 14px;
+          border-radius: 999px;
+          background: rgba(248,245,239,0.94);
+          border: 1px solid rgba(22,49,58,0.08);
+          text-decoration: none;
+          color: #17313a;
+          font-size: 13px;
+          font-weight: 600;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .social-pill:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 24px rgba(22,49,58,0.12);
+        }
+        .social-pill-icon {
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          background: linear-gradient(145deg, #2a5362, #17313a);
+          color: #f7efe3;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.04em;
+        }
 
         .contact-shell {
           display: grid;
@@ -1655,10 +1715,14 @@ function App() {
           <div className="section-head">
             <small>Reviews</small>
             <h2>What patients are saying.</h2>
-            <p>
-              Thoughtful, personalized care that helps patients feel supported,
-              comfortable, and cared for.
-            </p>
+          </div>
+          <div className="reviews-socials reveal">
+            {socialLinks.map((social) => (
+              <a key={social.name} className="social-pill" href={social.href} target="_blank" rel="noreferrer">
+                <span className="social-pill-icon" aria-hidden="true">{social.icon}</span>
+                <span>{social.name}</span>
+              </a>
+            ))}
           </div>
 
           <div className="reviews-grid reveal">
