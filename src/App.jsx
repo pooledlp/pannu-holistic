@@ -496,7 +496,7 @@ function App() {
           width: 100%;
           overflow: hidden;
           display: flex;
-          align-items: flex-end;
+          align-items: flex-start;
           background: #0c1f25;
         }
 
@@ -520,7 +520,7 @@ function App() {
           position: absolute;
           inset: 0;
           background:
-            linear-gradient(180deg, rgba(8,24,30,0.12) 0%, rgba(8,24,30,0.28) 58%, rgba(8,24,30,0.44) 100%),
+            linear-gradient(180deg, rgba(4,14,18,0.56) 0%, rgba(6,18,24,0.52) 42%, rgba(8,24,30,0.50) 100%),
             radial-gradient(circle at 18% 18%, rgba(255,255,255,0.08), transparent 24%);
         }
 
@@ -539,12 +539,18 @@ function App() {
           position: relative;
           z-index: 2;
           width: 100%;
-          padding: 210px 0 120px;
+          padding: 132px 0 188px;
         }
 
         .hero-copy {
           max-width: 760px;
           color: #fff;
+          padding: 26px 30px;
+          border-radius: 22px;
+          background: linear-gradient(135deg, rgba(6,18,24,0.62), rgba(6,18,24,0.34));
+          border: 1px solid rgba(255,255,255,0.16);
+          box-shadow: 0 22px 50px rgba(2,10,14,0.36);
+          backdrop-filter: blur(4px);
         }
 
         .eyebrow {
@@ -1458,7 +1464,7 @@ function App() {
           }
 
           .hero-inner {
-            padding: 160px 0 88px;
+            padding: 132px 0 116px;
           }
 
 
@@ -1468,8 +1474,13 @@ function App() {
           }
 
           .hero h1 {
-          text-shadow: 0 14px 40px rgba(6,16,24,0.45);
+            text-shadow: 0 14px 40px rgba(6,16,24,0.45);
             font-size: clamp(30px, 9vw, 42px);
+          }
+
+          .hero-copy {
+            padding: 20px 18px;
+            border-radius: 18px;
           }
 
           .hero p {
