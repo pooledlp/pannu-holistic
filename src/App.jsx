@@ -1526,31 +1526,6 @@ function App() {
               </a>
             </div>
 
-            <aside className="contact-card map-card">
-              <h3>Find Us</h3>
-              <p>{office.addressDisplay}</p>
-              <div className="map-embed-wrap">
-                <iframe
-                  className="map-embed"
-                  loading="lazy"
-                  allowFullScreen
-                  referrerPolicy="no-referrer-when-downgrade"
-                  src={`https://www.google.com/maps?q=${encodeURIComponent(office.mapQuery)}&output=embed`}
-                  title="Pannu Holistic on Google Maps"
-                />
-              </div>
-              <div className="map-actions">
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(office.mapQuery)}`}
-                  className="button button-primary"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Open in Google Maps
-                </a>
-              </div>
-            </aside>
-
           </div>
         </div>
       </section>
