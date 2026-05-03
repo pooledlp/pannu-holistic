@@ -680,6 +680,7 @@ function App() {
 
         .about-frame {
           width: min(520px, 100%);
+          max-height: 760px;
           border-radius: 34px;
           background: linear-gradient(180deg, #f1ebdf 0%, #e7dfd2 100%);
           box-shadow: 0 24px 60px rgba(22,49,58,0.10);
@@ -707,12 +708,13 @@ function App() {
           justify-content: center;
           box-shadow: 0 20px 50px rgba(22,49,58,0.07);
           border: 1px solid rgba(22,49,58,0.05);
+          font-size: 14px;
         }
 
         .about-name {
           margin-top: 28px;
           font-family: Inter, Arial, sans-serif;
-          font-size: 40px;
+          font-size: 36px;
           line-height: 1;
           font-weight: 600;
         }
@@ -733,7 +735,7 @@ function App() {
           border: 1px solid rgba(22,49,58,0.05);
           color: #4e656d;
           line-height: 1.9;
-          font-size: 15px;
+          font-size: 14px;
         }
 
         .products-wrap {
@@ -1589,12 +1591,7 @@ function App() {
           </div>
 
           <div className="about-copy">
-            <div className="section-head" style={{ marginBottom: 0 }}>
-              <small>About</small>
-            </div>
-
-            <div className="about-name">Taren Pannu</div>
-            <div className="about-role">RDHAP</div>
+            <div className="about-name">Taren Pannu, RDHAP, BS</div>
 
             <div className="bio-card">
               <p>
