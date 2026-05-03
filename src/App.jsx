@@ -262,7 +262,7 @@ function App() {
         html { scroll-behavior: smooth; }
 
         body {
-          font-family: Inter, Arial, sans-serif;
+          font-family: "Montserrat", Arial, sans-serif;
           color: #17313a;
           background: #f7f3ec;
           overflow-x: hidden;
@@ -324,7 +324,7 @@ function App() {
 
         .section-head h2 {
           margin: 0;
-          font-family: Inter, Arial, sans-serif;
+          font-family: "Montserrat", Arial, sans-serif;
           font-size: clamp(28px, 3.6vw, 48px);
           line-height: 0.98;
           font-weight: 600;
@@ -402,7 +402,7 @@ function App() {
 
         .brand-copy strong {
           display: block;
-          font-family: Inter, Arial, sans-serif;
+          font-family: "Montserrat", Arial, sans-serif;
           font-size: 30px;
           line-height: 0.9;
           font-weight: 600;
@@ -532,7 +532,7 @@ function App() {
         .hero h1 {
           text-shadow: 0 14px 40px rgba(6,16,24,0.45);
           margin: 0;
-          font-family: Inter, Arial, sans-serif;
+          font-family: "Montserrat", Arial, sans-serif;
           font-size: clamp(42px, 5.2vw, 72px);
           line-height: 1.02;
           font-weight: 600;
@@ -606,7 +606,7 @@ function App() {
 
         .intro-panel h2 {
           margin: 0;
-          font-family: Inter, Arial, sans-serif;
+          font-family: "Montserrat", Arial, sans-serif;
           font-size: clamp(34px, 4vw, 58px);
           line-height: 0.98;
           font-weight: 600;
@@ -692,7 +692,7 @@ function App() {
 
         .service-card h3 {
           margin: 0 0 12px;
-          font-family: Inter, Arial, sans-serif;
+          font-family: "Montserrat", Arial, sans-serif;
           font-size: 32px;
           line-height: 1.02;
           font-weight: 600;
@@ -756,7 +756,7 @@ function App() {
 
         .about-name {
           margin-top: 28px;
-          font-family: Inter, Arial, sans-serif;
+          font-family: "Montserrat", Arial, sans-serif;
           font-size: 36px;
           line-height: 1;
           font-weight: 600;
@@ -822,7 +822,7 @@ function App() {
 
         .glass-box h2 {
           margin: 0;
-          font-family: Inter, Arial, sans-serif;
+          font-family: "Montserrat", Arial, sans-serif;
           font-size: clamp(34px, 5vw, 56px);
           line-height: 0.98;
           font-weight: 600;
@@ -1002,7 +1002,7 @@ function App() {
 
         .contact-title {
           margin: 0;
-          font-family: Inter, Arial, sans-serif;
+          font-family: "Montserrat", Arial, sans-serif;
           font-size: 38px;
           line-height: 1;
           font-weight: 600;
@@ -1033,7 +1033,7 @@ function App() {
 
         .map-card h3 {
           margin: 0;
-          font-family: Inter, Arial, sans-serif;
+          font-family: "Montserrat", Arial, sans-serif;
           font-size: 38px;
           line-height: 1;
         }
@@ -1099,7 +1099,7 @@ function App() {
 
         .benefits-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
         .benefit { padding: 24px; border-radius: 22px; background: rgba(248,245,239,0.94); border: 1px solid rgba(22,49,58,0.05); box-shadow: 0 18px 40px rgba(22,49,58,0.06); }
-        .benefit h3 { margin: 0 0 10px; font-size: 22px; font-family: Inter, Arial, sans-serif; }
+        .benefit h3 { margin: 0 0 10px; font-size: 22px; font-family: "Montserrat", Arial, sans-serif; }
         .benefit p { margin: 0; line-height: 1.8; color: #4f666d; }
         .benefit ul { margin: 14px 0 0; padding-left: 18px; display: grid; gap: 8px; color: #4f666d; }
         .benefit li { line-height: 1.65; }
