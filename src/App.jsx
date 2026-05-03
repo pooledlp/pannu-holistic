@@ -103,20 +103,6 @@ const seo = {
     "Pannu Holistic provides holistic dental hygiene, preventative dentistry, myofunctional therapy, and non-toxic oral wellness care in Point Richmond, California.",
 };
 
-const faqs = [
-  {
-    q: "Where is Pannu Holistic located?",
-    a: "We serve patients across Richmond, the East Bay, and the greater Bay Area.",
-  },
-  {
-    q: "What makes your holistic dental approach different?",
-    a: "Our care is prevention-first and whole-body focused, using non-toxic materials and therapies that support breathing, comfort, and long-term oral health.",
-  },
-  {
-    q: "Do you offer services for children and families?",
-    a: "Yes. We provide gentle, personalized hygiene and wellness-oriented support for adults and children.",
-  },
-];
 
 const office = {
   phoneDisplay: "415.755.5549",
@@ -179,7 +165,6 @@ function App() {
       { label: "Products", href: "#products" },
       { label: "Reviews", href: "#reviews" },
       { label: "Why Us", href: "#why-us" },
-      { label: "FAQ", href: "#faq" },
       { label: "Contact", href: "#contact" },
     ],
     []
@@ -1011,10 +996,6 @@ function App() {
         .benefit-subhead { margin: 16px 0 8px; font-weight: 700; color: #16313a; font-size: 15px; text-transform: uppercase; letter-spacing: 0.05em; }
         .benefit-cta { display: inline-block; margin-top: 16px; font-weight: 700; color: #16313a; text-decoration: none; border-bottom: 1px solid rgba(22,49,58,0.32); padding-bottom: 2px; }
         .benefit-cta:hover { color: #2b695e; border-bottom-color: rgba(43,105,94,0.6); }
-        .faq-grid { display: grid; gap: 16px; }
-        .faq-card { border-radius: 20px; padding: 22px; background: #f7f3ec; border: 1px solid rgba(22,49,58,0.06); }
-        .faq-card h3 { margin: 0 0 8px; font-size: 20px; }
-        .faq-card p { margin: 0; color: #4f666d; line-height: 1.8; }
 
 
 
@@ -1075,7 +1056,6 @@ function App() {
         .contact-card,
         .form-card,
         .benefit,
-        .faq-card,
         .product-card,
         .detail-item,
         .contact-item {
@@ -1092,7 +1072,6 @@ function App() {
         .contact-card::before,
         .form-card::before,
         .benefit::before,
-        .faq-card::before,
         .product-card::before,
         .detail-item::before,
         .contact-item::before {
@@ -1113,7 +1092,6 @@ function App() {
         .contact-card:hover,
         .form-card:hover,
         .benefit:hover,
-        .faq-card:hover,
         .product-card:hover,
         .detail-item:hover,
         .contact-item:hover {
@@ -1130,7 +1108,6 @@ function App() {
         .contact-card:hover::before,
         .form-card:hover::before,
         .benefit:hover::before,
-        .faq-card:hover::before,
         .product-card:hover::before,
         .detail-item:hover::before,
         .contact-item:hover::before {
@@ -1160,7 +1137,6 @@ function App() {
         .product-card,
         .contact-card,
         .form-card,
-        .faq-card,
         .detail-item,
         .contact-item,
         .bio-card {
@@ -1176,8 +1152,7 @@ function App() {
         .services-grid .service-card:nth-child(2n),
         .reviews-grid .review-card:nth-child(2n),
         .benefits-grid .benefit:nth-child(2n),
-        .product-grid .product-card:nth-child(2n),
-        .faq-grid .faq-card:nth-child(2n) {
+        .product-grid .product-card:nth-child(2n) {
           animation-delay: -2.6s;
         }
 
@@ -1803,22 +1778,7 @@ function App() {
         </div>
       </section>
 
-      <section className="section" id="faq">
-        <div className="container">
-          <div className="section-head">
-            <small>FAQ</small>
-            <h2>Questions patients ask before their first visit.</h2>
-          </div>
-          <div className="faq-grid reveal">
-            {faqs.map((item) => (
-              <article className="faq-card" key={item.q}>
-                <h3>{item.q}</h3>
-                <p>{item.a}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       <section className="section" id="contact">
         <div className="container">
