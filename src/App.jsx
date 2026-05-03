@@ -538,7 +538,7 @@ function App() {
           text-shadow: 0 14px 40px rgba(6,16,24,0.45);
           margin: 0;
           font-family: var(--font-display);
-          font-size: clamp(42px, 5.2vw, 72px);
+          font-size: clamp(36px, 4.6vw, 64px);
           line-height: 1.02;
           font-weight: 600;
           letter-spacing: -0.02em;
@@ -1604,10 +1604,6 @@ function App() {
 
         <div className="hero-inner">
           <div className="container hero-copy reveal">
-            <div className="eyebrow">
-              Holistic Therapy • Preventative Dentistry • Whole-Body Wellness
-            </div>
-
             <h1>Functional, Integrative & Holistic Approach to Dentistry</h1>
 
             <p>
