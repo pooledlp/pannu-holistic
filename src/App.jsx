@@ -1604,10 +1604,10 @@ function App() {
 
         <div className="hero-inner">
           <div className="container hero-copy reveal">
-            <h1>Functional, Integrative & Holistic Approach to Dentistry</h1>
+            <h1>New standard in dentistry, an advanced approach to promoting function with an integrative, data-driven, systemically aligned, holistic approach.</h1>
 
             <p>
-              Where Preventive Dentistry Meets Whole-Body Wellness, serving the San Francisco Bay Area, we use biocompatible materials and personalized treatment plans designed to support lasting oral health and holistic whole-body wellness for all ages.
+              As a non-conventional practice in the San Francisco Bay Area, we operate with a unique motto. We go beyond traditional dentistry to address the deeper connections between oral health, sleep, breathing, and function.
             </p>
 
             <div className="hero-actions">
