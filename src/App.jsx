@@ -21,12 +21,12 @@ const services = [
 ];
 
 const therapyOptions = [
-  "Ozone Therapy",
+  "Early Decay Reversal & teeth Sensitivity Treatment",
+  "Homeopathic & Ozone Therapy",
   "Myofunctional Therapy",
-  "Buteyko Breathing",
-  "Mineral Treatment for Decay Prevention",
-  "Desensitization Treatment for Sensitive Teeth",
-  "Holistic Teeth Whitening",
+  "Certified Buteyko Breathing Therapist",
+  "Low-Radiation Digital X-Rays",
+  "No braces - Teeth Alignment (Ages 2–17)",
 ];
 
 
