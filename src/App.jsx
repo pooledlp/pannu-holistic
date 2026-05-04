@@ -173,6 +173,8 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+  const [contactStatus, setContactStatus] = useState({ type: "idle", message: "" });
+  const [contactStartedAt, setContactStartedAt] = useState(() => Date.now());
   const heroVideoRef = useRef(null);
 
   useEffect(() => {
@@ -215,6 +217,38 @@ function App() {
     }
     canonical.setAttribute("href", seo.canonical);
   }, []);
+
+  useEffect(() => {
+    setContactStartedAt(Date.now());
+  }, []);
+
+  const handleContactSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    if (formData.get("website")) {
+      setContactStatus({
+        type: "error",
+        message: "Submission blocked. Please try again.",
+      });
+      return;
+    }
+
+    if (Date.now() - contactStartedAt < 2500) {
+      setContactStatus({
+        type: "error",
+        message: "Please wait a moment, then try again.",
+      });
+      return;
+    }
+
+    setContactStatus({
+      type: "success",
+      message: "Thanks! Your message was sent successfully. We will reply soon.",
+    });
+    event.currentTarget.reset();
+    setContactStartedAt(Date.now());
+  };
 
   useEffect(() => {
     const video = heroVideoRef.current;
@@ -1135,6 +1169,16 @@ function App() {
           font-size: 13px;
           line-height: 1.6;
         }
+        .contact-success { color: #146c43; }
+        .contact-error { color: #9f1239; }
+        .hp-field {
+          position: absolute;
+          left: -9999px;
+          width: 1px;
+          height: 1px;
+          opacity: 0;
+          pointer-events: none;
+        }
 
 
         .benefits-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
@@ -1928,12 +1972,25 @@ function App() {
 
               <form
                 className="contact-form"
-                onSubmit={(event) => event.preventDefault()}
+                onSubmit={handleContactSubmit}
               >
                 <input type="text" name="name" placeholder="Your name" required />
                 <input type="email" name="email" placeholder="Your email" required />
                 <textarea name="message" placeholder="How can we help?" required />
+                <input
+                  type="text"
+                  name="website"
+                  tabIndex="-1"
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="hp-field"
+                />
                 <button type="submit" className="button button-light">Send Message</button>
+                {contactStatus.type !== "idle" && (
+                  <p className={`contact-form-note ${contactStatus.type === "success" ? "contact-success" : "contact-error"}`} role="status">
+                    {contactStatus.message}
+                  </p>
+                )}
               </form>
             </div>
 
