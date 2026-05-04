@@ -69,7 +69,7 @@ const therapyOptions = [
   "Early Decay Reversal & teeth Sensitivity Treatment",
   "Homeopathic & Ozone Therapy",
   "Myofunctional Therapy",
-  "Certified Buteyko Breathing Therapist",
+  "Buteyko Breathing Therapy",
   "Low-Radiation Digital X-Rays",
   "No braces - Teeth Alignment (Ages 2–17)",
 ];
