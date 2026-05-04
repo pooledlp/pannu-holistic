@@ -22,19 +22,19 @@ const smileCases = [
 
 const services = [
   {
-    title: "Holistic Oral Detox Therapy",
+    title: "Microbiome-Focused Preventive Care",
     icon: "leaf",
-    text: "Dental cleanings using only organic, non-toxic products for a healthier mouth. Cleanse and rejuvenate your oral health with herbal rinses and essential oils. Experience a natural approach to dental care.",
+    text: "Control inflammation at its source. Advanced hygiene protocols designed to preserve the oral microbiome, reduce pathogenic load, and support periodontal and systemic health using non-toxic, biologically compatible agents.",
   },
   {
-    title: "Holistic TMJ Treatment",
+    title: "Airway & TMJ Functional Therapy",
     icon: "jaw",
-    text: "Relieve TMJ pain with holistic approaches that address the root cause and promote overall wellness. Combining myofunctional therapy and Buteyko breathing techniques for a comprehensive approach to oral and facial health.",
+    text: "Restore structure. Improve function. Comprehensive evaluation and treatment of airway restriction and TMJ dysfunction using myofunctional therapy and evidence-based breathing protocols to enhance sleep quality, neuromuscular stability, and overall performance.",
   },
   {
-    title: "Non-Toxic Chemical-Free Dental Materials",
-    icon: "shield",
-    text: "We use digital X-rays with low radiation for safer diagnostics. Our commitment is to provide the best care with materials free from harmful chemicals, ensuring your overall well-being.",
+    title: "Biocompatible & Bioactive Therapies",
+    icon: "bio",
+    text: "Materials and methods guided by biology. Low-radiation digital imaging, ozone therapy, and carefully selected biocompatible materials support microbial balance, reduce inflammatory load, and promote tissue healing. Integrative protocols may include Ayurvedic and homeopathic adjuncts to enhance oral and systemic wellness.",
   },
 ];
 
@@ -53,6 +53,15 @@ function ServiceIcon({ icon, title }) {
       <svg viewBox="0 0 24 24" aria-label={title} role="img">
         <path d="M6 8.2C6 5.9 8 4 10.5 4h3C16 4 18 5.9 18 8.2v2.1c0 2.1-1.2 4-3.1 5L13 16.2c-.6.3-1.4.3-2 0l-1.9-.9C7.2 14.3 6 12.4 6 10.3V8.2Z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
         <path d="M9.3 10.2h5.4M10 13h4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (icon === "bio") {
+    return (
+      <svg viewBox="0 0 24 24" aria-label={title} role="img">
+        <path d="M12 4v16M6.5 7.5c0 1.6 1.4 2.9 3 2.9H14c1.7 0 3-1.3 3-2.9s-1.3-2.9-3-2.9H9.5c-1.6 0-3 1.3-3 2.9Zm0 9c0 1.6 1.4 2.9 3 2.9H14c1.7 0 3-1.3 3-2.9s-1.3-2.9-3-2.9H9.5c-1.6 0-3 1.3-3 2.9Z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="12" cy="12" r="1.3" fill="currentColor" />
       </svg>
     );
   }
@@ -1802,10 +1811,12 @@ function App() {
         <div className="container">
           <div className="section-head reveal">
             <small>Services</small>
-            <h2>Holistic therapies rooted in comfort, prevention, and well-being.</h2>
+            <h2>Oral health as a gateway to systemic performance.</h2>
             <p>
-              A natural, whole-body approach to oral health using therapies and
-              materials selected to support long-term wellness.
+              Our protocols are built on objective diagnostics, risk assessment,
+              and biocompatibility. Each treatment is selected to optimize
+              airway function, reduce inflammatory burden, and support systemic,
+              health-focused outcomes.
             </p>
           </div>
 
