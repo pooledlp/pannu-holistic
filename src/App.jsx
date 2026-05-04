@@ -209,7 +209,7 @@ function SocialIcon({ icon, name }) {
 
 const seo = {
   canonical: "https://www.pannuholistic.com/",
-  title: "Pannu Holistic | Holistic Dental Hygiene & Myofunctional Therapy in Point Richmond, CA",
+  title: "Pannu Holistic Dental Myology",
   description:
     "Pannu Holistic provides holistic dental hygiene, preventative dentistry, myofunctional therapy, and non-toxic oral wellness care in Point Richmond, California.",
 };
