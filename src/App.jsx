@@ -650,6 +650,7 @@ function App() {
         }
 
         .hero h1 {
+          color: #f6e8b3;
           text-shadow: 0 6px 24px rgba(4, 15, 19, 0.36);
           margin: 0;
           font-family: var(--font-display);
