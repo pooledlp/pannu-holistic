@@ -1922,7 +1922,7 @@ function App() {
         <div className="container">
           <div className="section-head">
             <small>Why Patients Choose Us</small>
-            <h2>Why choose us.</h2>
+            <h2>Why choose us</h2>
             <p>
               We take a preventive, functional approach that goes beyond symptoms to support dental health, airway function, jaw development, and long-term whole-body wellness for patients of all ages.
             </p>
