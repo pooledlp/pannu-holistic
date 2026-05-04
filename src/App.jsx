@@ -651,15 +651,14 @@ function App() {
 
         .hero h1 {
           color: #ffffff;
-          text-shadow:
-            0 8px 30px rgba(4, 15, 19, 0.52),
-            0 2px 12px rgba(4, 15, 19, 0.4);
+          text-shadow: 0 6px 24px rgba(6, 14, 18, 0.32);
           margin: 0;
-          font-family: var(--font-display);
-          font-size: clamp(30px, 3.8vw, 52px);
-          line-height: 1.02;
-          font-weight: 600;
-          letter-spacing: -0.02em;
+          font-family: var(--font-body);
+          font-size: clamp(42px, 7vw, 76px);
+          line-height: 1.08;
+          font-weight: 300;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
           max-width: 980px;
           text-wrap: balance;
         }
