@@ -1,8 +1,23 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 const smileCases = [
-  { file: "case1.png", alt: "Case 1 smile transformation before and after" },
-  { file: "case2.png", alt: "Case 2 smile transformation before and after" },
-  { file: "case3.png", alt: "Case 3 smile transformation before and after" },
+  {
+    file: "case1.png",
+    alt: "Case 1 smile transformation before and after",
+    title: "Myofunctional Therapy + Airway + Habit Correction (pacifier)",
+    text: "Improved tongue posture and Buteyko breathing restored dental alignment, leading to better sleep and reduced mouth breathing.",
+  },
+  {
+    file: "case2.png",
+    alt: "Case 2 smile transformation before and after",
+    title: "Myofunctional Therapy + Habit Correction (tongue thrust)",
+    text: "Rebalanced musculoskeletal facial patterns created a more stable bite and natural alignment, resulting in less clenching and improved muscle control.",
+  },
+  {
+    file: "case3.png",
+    alt: "Case 3 smile transformation before and after",
+    title: "Myofunctional Therapy + Airway + Habit Correction + Ozone therapy",
+    text: "Integrated airway and muscle support improved dental alignment and function, resulting in better sleep and reduced oral tension.",
+  },
 ];
 
 const services = [
@@ -1898,11 +1913,10 @@ function App() {
       <section className="section" id="smile-journey">
         <div className="container">
           <div className="section-head">
-            <small>Smile Transformation</small>
-            <h2>All real results. No braces. No surgery.</h2>
+            <small>Transformations:</small>
+            <h2>No braces. No surgery.</h2>
             <p>
-              These are real before-and-after outcomes from focused myofunctional therapy — just consistent muscle
-              retraining, breathing support, and holistic oral care.
+              Functional change that restores balance, not just appearance.
             </p>
           </div>
           <div className="smile-journey reveal">
@@ -1910,7 +1924,8 @@ function App() {
               {smileCases.map((item, index) => (
                 <div className="tooth-stage" key={item.file}>
                   <img className="tooth-image" src={`${base}${item.file}`} alt={item.alt} loading="lazy" />
-                  <p>Case {index + 1}: Myofunctional therapy transformation</p>
+                  <p><strong>Case {index + 1}:</strong> {item.title}</p>
+                  <p>{item.text}</p>
                 </div>
               ))}
             </div>
