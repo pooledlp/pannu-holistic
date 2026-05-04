@@ -280,6 +280,7 @@ function App() {
       { label: "Services", href: "#services" },
       { label: "About", href: "#about" },
       { label: "Reviews", href: "#reviews" },
+      { label: "Results", href: "#smile-journey" },
       { label: "Why Us", href: "#why-us" },
       { label: "Contact", href: "#contact" },
     ],
@@ -1852,7 +1853,7 @@ function App() {
                 ) : null}
                 <p>{review.quote}</p>
                 <div className="review-name">{review.name}</div>
-                {review.when ? <div className="review-when">{review.when}</div> : null}
+                
               </article>
             ))}
           </div>
