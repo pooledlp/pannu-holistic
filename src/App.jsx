@@ -1217,15 +1217,13 @@ function App() {
         }
 
 
-        .benefits-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
-        .benefit { padding: 24px; border-radius: 22px; background: rgba(248,245,239,0.94); border: 1px solid rgba(22,49,58,0.05); box-shadow: 0 18px 40px rgba(22,49,58,0.06); }
+        .benefits-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; align-items: stretch; }
+        .benefit { padding: 24px; border-radius: 22px; background: rgba(248,245,239,0.94); border: 1px solid rgba(22,49,58,0.05); box-shadow: 0 18px 40px rgba(22,49,58,0.06); height: 100%; display: flex; flex-direction: column; }
         .benefit h3 { margin: 0 0 10px; font-size: 22px; font-family: var(--font-display); }
         .benefit p { margin: 0; line-height: 1.8; color: #4f666d; }
-        .benefit ul { margin: 14px 0 0; padding-left: 18px; display: grid; gap: 8px; color: #4f666d; }
+        .benefit ul { margin: 14px 0 0; padding-left: 18px; display: grid; gap: 8px; color: #4f666d; flex: 1; }
         .benefit li { line-height: 1.65; }
         .benefit-subhead { margin: 16px 0 8px; font-weight: 700; color: #16313a; font-size: 15px; text-transform: uppercase; letter-spacing: 0.05em; }
-        .benefit-cta { display: inline-block; margin-top: 16px; font-weight: 700; color: #16313a; text-decoration: none; border-bottom: 1px solid rgba(22,49,58,0.32); padding-bottom: 2px; }
-        .benefit-cta:hover { color: #2b695e; border-bottom-color: rgba(43,105,94,0.6); }
 
 
 
@@ -1924,7 +1922,7 @@ function App() {
         <div className="container">
           <div className="section-head">
             <small>Why Patients Choose Us</small>
-            <h2>WHY CHOOSE US</h2>
+            <h2>Why choose us</h2>
             <p>
               We take a preventive, functional approach that goes beyond symptoms to support dental health, airway function, jaw development, and long-term whole-body wellness for patients of all ages.
             </p>
@@ -1937,7 +1935,6 @@ function App() {
                 <li>Supports oral health, function, and growth</li>
                 <li>Designed for adults and children</li>
               </ul>
-              <a href="#about" className="benefit-cta">Learn About Our Approach</a>
             </article>
             <article className="benefit">
               <h3>Comfort-Focused, Biocompatible Care</h3>
@@ -1949,7 +1946,6 @@ function App() {
                 <li>Comfort-first environment with anxiety-reducing care</li>
                 <li>Child-friendly, calming experience tools</li>
               </ul>
-              <a href="#contact" className="benefit-cta">Experience Comfortable Care</a>
             </article>
             <article className="benefit">
               <h3>Airway, Function &amp; Prevention-First Dentistry</h3>
@@ -1962,7 +1958,6 @@ function App() {
                 <li>Preventive, personalized treatment planning</li>
                 <li>Low-radiation digital diagnostics</li>
               </ul>
-              <a href="#services" className="benefit-cta">Explore Preventive Treatments</a>
             </article>
             <article className="benefit">
               <h3>Child-Friendly Dentistry</h3>
