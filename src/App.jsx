@@ -1580,10 +1580,10 @@ function App() {
           }
 
           .hero h1 {
-            font-size: clamp(12px, 3.6vw, 17px);
-            line-height: 1.1;
+            font-size: clamp(24px, 8vw, 34px);
+            line-height: 1.18;
             letter-spacing: 0.01em;
-            max-width: 22ch;
+            max-width: 28ch;
           }
 
           .hero-copy {
@@ -1745,7 +1745,9 @@ function App() {
         <div className="hero-inner">
           <div className="container hero-copy reveal">
             <h1>
-              NEW STANDARD IN DENTISTRY: Advanced Data-Driven Systemically Aligned, Integrative Holistic Modalities
+              NEW STANDARD IN DENTISTRY:
+              <br />
+              Advanced Data-Driven Systemically Aligned, Integrative Holistic Modalities
             </h1>
 
 
