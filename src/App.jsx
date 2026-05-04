@@ -664,9 +664,9 @@ function App() {
           font-size: clamp(18px, 3vw, 40px);
           line-height: 1.14;
           font-weight: 600;
-          letter-spacing: clamp(0.01em, 0.42vw, 0.028em);
+          letter-spacing: clamp(0.03em, 0.5vw, 0.06em);
           text-transform: none;
-          max-width: 26ch;
+          max-width: 34ch;
           margin-inline: auto;
           text-wrap: balance;
         }
@@ -1744,7 +1744,11 @@ function App() {
 
         <div className="hero-inner">
           <div className="container hero-copy reveal">
-            <h1>Advanced holistic dentistry that aligns your smile, airway, and whole-body wellness.</h1>
+            <h1>
+              NEW STANDARD IN DENTISTRY:<br />
+              Advanced<br />
+              Data-Driven Systemically Aligned, Integrative Holistic Modalities
+            </h1>
 
 
           </div>
