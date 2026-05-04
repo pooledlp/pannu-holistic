@@ -659,9 +659,9 @@ function App() {
           font-family: var(--font-hero);
           font-size: clamp(30px, 4.8vw, 56px);
           line-height: 1.06;
-          font-weight: 600;
+          font-weight: 400;
           letter-spacing: clamp(0.01em, 0.8vw, 0.035em);
-          text-transform: none;
+          text-transform: uppercase;
           max-width: 20ch;
           margin-inline: auto;
           text-wrap: balance;
