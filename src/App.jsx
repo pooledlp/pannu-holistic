@@ -1779,11 +1779,11 @@ function App() {
         <div className="container">
           <div className="intro-panel reveal">
             <div>
-              <h2>Holistic therapies designed to support a healthier, more balanced life.</h2>
+              <h2>Integrative functional dental therapies.</h2>
               <p>
-                Our approach combines preventative dentistry with wellness-focused
-                care that supports comfort, function, breathing, and overall
-                well-being.
+                Data-driven modalities for all ages, customized on a case-by-case
+                basis, combining preventive dentistry with wellness-focused care to
+                support comfort, function, breathing, and overall well-being.
               </p>
             </div>
 
