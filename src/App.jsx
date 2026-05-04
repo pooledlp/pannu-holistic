@@ -944,6 +944,18 @@ function App() {
           font-size: 18px;
         }
 
+        .bio-layout {
+          display: grid;
+          grid-template-columns: 320px minmax(0, 1fr);
+          gap: 34px;
+          align-items: start;
+        }
+
+        .bio-layout .about-frame {
+          max-height: none;
+          min-height: 0;
+        }
+
         .products-wrap {
           border-radius: 36px;
           overflow: hidden;
@@ -1663,6 +1675,11 @@ function App() {
             font-size: 34px;
           }
 
+          .bio-layout {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+
           .footer-inner {
             flex-direction: column;
             align-items: flex-start;
@@ -1833,21 +1850,21 @@ function App() {
       </section>
 
       <section className="about-section" id="about">
-        <div className="container about-wrap reveal">
-          <div className="about-visual">
-            <div className="about-frame">
-              <img
-                src={`${base}Taren2.png`}
-                alt="Portrait of Taren Pannu"
-                className="about-img"
-              />
-            </div>
-          </div>
-
+        <div className="container reveal">
           <div className="about-copy">
-            <div className="about-name">Taren Pannu, RDHAP, BS</div>
+            <div className="bio-card bio-layout">
+              <div className="about-visual">
+                <div className="about-frame">
+                  <img
+                    src={`${base}Taren2.png`}
+                    alt="Portrait of Taren Pannu"
+                    className="about-img"
+                  />
+                </div>
+              </div>
 
-            <div className="bio-card">
+              <div>
+                <div className="about-name">Taren Pannu, RDHAP, BS</div>
               <p>
                 Taren Pannu is a dental and airway health practitioner dedicated
                 to holistic, functional, and integrative dental care. Her
@@ -1880,6 +1897,7 @@ function App() {
                 Her care is evidence-based and centered on long-term oral and
                 overall health, to support holistic wellness.
               </p>
+              </div>
             </div>
           </div>
         </div>
