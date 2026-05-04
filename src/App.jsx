@@ -650,8 +650,10 @@ function App() {
         }
 
         .hero h1 {
-          color: #f6e8b3;
-          text-shadow: 0 6px 24px rgba(4, 15, 19, 0.36);
+          color: #ffffff;
+          text-shadow:
+            0 8px 30px rgba(4, 15, 19, 0.52),
+            0 2px 12px rgba(4, 15, 19, 0.4);
           margin: 0;
           font-family: var(--font-display);
           font-size: clamp(30px, 3.8vw, 52px);
@@ -1571,7 +1573,6 @@ function App() {
           }
 
           .hero h1 {
-            text-shadow: none;
             font-size: clamp(30px, 9vw, 42px);
           }
 
