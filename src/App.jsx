@@ -1978,7 +1978,7 @@ function App() {
         <div className="container">
           <div className="section-head">
             <small>Transformations:</small>
-            <h2>No braces. No surgery</h2>
+            <h2>No braces, No surgery</h2>
             <p>
               Functional change that restores balance, not just appearance.
             </p>
