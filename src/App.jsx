@@ -323,6 +323,7 @@ function App() {
   const navLinks = useMemo(
     () => [
       { label: "Services", href: "#services" },
+      { label: "Products", href: "#products" },
       { label: "About", href: "#about" },
       { label: "Reviews", href: "#reviews" },
       { label: "Results", href: "#smile-journey" },
