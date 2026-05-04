@@ -657,7 +657,7 @@ function App() {
           text-shadow: 0 10px 28px rgba(6, 14, 18, 0.32);
           margin: 0;
           font-family: var(--font-hero);
-          font-size: clamp(40px, 6.6vw, 74px);
+          font-size: clamp(30px, 4.8vw, 56px);
           line-height: 1.06;
           font-weight: 600;
           letter-spacing: clamp(0.01em, 0.8vw, 0.035em);
@@ -1576,7 +1576,7 @@ function App() {
           }
 
           .hero h1 {
-            font-size: clamp(30px, 9vw, 42px);
+            font-size: clamp(24px, 7.2vw, 34px);
             line-height: 1.1;
             letter-spacing: 0.01em;
             max-width: 12ch;
