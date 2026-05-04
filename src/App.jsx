@@ -908,13 +908,13 @@ function App() {
         .about-copy {
           background: rgba(248,245,239,0.94);
           border-radius: 34px;
-          padding: 42px;
+          padding: 48px 48px 48px 56px;
           display: flex;
           flex-direction: column;
           justify-content: center;
           box-shadow: 0 20px 50px rgba(22,49,58,0.07);
           border: 1px solid rgba(22,49,58,0.05);
-          font-size: 14px;
+          font-size: 18px;
         }
 
         .about-name {
@@ -935,13 +935,13 @@ function App() {
 
         .bio-card {
           margin-top: 26px;
-          padding: 24px;
+          padding: 28px 28px 28px 36px;
           border-radius: 24px;
           background: #f1ebe0;
           border: 1px solid rgba(22,49,58,0.05);
           color: #4e656d;
-          line-height: 1.9;
-          font-size: 14px;
+          line-height: 1.85;
+          font-size: 18px;
         }
 
         .products-wrap {
@@ -1367,7 +1367,6 @@ function App() {
 
         .intro-panel:hover,
         .service-card:hover,
-        .about-copy:hover,
         .glass-box:hover,
         .review-card:hover,
         .contact-card:hover,
@@ -1383,7 +1382,6 @@ function App() {
 
         .intro-panel:hover::before,
         .service-card:hover::before,
-        .about-copy:hover::before,
         .glass-box:hover::before,
         .review-card:hover::before,
         .contact-card:hover::before,
