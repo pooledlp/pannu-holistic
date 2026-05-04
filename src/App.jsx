@@ -1803,7 +1803,7 @@ function App() {
         <div className="container">
           <div className="intro-panel reveal">
             <div>
-              <h2>Integrative functional dental therapies.</h2>
+              <h2>Integrative functional dental therapies</h2>
               <p>
                 Data-driven modalities for all ages, customized on a case-by-case
                 basis, combining preventive dentistry with wellness-focused care to
@@ -1826,7 +1826,7 @@ function App() {
         <div className="container">
           <div className="section-head reveal">
             <small>Services</small>
-            <h2>Oral health as a gateway to systemic performance.</h2>
+            <h2>Oral health as a gateway to systemic performance</h2>
             <p>
               Our protocols are built on objective diagnostics, risk assessment,
               and biocompatibility. Each treatment is selected to optimize
@@ -1909,7 +1909,7 @@ function App() {
             <div className="products-inner">
               <div className="glass-box">
                 <small>Products</small>
-                <h2>Featured wellness products for holistic oral care.</h2>
+                <h2>Featured wellness products for holistic oral care</h2>
                 <p>
                   Our product collection is selected to support preventive,
                   non-toxic oral wellness at home between visits. Each option is
@@ -1946,7 +1946,7 @@ function App() {
         <div className="container">
           <div className="section-head reviews-head">
             <small>Reviews</small>
-            <h2>What patients are saying.</h2>
+            <h2>What patients are saying</h2>
           </div>
           <div className="reviews-socials reveal">
             {socialLinks.map((social) => (
@@ -1978,7 +1978,7 @@ function App() {
         <div className="container">
           <div className="section-head">
             <small>Transformations:</small>
-            <h2>No braces. No surgery.</h2>
+            <h2>No braces. No surgery</h2>
             <p>
               Functional change that restores balance, not just appearance.
             </p>
