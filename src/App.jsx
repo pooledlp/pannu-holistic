@@ -629,6 +629,7 @@ function App() {
 
         .hero-copy {
           max-width: 980px;
+          transform: translateY(-48px);
           color: #fff;
           padding: 0;
           border-radius: 0;
@@ -657,7 +658,7 @@ function App() {
           text-shadow: 0 10px 28px rgba(6, 14, 18, 0.32);
           margin: 0;
           font-family: var(--font-hero);
-          font-size: clamp(30px, 4.8vw, 56px);
+          font-size: clamp(15px, 2.4vw, 28px);
           line-height: 1.06;
           font-weight: 400;
           letter-spacing: clamp(0.01em, 0.8vw, 0.035em);
@@ -1576,13 +1577,14 @@ function App() {
           }
 
           .hero h1 {
-            font-size: clamp(24px, 7.2vw, 34px);
+            font-size: clamp(12px, 3.6vw, 17px);
             line-height: 1.1;
             letter-spacing: 0.01em;
             max-width: 12ch;
           }
 
           .hero-copy {
+            transform: translateY(-24px);
             padding: 20px 18px;
             border-radius: 18px;
           }
