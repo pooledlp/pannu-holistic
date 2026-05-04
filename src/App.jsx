@@ -874,8 +874,8 @@ function App() {
 
         .about-wrap {
           display: grid;
-          grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
-          gap: 34px;
+          grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+          gap: 22px;
           align-items: stretch;
         }
 
@@ -885,12 +885,12 @@ function App() {
         }
 
         .about-frame {
-          width: min(520px, 100%);
+          width: 100%;
           max-height: 760px;
           border-radius: 34px;
           background: linear-gradient(180deg, #f1ebdf 0%, #e7dfd2 100%);
           box-shadow: 0 24px 60px rgba(22,49,58,0.10);
-          padding: 18px;
+          padding: 14px;
           min-height: 100%;
           overflow: hidden;
           border: 1px solid rgba(22,49,58,0.05);
@@ -908,7 +908,7 @@ function App() {
         .about-copy {
           background: rgba(248,245,239,0.94);
           border-radius: 34px;
-          padding: 48px 48px 48px 56px;
+          padding: 40px 40px 40px 44px;
           display: flex;
           flex-direction: column;
           justify-content: center;
