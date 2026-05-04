@@ -355,11 +355,14 @@ function App() {
     <div className="site-shell">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <style>{`
+        @import url("https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap");
+
         * { box-sizing: border-box; }
 
 :root {
           --font-body: "Avenir Next", "Avenir", "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
           --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, "Times New Roman", serif;
+          --font-hero: "Sora", "Avenir Next", "Avenir", "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
         }
 
         html, body, #root {
@@ -651,15 +654,16 @@ function App() {
 
         .hero h1 {
           color: #ffffff;
-          text-shadow: 0 6px 24px rgba(6, 14, 18, 0.32);
+          text-shadow: 0 10px 28px rgba(6, 14, 18, 0.32);
           margin: 0;
-          font-family: var(--font-body);
-          font-size: clamp(42px, 7vw, 76px);
-          line-height: 1.08;
-          font-weight: 300;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-          max-width: 980px;
+          font-family: var(--font-hero);
+          font-size: clamp(40px, 6.6vw, 74px);
+          line-height: 1.06;
+          font-weight: 600;
+          letter-spacing: clamp(0.01em, 0.8vw, 0.035em);
+          text-transform: none;
+          max-width: 20ch;
+          margin-inline: auto;
           text-wrap: balance;
         }
 
@@ -1573,6 +1577,9 @@ function App() {
 
           .hero h1 {
             font-size: clamp(30px, 9vw, 42px);
+            line-height: 1.1;
+            letter-spacing: 0.01em;
+            max-width: 12ch;
           }
 
           .hero-copy {
