@@ -420,7 +420,7 @@ function App() {
         .section-head h2 {
           margin: 0;
           font-family: var(--font-display);
-          font-size: clamp(28px, 3.6vw, 48px);
+          font-size: clamp(30px, 3.8vw, 52px);
           line-height: 0.98;
           font-weight: 600;
           letter-spacing: -0.03em;
