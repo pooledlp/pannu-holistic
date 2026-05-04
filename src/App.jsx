@@ -431,7 +431,7 @@ function App() {
           margin-bottom: 16px;
           font-size: 12px;
           letter-spacing: 0.24em;
-          text-transform: uppercase;
+          text-transform: none;
           color: #7599a2;
         }
 
@@ -508,7 +508,7 @@ function App() {
           display: block;
           font-size: 10px;
           letter-spacing: 0.24em;
-          text-transform: uppercase;
+          text-transform: none;
           margin-bottom: 4px;
           color: rgba(255,255,255,0.82);
         }
@@ -527,7 +527,7 @@ function App() {
           margin-top: 4px;
           font-size: 11px;
           letter-spacing: 0.18em;
-          text-transform: uppercase;
+          text-transform: none;
           color: rgba(255,255,255,0.76);
         }
 
@@ -628,8 +628,8 @@ function App() {
         }
 
         .hero-copy {
-          max-width: 980px;
-          transform: translateY(-48px);
+          max-width: 1040px;
+          transform: translateY(-18px);
           color: #fff;
           padding: 0;
           border-radius: 0;
@@ -655,15 +655,18 @@ function App() {
 
         .hero h1 {
           color: #ffffff;
-          text-shadow: 0 10px 28px rgba(6, 14, 18, 0.32);
+          text-shadow:
+            0 3px 10px rgba(0, 0, 0, 0.42),
+            0 12px 30px rgba(0, 0, 0, 0.38),
+            0 24px 55px rgba(2, 10, 14, 0.3);
           margin: 0;
-          font-family: var(--font-hero);
-          font-size: clamp(15px, 2.4vw, 28px);
-          line-height: 1.06;
-          font-weight: 400;
-          letter-spacing: clamp(0.01em, 0.8vw, 0.035em);
-          text-transform: uppercase;
-          max-width: 20ch;
+          font-family: var(--font-display);
+          font-size: clamp(18px, 3vw, 40px);
+          line-height: 1.14;
+          font-weight: 600;
+          letter-spacing: clamp(0.01em, 0.42vw, 0.028em);
+          text-transform: none;
+          max-width: 26ch;
           margin-inline: auto;
           text-wrap: balance;
         }
@@ -898,7 +901,7 @@ function App() {
           margin-top: 8px;
           font-size: 12px;
           letter-spacing: 0.22em;
-          text-transform: uppercase;
+          text-transform: none;
           color: #7498a0;
         }
 
@@ -948,7 +951,7 @@ function App() {
           margin-bottom: 16px;
           font-size: 12px;
           letter-spacing: 0.22em;
-          text-transform: uppercase;
+          text-transform: none;
           color: #6f93a0;
         }
 
@@ -1153,7 +1156,7 @@ function App() {
           display: block;
           font-size: 11px;
           letter-spacing: 0.18em;
-          text-transform: uppercase;
+          text-transform: none;
           color: #7599a2;
           margin-bottom: 6px;
         }
@@ -1741,7 +1744,7 @@ function App() {
 
         <div className="hero-inner">
           <div className="container hero-copy reveal">
-            <h1>New standard in dentistry: advanced, data-driven, systemically aligned, integrative holistic modalities.</h1>
+            <h1>Advanced holistic dentistry that aligns your smile, airway, and whole-body wellness.</h1>
 
 
           </div>
