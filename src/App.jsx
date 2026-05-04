@@ -301,21 +301,39 @@ function App() {
       return undefined;
     }
 
+    let retryTimeout;
+
     const startVideo = () => {
       video.defaultMuted = true;
       video.muted = true;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+
+      if (video.readyState < 2) {
+        return;
+      }
+
       const playPromise = video.play();
       if (playPromise && typeof playPromise.catch === "function") {
-        playPromise.catch(() => {});
+        playPromise.catch(() => {
+          retryTimeout = window.setTimeout(startVideo, 700);
+        });
       }
     };
 
     startVideo();
+    video.addEventListener("loadedmetadata", startVideo);
+    video.addEventListener("canplay", startVideo);
 
     const events = ["touchstart", "pointerdown", "visibilitychange"];
     events.forEach((eventName) => document.addEventListener(eventName, startVideo, { passive: true }));
 
     return () => {
+      if (retryTimeout) {
+        window.clearTimeout(retryTimeout);
+      }
+      video.removeEventListener("loadedmetadata", startVideo);
+      video.removeEventListener("canplay", startVideo);
       events.forEach((eventName) => document.removeEventListener(eventName, startVideo));
     };
   }, []);
@@ -1726,6 +1744,7 @@ function App() {
           defaultMuted
           loop
           playsInline
+          webkit-playsinline="true"
           preload="auto"
           poster={`${base}products-ocean.jpg`}
           onCanPlay={() => setVideoReady(true)}
