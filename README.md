@@ -11,7 +11,7 @@ npm run dev
 
 The Vite base path is automatic:
 - local/dev builds use `/`
-- GitHub Actions deploy builds use `/pannu-holistic/`
+- GitHub Pages custom domain deploys use root path `/` (configured in `vite.config.js`)
 
 ### Troubleshooting
 
