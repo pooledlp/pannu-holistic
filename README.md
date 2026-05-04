@@ -25,13 +25,13 @@ npm config delete https-proxy
 
 ## Contact form configuration
 
-The contact form submits to Formspree. Configure the endpoint using an environment variable:
+The contact form submits to a free FormSubmit endpoint and sends to `info@pannuholistic.com` by default:
 
 ```bash
-VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/<your-form-id>
+VITE_CONTACT_ENDPOINT=https://formsubmit.co/ajax/info@pannuholistic.com
 ```
 
-You can place this in a local `.env` file for development.
+If you prefer a different free SMTP/form relay provider, set `VITE_CONTACT_ENDPOINT` to that provider's POST URL in your local `.env` file.
 
 ## Google reviews configuration
 

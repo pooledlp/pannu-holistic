@@ -75,7 +75,7 @@ function ServiceIcon({ icon, title }) {
 }
 
 const therapyOptions = [
-  "Early Decay Reversal & teeth Sensitivity Treatment",
+  "Early Decay Reversal & Teeth Sensitivity Treatment",
   "Homeopathic & Ozone Therapy",
   "Myofunctional Therapy",
   "Buteyko Breathing Therapy",
@@ -229,6 +229,7 @@ function App() {
   const [videoReady, setVideoReady] = useState(false);
   const [contactStatus, setContactStatus] = useState({ type: "idle", message: "" });
   const [contactStartedAt, setContactStartedAt] = useState(() => Date.now());
+  const [isSubmittingContact, setIsSubmittingContact] = useState(false);
   const heroVideoRef = useRef(null);
 
   useEffect(() => {
@@ -276,9 +277,12 @@ function App() {
     setContactStartedAt(Date.now());
   }, []);
 
-  const handleContactSubmit = (event) => {
+  const contactEndpoint = import.meta.env.VITE_CONTACT_ENDPOINT || "https://formsubmit.co/ajax/info@pannuholistic.com";
+
+  const handleContactSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
 
     if (formData.get("website")) {
       setContactStatus({
@@ -296,12 +300,39 @@ function App() {
       return;
     }
 
-    setContactStatus({
-      type: "success",
-      message: "Thanks! Your message was sent successfully. We will reply soon.",
-    });
-    event.currentTarget.reset();
-    setContactStartedAt(Date.now());
+    formData.append("_subject", "New website contact request");
+    formData.append("_captcha", "false");
+
+    setIsSubmittingContact(true);
+    setContactStatus({ type: "idle", message: "" });
+
+    try {
+      const response = await fetch(contactEndpoint, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Contact request failed");
+      }
+
+      setContactStatus({
+        type: "success",
+        message: "Thanks! Your message was sent successfully. We will reply soon.",
+      });
+      form.reset();
+      setContactStartedAt(Date.now());
+    } catch (error) {
+      setContactStatus({
+        type: "error",
+        message: "We could not send your message right now. Please call us at 415.755.5549.",
+      });
+    } finally {
+      setIsSubmittingContact(false);
+    }
   };
 
   useEffect(() => {
@@ -2097,7 +2128,7 @@ function App() {
                   aria-hidden="true"
                   className="hp-field"
                 />
-                <button type="submit" className="button button-light">Send Message</button>
+                <button type="submit" className="button button-light" disabled={isSubmittingContact}>{isSubmittingContact ? "Sending..." : "Send Message"}</button>
                 {contactStatus.type !== "idle" && (
                   <p className={`contact-form-note ${contactStatus.type === "success" ? "contact-success" : "contact-error"}`} role="status">
                     {contactStatus.message}
