@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { fallbackReviews, mergeReviews, parseReviewsFromHtml } from "../utils/parseReviews";
 
 const PREVIEW_LENGTH = 210;
@@ -16,10 +16,14 @@ function StarRating({ rating = 5 }) {
   );
 }
 
-function ReviewCard({ review }) {
+function ReviewCard({ review, collapseKey }) {
   const [expanded, setExpanded] = useState(false);
   const canExpand = review.review.length > PREVIEW_LENGTH;
   const copy = !canExpand || expanded ? review.review : `${review.review.slice(0, PREVIEW_LENGTH).trim()}...`;
+
+  useEffect(() => {
+    setExpanded(false);
+  }, [collapseKey]);
 
   return (
     <article className="review-card ticker-review-card" aria-label={`${review.source} review by ${review.reviewerName}`}>
@@ -51,6 +55,9 @@ function ReviewCard({ review }) {
 
 export default function ReviewTicker() {
   const [reviews, setReviews] = useState(fallbackReviews);
+  const [collapseKey, setCollapseKey] = useState(0);
+  const shellRef = useRef(null);
+  const scrollResetRef = useRef(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -83,17 +90,54 @@ export default function ReviewTicker() {
     };
   }, []);
 
+  useEffect(() => {
+    function collapseOpenReviews(event) {
+      if (shellRef.current?.contains(event.target)) {
+        return;
+      }
+
+      setCollapseKey((current) => current + 1);
+    }
+
+    document.addEventListener("pointerdown", collapseOpenReviews);
+
+    return () => {
+      document.removeEventListener("pointerdown", collapseOpenReviews);
+    };
+  }, []);
+
   const tickerReviews = useMemo(() => [...reviews, ...reviews], [reviews]);
   const duration = Math.max(45, reviews.length * 7);
 
+  const handleTickerScroll = useCallback((event) => {
+    const ticker = event.currentTarget;
+
+    if (scrollResetRef.current || window.matchMedia("(min-width: 721px)").matches) {
+      return;
+    }
+
+    const reviewSetWidth = ticker.scrollWidth / 2;
+
+    if (reviewSetWidth <= 0 || ticker.scrollLeft < reviewSetWidth) {
+      return;
+    }
+
+    scrollResetRef.current = true;
+    ticker.scrollLeft -= reviewSetWidth;
+    requestAnimationFrame(() => {
+      scrollResetRef.current = false;
+    });
+  }, []);
+
   return (
-    <div className="reviews-ticker-shell reveal" style={{ "--reviews-duration": `${duration}s` }}>
-      <div className="reviews-ticker" aria-label="Patient reviews carousel">
+    <div ref={shellRef} className="reviews-ticker-shell reveal" style={{ "--reviews-duration": `${duration}s` }}>
+      <div className="reviews-ticker" aria-label="Patient reviews carousel" onScroll={handleTickerScroll}>
         <div className="reviews-ticker-track">
           {tickerReviews.map((review, index) => (
             <ReviewCard
               key={`${review.source}-${review.reviewerName}-${index}`}
               review={review}
+              collapseKey={collapseKey}
             />
           ))}
         </div>
