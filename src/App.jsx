@@ -2119,6 +2119,14 @@ function App() {
               >
                 <input type="text" name="name" placeholder="Your name" required />
                 <input type="email" name="email" placeholder="Your email" required />
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Your phone number"
+                  autoComplete="tel"
+                  inputMode="tel"
+                  required
+                />
                 <textarea name="message" placeholder="How can we help?" required />
                 <input
                   type="text"
