@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import ReviewTicker from "./components/ReviewTicker";
 const smileCases = [
   {
     file: "case1.png",
@@ -392,13 +393,6 @@ function App() {
   );
 
 
-
-  const ratingStars = (rating = 0) => {
-    const count = Math.round(Number(rating));
-    return "★".repeat(Math.max(0, Math.min(5, count)));
-  };
-
-  const reviewFeed = testimonials;
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -1079,67 +1073,159 @@ function App() {
           letter-spacing: 0.08em;
         }
 
-        .reviews-grid {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 22px;
+        .reviews-ticker-shell {
+          position: relative;
+          margin-top: 4px;
         }
-        .reviews-embed-wrap {
-          border: 1px solid var(--line);
-          border-radius: var(--radius);
-          padding: 10px;
-          background: #fff;
-          margin-bottom: 24px;
+
+        .reviews-ticker-shell::before,
+        .reviews-ticker-shell::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: min(13vw, 150px);
+          z-index: 2;
+          pointer-events: none;
         }
-        .reviews-embed {
+
+        .reviews-ticker-shell::before {
+          left: 0;
+          background: linear-gradient(90deg, #f5efe5 0%, rgba(245,239,229,0) 100%);
+        }
+
+        .reviews-ticker-shell::after {
+          right: 0;
+          background: linear-gradient(270deg, #f5efe5 0%, rgba(245,239,229,0) 100%);
+        }
+
+        .reviews-ticker {
+          overflow: hidden;
           width: 100%;
-          min-height: 420px;
-          border: 0;
-          border-radius: calc(var(--radius) - 10px);
-          display: block;
+          padding: 18px 0 26px;
         }
-        .google-review-cta {
-          width: fit-content;
-          padding: 10px 16px;
-          border: 1px solid var(--line);
-          border-radius: 999px;
-          text-decoration: none;
-          color: var(--ink);
-          font-weight: 600;
+
+        .reviews-ticker-track {
+          display: flex;
+          width: max-content;
+          gap: 22px;
+          animation: reviewMarquee var(--reviews-duration, 70s) linear infinite;
+          will-change: transform;
+        }
+
+        .reviews-ticker:hover .reviews-ticker-track,
+        .reviews-ticker:focus-within .reviews-ticker-track {
+          animation-play-state: paused;
+        }
+
+        @keyframes reviewMarquee {
+          from { transform: translate3d(0, 0, 0); }
+          to { transform: translate3d(calc(-50% - 11px), 0, 0); }
+        }
+
+        .review-card.ticker-review-card {
+          flex: 0 0 360px;
+          width: 360px;
+          min-height: 305px;
+          display: flex;
+          flex-direction: column;
+          background: linear-gradient(145deg, rgba(255,253,248,0.98), rgba(239,232,220,0.94));
+          border-radius: 32px;
+          padding: 28px;
+          box-shadow: 0 22px 54px rgba(22,49,58,0.09);
+          border: 1px solid rgba(118, 170, 184, 0.18);
+          animation: none;
+        }
+
+        .review-card-topline {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 14px;
+          margin-bottom: 16px;
+        }
+
+        .review-rating {
+          color: #d69b00;
+          letter-spacing: 0.08em;
+          font-weight: 800;
+          font-size: 15px;
+          line-height: 1;
+          margin: 0;
+        }
+
+        .star-empty {
+          color: rgba(115, 133, 137, 0.26);
+        }
+
+        .review-source-badge {
           display: inline-flex;
-          margin-bottom: 18px;
+          align-items: center;
+          justify-content: center;
+          min-width: 72px;
+          padding: 7px 11px;
+          border-radius: 999px;
+          color: #17313a;
+          background: rgba(255,255,255,0.74);
+          border: 1px solid rgba(22,49,58,0.08);
+          font-size: 12px;
+          font-weight: 800;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
         }
 
-        .review-card {
-          background: rgba(248,245,239,0.94);
-          border-radius: 30px;
-          padding: 34px;
-          box-shadow: 0 20px 50px rgba(22,49,58,0.07);
-          border: 1px solid rgba(22,49,58,0.05);
+        .review-source-yelp {
+          color: #a72622;
         }
 
-        .review-card p {
+        .review-source-google {
+          color: #245aa8;
+        }
+
+        .review-card .review-copy {
           margin: 0;
           color: #4f666d;
-          line-height: 1.95;
-          font-size: 16px;
+          line-height: 1.82;
+          font-size: 15.5px;
+        }
+
+        .review-read-more {
+          width: fit-content;
+          margin: 14px 0 0;
+          border: 0;
+          background: transparent;
+          color: #2f6976;
+          padding: 0;
+          font: inherit;
+          font-size: 13px;
+          font-weight: 800;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          cursor: pointer;
+        }
+
+        .review-read-more:hover,
+        .review-read-more:focus-visible {
+          color: #17313a;
+          text-decoration: underline;
+          text-underline-offset: 4px;
+        }
+
+        .review-card-footer {
+          margin-top: auto;
+          padding-top: 22px;
         }
 
         .review-name {
-          margin-top: 20px;
-          font-weight: 700;
+          margin: 0;
+          font-weight: 800;
           color: #17313a;
         }
-        .review-rating {
-          color: #d49b00;
-          letter-spacing: 0.08em;
-          margin-bottom: 8px;
-          font-weight: 700;
-        }
+
         .review-when {
           font-size: 12px;
           color: var(--muted);
-          margin-top: 8px;
+          margin-top: 7px;
         }
         .reviews-socials {
           display: flex;
@@ -1596,8 +1682,10 @@ function App() {
             background: rgba(255,255,255,0.06);
           }
 
-          .reviews-grid {
-            grid-template-columns: 1fr;
+          .review-card.ticker-review-card {
+            flex-basis: 330px;
+            width: 330px;
+            min-height: 320px;
           }
         }
 
@@ -1681,6 +1769,23 @@ function App() {
             padding: 24px;
           }
 
+          .reviews-ticker {
+            overflow-x: auto;
+            overflow-y: visible;
+            scroll-snap-type: x proximity;
+            padding-bottom: 18px;
+          }
+
+          .reviews-ticker-track {
+            gap: 16px;
+          }
+
+          .review-card.ticker-review-card {
+            flex-basis: min(82vw, 315px);
+            width: min(82vw, 315px);
+            scroll-snap-align: start;
+          }
+
           .products-inner {
             padding: 24px;
           }
@@ -1731,9 +1836,20 @@ function App() {
           .hero-orb,
           .button-light,
           .reveal,
-          .reviews-grid .review-card,
+          .reviews-ticker-track,
+          .review-card,
           .services-grid .service-card,
           .benefits-grid .benefit { animation: none !important; }
+
+          .reviews-ticker {
+            overflow-x: auto;
+            overflow-y: visible;
+          }
+
+          .reviews-ticker-shell::before,
+          .reviews-ticker-shell::after {
+            display: none;
+          }
         }
       `}</style>
 
@@ -1990,18 +2106,7 @@ function App() {
             ))}
           </div>
 
-          <div className="reviews-grid reveal">
-            {reviewFeed.map((review) => (
-              <article className="review-card" key={review.key || review.name}>
-                {review.rating ? (
-                  <div className="review-rating">{ratingStars(review.rating)}</div>
-                ) : null}
-                <p>{review.quote}</p>
-                <div className="review-name">{review.name}</div>
-                
-              </article>
-            ))}
-          </div>
+          <ReviewTicker />
         </div>
       </section>
 
