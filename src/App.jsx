@@ -1778,6 +1778,7 @@ function App() {
 
           .reviews-ticker-track {
             gap: 16px;
+            animation: none;
           }
 
           .review-card.ticker-review-card {
