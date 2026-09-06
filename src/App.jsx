@@ -2052,11 +2052,11 @@ function App() {
           <div className="container hero-copy reveal">
             <span className="eyebrow">Holistic dental care · Point Richmond, CA</span>
             <h1>
-              A healthier mouth starts
+              Driven by science.
               <br />
-              with understanding why.
+              Focused on a healthier you.
             </h1>
-            <p>Bleeding gums. Sensitive teeth. Mouth breathing. Let’s look at what may be contributing—and build a clear plan for your oral health, with your overall well-being in mind.</p>
+            <p>Your mouth is part of an interconnected biological system. We bring clinical findings, your health history, and current research together to examine how airway function, oral inflammation, nutrition, and daily habits influence your dental health. Through personalized preventive care and myofunctional therapy, we address contributing factors and help you build a stronger foundation for lasting wellbeing.</p>
             <div className="hero-actions"><a className="button button-light" href="#contact">Request an appointment <span aria-hidden="true">↗</span></a><a className="button button-glass" href="#services">Find care for your concerns</a></div>
             <a className="hero-practitioner" href="#about"><img src={`${base}taren.png`} alt="" /><span>Meet Taren Pannu<strong>RDHAP, BS · Personalized, preventive care</strong></span><span aria-hidden="true">↗</span></a>
 
