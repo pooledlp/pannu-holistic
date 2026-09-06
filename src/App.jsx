@@ -2052,11 +2052,11 @@ function App() {
           <div className="container hero-copy reveal">
             <span className="eyebrow">Holistic dental care · Point Richmond, CA</span>
             <h1>
-              A healthier mouth starts
+              Guided by science.
               <br />
-              with understanding why.
+              Focused on a healthier you.
             </h1>
-            <p>Bleeding gums. Sensitive teeth. Mouth breathing. Let’s look at what may be contributing—and build a clear plan for your oral health, with your overall well-being in mind.</p>
+            <p>Your mouth connects to your overall health. Our evidence-informed approach targets contributing causes to help prevent gum disease and decay, reduce oral inflammation and sensitivity, and address airway and jaw function.</p>
             <div className="hero-actions"><a className="button button-light" href="#contact">Request an appointment <span aria-hidden="true">↗</span></a><a className="button button-glass" href="#services">Find care for your concerns</a></div>
             <a className="hero-practitioner" href="#about"><img src={`${base}taren.png`} alt="" /><span>Meet Taren Pannu<strong>RDHAP, BS · Personalized, preventive care</strong></span><span aria-hidden="true">↗</span></a>
 
