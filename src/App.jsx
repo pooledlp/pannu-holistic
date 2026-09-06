@@ -5,38 +5,65 @@ const smileCases = [
     file: "case1.png",
     alt: "Case 1 smile transformation before and after",
     title: "Myofunctional Therapy + Airway + Habit Correction (pacifier)",
-    text: "Improved tongue posture and Buteyko breathing restored dental alignment, leading to better sleep and reduced mouth breathing.",
+    text: "Care focused on tongue posture, breathing habits, and pacifier use. The photographs show this patient’s dental appearance at different stages.",
   },
   {
     file: "case2.png",
     alt: "Case 2 smile transformation before and after",
     title: "Myofunctional Therapy + Habit Correction (tongue thrust)",
-    text: "Rebalanced musculoskeletal facial patterns created a more stable bite and natural alignment, resulting in less clenching and improved muscle control.",
+    text: "Care focused on tongue thrust and oral muscle habits. Assessment and treatment needs differ for each patient.",
   },
   {
     file: "case3.png",
     alt: "Case 3 smile transformation before and after",
     title: "Myofunctional Therapy + Airway + Habit Correction + Ozone therapy",
-    text: "Integrated airway and muscle support improved dental alignment and function, resulting in better sleep and reduced oral tension.",
+    text: "This individual care plan included oral muscle work, breathing habits, and ozone as an adjunct. A combined case cannot show which treatment caused a change.",
   },
 ];
 
 const services = [
   {
-    title: "Microbiome-Focused Preventive Care",
-    icon: "leaf",
-    text: "Control inflammation at its source. Advanced hygiene protocols designed to preserve the oral microbiome, reduce pathogenic load, and support periodontal and systemic health using non-toxic, biologically compatible agents.",
+    "id": "airway",
+    "title": "Airway & sleep concerns",
+    "icon": "jaw",
+    "concern": "Mouth breathing, snoring, or restless sleep?",
+    "text": "Your breathing habits and oral function are worth a closer look. We assess oral signs and discuss whether evaluation by a sleep clinician or other specialist is needed. Sleep apnea requires medical diagnosis; dental support complements your prescribed care."
   },
   {
-    title: "Airway & TMJ Functional Therapy",
-    icon: "jaw",
-    text: "Restore structure. Improve function. Comprehensive evaluation and treatment of airway restriction and TMJ dysfunction using myofunctional therapy and evidence-based breathing protocols to enhance sleep quality, neuromuscular stability, and overall performance.",
+    "id": "myofunctional",
+    "title": "Myofunctional therapy",
+    "icon": "jaw",
+    "concern": "Help your tongue and mouth work together.",
+    "text": "Guided exercises retrain tongue resting posture, lip closure, and swallowing patterns. An individual plan can support oral function and healthier habits in adults and children. It may complement sleep apnea treatment for selected patients."
   },
   {
-    title: "Biocompatible & Bioactive Therapies",
-    icon: "bio",
-    text: "Materials and methods guided by biology. Low-radiation digital imaging, ozone therapy, and carefully selected biocompatible materials support microbial balance, reduce inflammatory load, and promote tissue healing. Integrative protocols may include Ayurvedic and homeopathic adjuncts to enhance oral and systemic wellness.",
+    "id": "gums",
+    "title": "Gum inflammation care",
+    "icon": "leaf",
+    "concern": "Bleeding gums deserve attention.",
+    "text": "We look at plaque buildup, home-care habits, dry mouth, and other contributing factors. Professional cleaning and a practical daily routine help control inflammation. Early gingivitis can often be reversed; advanced gum disease needs ongoing treatment and sometimes specialist care."
   },
+  {
+    "id": "enamel",
+    "title": "Enamel remineralization",
+    "icon": "bio",
+    "concern": "Protect your teeth before damage progresses.",
+    "text": "Remineralization means helping replace minerals lost from the tooth surface. We review your cavity risk, saliva, diet, and home care to guide prevention. Some early, non-cavitated lesions can improve with appropriate care; a cavity with a hole may need restoration."
+  },
+  {
+    "id": "ozone",
+    "title": "Ozone treatments",
+    "icon": "bio",
+    "concern": "Understand your options before choosing.",
+    "text": "Ozone is offered as an additional option within selected dental care plans. We discuss the intended use, risks, alternatives, and limits of the evidence. It does not replace established cavity or gum treatment and is not a treatment for autoimmune disease."
+  },
+  {
+    "id": "whole-body",
+    "title": "Whole-person prevention",
+    "icon": "leaf",
+    "concern": "Your health history belongs in the conversation.",
+    "text": "Oral health and general health are connected. Medications, diabetes, dry mouth, and daily habits can affect your mouth. We consider these factors in your dental care and encourage appropriate medical follow-up, without promising to prevent systemic or autoimmune conditions."
+  }
 ];
 
 function ServiceIcon({ icon, title }) {
@@ -76,12 +103,12 @@ function ServiceIcon({ icon, title }) {
 }
 
 const therapyOptions = [
-  "Early Decay Reversal & Teeth Sensitivity Treatment",
-  "Homeopathic & Ozone Therapy",
-  "Myofunctional Therapy",
-  "Buteyko Breathing Therapy",
-  "Low-Radiation Digital X-Rays",
-  "No braces - Teeth Alignment (Ages 2–17)",
+  "Mouth breathing or snoring",
+  "Tongue posture & swallowing habits",
+  "Bleeding or tender gums",
+  "Sensitive teeth & early enamel changes",
+  "Questions about ozone treatments",
+  "Preventive care for adults & children"
 ];
 
 
@@ -1927,6 +1954,18 @@ function App() {
           .contact-card { padding: 24px; } .nav { gap: 12px; }
         }
         @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .hero-video { display: none; } .reveal { opacity: 1; transform: none; transition: none; } }
+
+        .service-card { display: flex; flex-direction: column; align-items: flex-start; }
+        .service-card h3 { font-size: 28px; }
+        .service-card .service-concern { color: var(--ink); font-weight: 600; margin: 4px 0 12px; }
+        .care-link { margin-top: auto; padding-top: 22px; color: var(--ink); font-weight: 600; font-size: 15px; text-decoration: underline; text-underline-offset: 4px; }
+        .evidence-section { background: #edf2eb; }
+        .patient-questions { max-width: 900px; }
+        .patient-questions details { border-bottom: 1px solid #bdcfc2; }
+        .patient-questions summary { cursor: pointer; padding: 24px 4px; font-size: 20px; font-weight: 600; line-height: 1.45; }
+        .patient-questions p { font-size: 16px; line-height: 1.8; color: #3d5b4c; margin: 0 4px 24px; }
+        .patient-questions a { text-decoration: underline; text-underline-offset: 3px; }
+        .questions-cta { margin-top: 30px; }
       `}</style>
 
       <header className={`header ${scrolled ? "scrolled" : ""}`}>
@@ -2013,12 +2052,12 @@ function App() {
           <div className="container hero-copy reveal">
             <span className="eyebrow">Holistic dental care · Point Richmond, CA</span>
             <h1>
-              Personalized dental care.
+              A healthier mouth starts
               <br />
-              Whole-body perspective.
+              with understanding why.
             </h1>
-            <p>Thoughtful, personalized care for your teeth, breathing, and everyday well-being. Discover an integrative approach for adults and children.</p>
-            <div className="hero-actions"><a className="button button-light" href="#contact">Request an appointment <span aria-hidden="true">↗</span></a><a className="button button-glass" href="#services">Explore our care</a></div>
+            <p>Bleeding gums. Sensitive teeth. Mouth breathing. Let’s look at what may be contributing—and build a clear plan for your oral health, with your overall well-being in mind.</p>
+            <div className="hero-actions"><a className="button button-light" href="#contact">Request an appointment <span aria-hidden="true">↗</span></a><a className="button button-glass" href="#services">Find care for your concerns</a></div>
             <a className="hero-practitioner" href="#about"><img src={`${base}taren.png`} alt="" /><span>Meet Taren Pannu<strong>RDHAP, BS · Personalized, preventive care</strong></span><span aria-hidden="true">↗</span></a>
 
 
@@ -2030,11 +2069,9 @@ function App() {
         <div className="container">
           <div className="intro-panel reveal">
             <div>
-              <h2>Integrative functional dental therapies</h2>
+              <h2>Does any of this sound familiar?</h2>
               <p>
-                Data-driven modalities for all ages, customized on a case-by-case
-                basis, combining preventive dentistry with wellness-focused care to
-                support comfort, function, breathing, and overall well-being.
+                You deserve to understand what is happening, why it may keep coming back, and what you can do next. Start with your concerns. We’ll help you understand your options.
               </p>
             </div>
 
@@ -2053,23 +2090,22 @@ function App() {
         <div className="container">
           <div className="section-head reveal">
             <small>Services</small>
-            <h2>Oral health as a gateway to systemic performance</h2>
+            <h2>Understand the cause. Choose your next step.</h2>
             <p>
-              Our protocols are built on objective diagnostics, risk assessment,
-              and biocompatibility. Each treatment is selected to optimize
-              airway function, reduce inflammatory burden, and support systemic,
-              health-focused outcomes.
+              Our holistic approach considers your health history, oral habits, and clinical findings together. Explore care for your airway, tongue function, gums, and enamel—with clear explanations of what each option can and cannot do.
             </p>
           </div>
 
           <div className="services-grid reveal">
             {services.map((service) => (
-              <article className="service-card" key={service.title}>
+              <article className="service-card" id={service.id} key={service.title}>
                 <div className="num">
                   <ServiceIcon icon={service.icon} title={service.title} />
                 </div>
                 <h3>{service.title}</h3>
+                <p className="service-concern">{service.concern}</p>
                 <p>{service.text}</p>
+                <a className="care-link" href="#contact">Ask about {service.title.toLowerCase()} <span aria-hidden="true">↗</span></a>
               </article>
             ))}
           </div>
@@ -2118,11 +2154,7 @@ function App() {
               </p>
 
               <p>
-                Today, her practice reflects this philosophy, taking an
-                integrative, airway-centered approach that focuses on
-                identifying root causes rather than simply treating symptoms.
-                Her care is evidence-based and centered on long-term oral and
-                overall health, to support holistic wellness.
+                Her focus is helping patients understand the factors behind their oral health concerns. She brings a preventive, airway-centered perspective to dental hygiene and explains treatment choices, evidence, and limitations so patients can make informed decisions.
               </p>
               </div>
             </div>
@@ -2136,13 +2168,9 @@ function App() {
             <div className="products-inner">
               <div className="glass-box">
                 <small>Products</small>
-                <h2>Featured wellness products for holistic oral care</h2>
+                <h2>Keep your care going at home</h2>
                 <p>
-                  Our product collection is selected to support preventive,
-                  non-toxic oral wellness at home between visits. Each option is
-                  chosen to align with our whole-body approach to dental care.
-                  For best results, we can help guide you to the right product
-                  based on your goals and oral health needs.
+                  Ask which products fit your needs, how to use them, and what evidence supports them. Products are optional additions to your routine; they do not replace brushing, cleaning between teeth, or necessary dental treatment.
                 </p>
 
                 <div className="product-grid">
@@ -2194,9 +2222,9 @@ function App() {
         <div className="container">
           <div className="section-head">
             <small>Transformations:</small>
-            <h2>No braces, No surgery</h2>
+            <h2>Individual care. Individual progress.</h2>
             <p>
-              Functional change that restores balance, not just appearance.
+              Examples from the practice’s treatment journeys. Results vary; these images do not establish improvements in breathing or sleep, or guarantee that braces or surgery can be avoided.
             </p>
           </div>
           <div className="smile-journey reveal">
@@ -2217,45 +2245,45 @@ function App() {
         <div className="container">
           <div className="section-head">
             <small>Why Patients Choose Us</small>
-            <h2>Why choose us</h2>
+            <h2>Feel heard. Understand your care.</h2>
             <p>
               We take a preventive, functional approach that goes beyond symptoms to support dental health, airway function, jaw development, and long-term whole-body wellness for patients of all ages.
             </p>
           </div>
           <div className="benefits-grid reveal">
             <article className="benefit">
-              <h3>Root-Cause, Whole-Body Dentistry</h3>
+              <h3>Look for contributing causes</h3>
               <ul>
-                <li>Addresses root causes, not just symptoms</li>
+                <li>Explore what may be driving recurring oral concerns</li>
                 <li>Supports oral health, function, and growth</li>
                 <li>Designed for adults and children</li>
               </ul>
             </article>
             <article className="benefit">
-              <h3>Comfort-Focused, Biocompatible Care</h3>
+              <h3>Gentle care, explained clearly</h3>
               <p>
-                We prioritize a calm, supportive experience using non-toxic, biocompatible materials and gentle techniques that reduce anxiety—especially for children and sensitive patients.
+                We take time to explain your options, discuss materials and sensitivities, and help you feel comfortable—especially if you or your child feels anxious about dental care.
               </p>
               <ul>
-                <li>Biocompatible, non-toxic materials</li>
+                <li>Materials selected with your needs and sensitivities in mind</li>
                 <li>Comfort-first environment with anxiety-reducing care</li>
                 <li>Child-friendly, calming experience tools</li>
               </ul>
             </article>
             <article className="benefit">
-              <h3>Airway, Function &amp; Prevention-First Dentistry</h3>
+              <h3>Prevention that fits your life</h3>
               <p>
                 We focus on breathing, jaw development, alignment, and early prevention using personalized treatment plans and low-radiation digital X-rays for safer, more precise care.
               </p>
               <ul>
                 <li>Airway and jaw development support</li>
-                <li>Teeth alignment without braces or surgery (when appropriate)</li>
+                <li>Discuss when orthodontic or specialist evaluation is appropriate</li>
                 <li>Preventive, personalized treatment planning</li>
                 <li>Low-radiation digital diagnostics</li>
               </ul>
             </article>
             <article className="benefit">
-              <h3>Child-Friendly Dentistry</h3>
+              <h3>A positive start for children</h3>
               <p>
                 A calm, supportive environment designed to help children feel safe, comfortable, and confident at every visit.
               </p>
@@ -2272,15 +2300,31 @@ function App() {
 
 
 
+
+      <section className="section evidence-section" id="care-questions">
+        <div className="container">
+          <div className="section-head"><small>Science, made understandable</small><h2>A whole-body perspective. Clear answers.</h2><p>Holistic care should help you make informed choices. Here is what the evidence means for common patient questions.</p></div>
+          <div className="patient-questions">
+            <details><summary>Can gum treatment prevent autoimmune or systemic disease?</summary><p>Gum disease is associated with several health conditions, and the relationship with diabetes goes both ways. An association does not prove that dental treatment prevents autoimmune disease, heart disease, or other systemic conditions. Treating your gums matters for your oral health and belongs alongside appropriate medical care. <a href="https://www.nidcr.nih.gov/news-events/nidcr-news/2024/healthy-mouth-healthy-body" target="_blank" rel="noreferrer">Read the NIH overview ↗</a></p></details>
+            <details><summary>Can myofunctional therapy help with sleep apnea?</summary><p>Mouth and facial exercises may help selected patients as part of a treatment plan. Snoring, gasping during sleep, or persistent daytime sleepiness deserve medical evaluation. Exercises do not replace a sleep study, CPAP, or other prescribed treatment. <a href="https://www.nhlbi.nih.gov/health/sleep-apnea/treatment" target="_blank" rel="noreferrer">Explore NIH treatment guidance ↗</a></p></details>
+            <details><summary>Can inflamed gums and early tooth decay improve?</summary><p>Plaque-related gingivitis can often be reversed with effective home care and professional cleaning. Periodontitis needs ongoing management. Early decay before a hole forms may be arrested or remineralized with appropriate care; established cavities need a dental assessment. Fluoride and other established preventive options have evidence that varies by the type of lesion. <a href="https://www.nidcr.nih.gov/health-info/oral-hygiene" target="_blank" rel="noreferrer">NIH gum-care guidance ↗</a> · <a href="https://www.ada.org/resources/ada-library/oral-health-topics/caries-risk-assessment-and-management" target="_blank" rel="noreferrer">ADA prevention guidance ↗</a></p></details>
+            <details><summary>How strong is the evidence for ozone?</summary><p>Evidence depends on the proposed use. A systematic review found insufficient, very-low-certainty evidence to recommend ozone for treating tooth decay. Ask about the expected benefit, delivery method, safety precautions, and established alternatives before choosing it. <a href="https://pubmed.ncbi.nlm.nih.gov/33303100/" target="_blank" rel="noreferrer">Read the research review ↗</a></p></details>
+          </div>
+          <a className="button button-primary questions-cta" href="#contact">Discuss your concerns with us ↗</a>
+        </div>
+      </section>
+
       <section className="section" id="contact">
         <div className="container">
           <div className="section-head">
-            <small>Contact</small>
+            <small>Your next step</small>
+            <h2>Let’s talk about what’s bothering you.</h2>
+            <p>Tell us whether your main concern is your gums, enamel, breathing, or oral habits. Request an appointment in Point Richmond or call 415.755.5549 to discuss whether our care is a fit.</p>
           </div>
 
           <div className="contact-shell reveal">
             <div className="contact-card">
-              <h3 className="contact-title">Get in Touch</h3>
+              <h3 className="contact-title">Request an appointment</h3>
 
               <div className="contact-list">
                 <a href={office.phoneHref} className="contact-item">
@@ -2321,7 +2365,7 @@ function App() {
                   aria-hidden="true"
                   className="hp-field"
                 />
-                <button type="submit" className="button button-light" disabled={isSubmittingContact}>{isSubmittingContact ? "Sending..." : "Send Message"}</button>
+                <button type="submit" className="button button-light" disabled={isSubmittingContact}>{isSubmittingContact ? "Sending..." : "Send appointment request"}</button>
                 {contactStatus.type !== "idle" && (
                   <p className={`contact-form-note ${contactStatus.type === "success" ? "contact-success" : "contact-error"}`} role="status">
                     {contactStatus.message}
