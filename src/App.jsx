@@ -1852,6 +1852,81 @@ function App() {
             display: none;
           }
         }
+
+        /* Contemporary refresh: retain the existing sections and interactions. */
+        :root { --ink: #163e35; --muted: #506960; --line: #dce5df; --paper: #fcfdfb; }
+        body, .site-shell { background: var(--paper); color: var(--ink); }
+        .container { width: min(1200px, calc(100% - 64px)); }
+        section[id] { scroll-margin-top: 110px; }
+        .header, .header.scrolled { background: rgba(252,253,251,.97); padding: 14px 0; border-bottom: 1px solid var(--line); box-shadow: none; }
+        .nav, .brand { align-items: center; }
+        .brand, .nav-links { color: var(--ink); }
+        .brand-copy small, .brand-copy span { color: var(--muted); font-size: 12px; letter-spacing: .1em; }
+        .brand-copy strong { font-size: 26px; line-height: 1.1; }
+        .brand-mark { width: 54px; height: 54px; box-shadow: none; }
+        .nav-links { gap: 22px; }
+        .nav-links a { font-size: 14px; font-weight: 500; }
+        .nav-appointment { background: var(--ink); color: white; padding: 13px 20px; border-radius: 6px; }
+        .menu-button { color: var(--ink); background: #edf2ed; border: 1px solid var(--line); }
+        .hero { margin-top: 95px; min-height: 650px; background: #143f35; align-items: center; }
+        .hero-video { left: 45%; width: 55%; transform: none; filter: saturate(.65); }
+        .hero-overlay { background: linear-gradient(90deg, #143f35 0%, #143f35 35%, rgba(20,63,53,.93) 46%, rgba(20,63,53,.12) 80%); }
+        .hero-bottom-fade, .hero-orb { display: none; }
+        .hero-inner { padding: 76px 0; }
+        .hero-copy { max-width: 1200px; text-align: left; transform: none; }
+        .hero .eyebrow { font-size: 13px; letter-spacing: .13em; color: #d4e6d7; margin-bottom: 26px; }
+        .hero h1 { font-size: clamp(40px, 4.6vw, 66px); line-height: 1.08; letter-spacing: -.035em; font-weight: 400; text-shadow: none; max-width: 680px; margin: 0; text-wrap: initial; }
+        .hero p { max-width: 480px; font-size: 18px; line-height: 1.7; color: #e0eae3; }
+        .button { border-radius: 6px; gap: 18px; font-size: 15px; min-height: 50px; box-shadow: none; }
+        .button-primary { background: var(--ink); color: white; }
+        .hero .button-light { background: #eaf3dd; color: #173f35; }
+        .hero .button-glass { border-color: #8aa69a; background: transparent; }
+        .hero-practitioner { display: flex; align-items: center; gap: 14px; margin-top: 38px; width: fit-content; color: #fff; font-size: 15px; }
+        .hero-practitioner img { width: 48px; height: 48px; object-fit: cover; border-radius: 50%; background: #e7ebe3; }
+        .hero-practitioner strong { display: block; font-size: 13px; font-weight: 400; color: #d4e6d7; margin-top: 5px; }
+        .intro-band { margin-top: 0; background: #edf2eb; }
+        .intro-panel { padding: 44px 0; background: transparent; border: 0; border-radius: 0; box-shadow: none; }
+        .intro-panel h2 { font-size: 34px; line-height: 1.15; font-weight: 400; }
+        .detail-item { border-radius: 6px; background: #fcfdfb; border: 1px solid var(--line); }
+        .section { padding: 88px 0; }
+        .section-head small, .glass-box small { color: #47695a; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; }
+        .section-head h2, .glass-box h2 { font-weight: 400; line-height: 1.12; letter-spacing: -.025em; }
+        .section-head p, .intro-panel p { color: var(--muted); line-height: 1.75; }
+        .service-card, .benefit, .product-card { background: #fff; border: 1px solid var(--line); border-radius: 10px; box-shadow: none; }
+        .service-card { padding: 30px; }
+        .service-card::before, .service-card::after { display: none; }
+        .service-card h3, .benefit h3 { line-height: 1.2; }
+        .about-section { background: #edf2eb; padding: 70px 0; }
+        .about-copy, .bio-card { background: transparent; padding: 0; margin: 0; border: 0; box-shadow: none; }
+        .bio-layout { grid-template-columns: 300px minmax(0,1fr); gap: 56px; }
+        .about-frame { padding: 0; border-radius: 12px; box-shadow: none; }
+        .about-img { filter: none; border-radius: 12px; }
+        .about-name { font-size: 32px; line-height: 1.2; color: var(--ink); }
+        .products-wrap, .glass-box { background: transparent; border: 0; box-shadow: none; border-radius: 0; }
+        .products-inner, .glass-box { padding: 0; }
+        .product-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; margin-top: 32px; }
+        .product-card { padding: 28px; display: flex; flex-direction: column; align-items: flex-start; }
+        .product-card .button { margin-top: auto; }
+        .social-pill { border-radius: 6px; box-shadow: none; }
+        .review-card.ticker-review-card { border-radius: 10px; box-shadow: none; }
+        .contact-card { border-radius: 12px; box-shadow: none; }
+        .contact-form input, .contact-form textarea { font-size: 16px; border-radius: 6px; }
+        :focus-visible { outline: 3px solid #ba843d; outline-offset: 4px; }
+        @media (max-width: 1100px) { .nav-links { gap: 14px; } .brand-copy strong { font-size: 24px; } }
+        @media (max-width: 920px) { .hero-video { left: 25%; width: 75%; } .hero-overlay { background: linear-gradient(90deg,#143f35 0%,rgba(20,63,53,.94) 45%,rgba(20,63,53,.45)); } .intro-panel { grid-template-columns: 1fr; } .bio-layout { grid-template-columns: 240px minmax(0,1fr); gap: 28px; } }
+        @media (max-width: 720px) {
+          .container { width: calc(100% - 40px); } .header, .header.scrolled { padding: 12px 0; }
+          .brand-copy strong { font-size: 22px; } .brand-copy small { display: none; } .brand-mark { width: 44px; height: 44px; }
+          .brand-copy span { font-size: 12px; } .hero { margin-top: 77px; min-height: 0; }
+          .hero-inner { padding: 58px 0; } .hero-copy { padding: 0; } .hero h1 { font-size: clamp(38px,8.5vw,56px); }
+          .hero .eyebrow { font-size: 12px; line-height: 1.7; letter-spacing: .08em; } .hero p { font-size: 17px; }
+          .hero-actions { gap: 12px; } .hero-practitioner strong { max-width: 210px; line-height: 1.5; }
+          .section { padding: 58px 0; } .intro-panel { padding: 34px 0; } .intro-panel h2 { font-size: 30px; }
+          .bio-layout, .product-grid { grid-template-columns: 1fr; } .about-visual { max-width: 340px; } .about-section { padding: 48px 0; }
+          .detail-grid { grid-template-columns: 1fr; } .section-head h2, .glass-box h2 { font-size: 36px; }
+          .contact-card { padding: 24px; } .nav { gap: 12px; }
+        }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .hero-video { display: none; } .reveal { opacity: 1; transform: none; transition: none; } }
       `}</style>
 
       <header className={`header ${scrolled ? "scrolled" : ""}`}>
@@ -1873,7 +1948,7 @@ function App() {
 
             <div className="nav-links">
               {navLinks.map((link) => (
-                <a key={link.href} href={link.href}>
+                <a key={link.href} href={link.href} className={link.href === "#contact" ? "nav-appointment" : undefined}>
                   {link.label}
                 </a>
               ))}
@@ -1936,11 +2011,15 @@ function App() {
 
         <div className="hero-inner">
           <div className="container hero-copy reveal">
+            <span className="eyebrow">Holistic dental care · Point Richmond, CA</span>
             <h1>
-              NEW STANDARD IN DENTISTRY:
+              Personalized dental care.
               <br />
-              Advanced Data-Driven Systemically Aligned, Integrative Holistic Modalities
+              Whole-body perspective.
             </h1>
+            <p>Thoughtful, personalized care for your teeth, breathing, and everyday well-being. Discover an integrative approach for adults and children.</p>
+            <div className="hero-actions"><a className="button button-light" href="#contact">Request an appointment <span aria-hidden="true">↗</span></a><a className="button button-glass" href="#services">Explore our care</a></div>
+            <a className="hero-practitioner" href="#about"><img src={`${base}taren.png`} alt="" /><span>Meet Taren Pannu<strong>RDHAP, BS · Personalized, preventive care</strong></span><span aria-hidden="true">↗</span></a>
 
 
           </div>
@@ -2223,17 +2302,17 @@ function App() {
                 className="contact-form"
                 onSubmit={handleContactSubmit}
               >
-                <input type="text" name="name" placeholder="Your name" required />
-                <input type="email" name="email" placeholder="Your email" required />
+                <input type="text" name="name" aria-label="Your name" autoComplete="name" placeholder="Your name" required />
+                <input type="email" name="email" aria-label="Your email" autoComplete="email" placeholder="Your email" required />
                 <input
                   type="tel"
-                  name="phone"
+                  name="phone" aria-label="Your phone number" autoComplete="tel"
                   placeholder="Your phone number"
                   autoComplete="tel"
                   inputMode="tel"
                   required
                 />
-                <textarea name="message" placeholder="How can we help?" required />
+                <textarea name="message" aria-label="How can we help?" placeholder="How can we help?" required />
                 <input
                   type="text"
                   name="website"
