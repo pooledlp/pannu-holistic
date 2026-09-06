@@ -2058,7 +2058,7 @@ function App() {
             </h1>
             <p>Your mouth connects to your overall health. Our evidence-informed approach targets contributing causes to help prevent gum disease and decay, reduce oral inflammation and sensitivity, and address airway and jaw function.</p>
             <div className="hero-actions"><a className="button button-light" href="#contact">Request an appointment <span aria-hidden="true">↗</span></a><a className="button button-glass" href="#services">Find care for your concerns</a></div>
-            <a className="hero-practitioner" href="#about"><img src={`${base}taren.png`} alt="" /><span>Meet Taren Pannu<strong>RDHAP, BS · Personalized, preventive care</strong></span><span aria-hidden="true">↗</span></a>
+            <a className="hero-practitioner" href="#about"><img src={`${base}Taren2.png`} alt="" /><span>Meet Taren Pannu<strong>RDHAP, BS · Personalized, preventive care</strong></span><span aria-hidden="true">↗</span></a>
 
 
           </div>
