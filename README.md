@@ -8,7 +8,7 @@ Use Node 24 and pnpm 11.19.0. Run pnpm install --frozen-lockfile, pnpm build, pn
 
 ## Publication
 
-GitHub Pages must use GitHub Actions. The deploy workflow checks pull requests and publishes main after successful checks. It also rebuilds every Monday at 17:17 UTC to release date-scheduled, approved articles. The first three prepared guides are general appointment preparation, with two queued for September 21 and 28, 2026. The queue is finite; new material requires the editorial connection below or manually authored content.
+GitHub Pages must use GitHub Actions. The deploy workflow checks pull requests and publishes main after successful checks. It also rebuilds every Monday at 17:17 UTC to release date-scheduled, approved articles. Seven practical patient guides are available initially, with two more queued for September 21 and 28, 2026. The queue is finite; new material requires the editorial connection below or manually authored content.
 
 ## Weekly article research
 
@@ -18,7 +18,7 @@ Every Monday at 17:47 UTC, the editorial workflow reserves one drafting attempt 
 
 A qualified clinical reviewer must read the complete draft and original sources, correct claims and citations, and supply their actual name and review date in reviewedBy and reviewedOn. Set status to approved and publishOn to the intended ISO date, then merge after checks. This is a human review step, not an AI assertion of review. Future articles appear on the next scheduled build on or after their date. Draft and future text is excluded from rendered pages, sitemap and RSS; repository files remain public.
 
-The workflow is installed but cannot generate articles until this repository has its own secret. Do not describe generation as activated until a real run succeeds.
+The existing OpenAI key was connected and the first real drafting run succeeded on September 13, 2026. It saved a draft about cleaning between teeth for clinical review; the draft was not published.
 
 ## Reviews and social
 
