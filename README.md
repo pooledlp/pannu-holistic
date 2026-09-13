@@ -12,13 +12,13 @@ GitHub Pages must use GitHub Actions. The deploy workflow checks pull requests a
 
 ## Weekly article research
 
-No new OpenAI account is needed. Add an existing API key privately to this repository's Actions secret named OPENAI_API_KEY (never a VITE_ variable). A key in another repository is not automatically available here. Allow GitHub Actions to create pull requests in repository Actions settings.
+No new OpenAI account is needed. Add an existing API key privately to this repository's Actions secret named OPENAI_API_KEY (never a VITE_ variable). A key in another repository is not automatically available here. The draft is saved in a weekly branch and the run summary. If this repository already allows Actions to create pull requests, a draft pull request is also opened; otherwise open one from the saved branch when ready to review. No permission setting change is required.
 
-Every Monday at 17:47 UTC, the editorial workflow reserves one drafting attempt for the week, researches primary health sources, validates the draft and opens a draft pull request. It makes at most two OpenAI requests per attempt and never publishes an unreviewed generated article. A failed attempt leaves its reservation to prevent repeated charges. Inspect logs before intentionally deleting a reservation branch to retry.
+Every Monday at 17:47 UTC, the editorial workflow reserves one drafting attempt for the week, researches primary health sources, validates the draft and saves it for clinical review. It makes at most two OpenAI requests per attempt and never publishes an unreviewed generated article. A failed attempt leaves its reservation to prevent repeated charges. Inspect logs before intentionally deleting a reservation branch to retry.
 
 A qualified clinical reviewer must read the complete draft and original sources, correct claims and citations, and supply their actual name and review date in reviewedBy and reviewedOn. Set status to approved and publishOn to the intended ISO date, then merge after checks. This is a human review step, not an AI assertion of review. Future articles appear on the next scheduled build on or after their date. Draft and future text is excluded from rendered pages, sitemap and RSS; repository files remain public.
 
-The workflow is installed but cannot generate articles until this repository has its own secret and pull-request permission. Do not describe generation as activated until a real run succeeds.
+The workflow is installed but cannot generate articles until this repository has its own secret. Do not describe generation as activated until a real run succeeds.
 
 ## Reviews and social
 

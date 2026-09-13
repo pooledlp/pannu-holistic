@@ -76,7 +76,11 @@ jobs:
           git add src/content/articles
           git commit -m 'Prepare sourced patient guide for clinical review'
           git push
-          gh pr create --base main --head "$EDITORIAL_BRANCH" --title 'Patient guide: clinical review required' --body-file editorial/pr-body.md --draft
+          cat editorial/pr-body.md >> "$GITHUB_STEP_SUMMARY"
+          if ! gh pr create --base main --head "$EDITORIAL_BRANCH" --title 'Patient guide: clinical review required' --body-file editorial/pr-body.md --draft; then
+            echo "Draft saved to $EDITORIAL_BRANCH. Automatic pull-request creation is unavailable; review the draft in this run summary and its saved branch." >> "$GITHUB_STEP_SUMMARY"
+            echo '::notice::Draft saved successfully. Open its branch to review; no additional account or permission setup is required.'
+          fi
       - name: Keep diagnostics out of the website
         if: always() && steps.reserve.outputs.run == 'true'
         uses: actions/upload-artifact@v4
