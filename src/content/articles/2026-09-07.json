@@ -1,0 +1,90 @@
+{
+  "slug": "daily-clean-between-teeth-even-if-you-brush",
+  "title": "Do I need to clean between my teeth every day if I already brush?",
+  "description": "Draft patient education for a preventive-care question: brushing helps, but it does not clean the spaces between teeth well enough for daily prevention.",
+  "service": "preventive-care",
+  "sections": [
+    [
+      "Short answer",
+      "Yes. The main takeaway from the American Dental Association (ADA), NIH/NIDCR, and MedlinePlus is that brushing alone is not enough for the tight spaces between teeth. A simple daily habit of cleaning between teeth is recommended, even if you already brush twice a day. The goal is to remove plaque and food particles from areas a toothbrush cannot reach well. This draft is meant for clinical review and should not be read as a substitute for advice from your dental clinician. If you are trying to decide which tool to use, the priority is to choose a method you can do consistently and correctly."
+    ],
+    [
+      "Why the space between teeth matters",
+      "Plaque can collect where the bristles do not fully reach: between teeth and just under the gumline. If plaque is left in place, it can harden into tartar, also called calculus. Once plaque has hardened into tartar, brushing or flossing cannot remove it; it needs to be removed by a dental professional. The ADA notes that tartar can make brushing and cleaning between teeth more difficult and may be linked with bleeding or swollen gums. NIDCR also explains that hardened plaque can contribute to gum disease. For patients, this means daily cleaning between teeth is not about being “extra careful”; it is part of routine prevention."
+    ],
+    [
+      "What to use if floss is hard to do",
+      "Floss is one option, but it is not the only one. The ADA and NIDCR both describe other interdental cleaners, including interdental brushes, floss holders, and water flossers. Different tools may fit different mouth shapes, tooth spacing, and hand skills. That matters because the best tool is the one a person can use well every day. If traditional string floss feels awkward, uncomfortable, or difficult to fit, it is reasonable to ask a dental professional to show alternatives. The evidence also has limits: the ADA notes that studies show a small short-term improvement in gingivitis when flossing is added to brushing, and NIDCR notes that large long-term studies are limited. So the recommendation is strong for daily interdental cleaning as a habit, but not every device or technique works equally well for every person."
+    ],
+    [
+      "How to think about timing and technique",
+      "There is no single perfect time of day that works for everyone. The ADA notes that the best time to clean between teeth is the time you can do consistently. Some people prefer to do it before brushing, and others after brushing or before bed. The important part is doing it once a day. It should feel like a realistic part of the daily routine rather than an occasional extra task. A gentle, careful approach is usually better than rushing, because the goal is to remove plaque and food particles without hurting the gums. If a technique seems unclear, a dental professional can demonstrate how to use the selected tool around tight contacts, wider spaces, crowns, or areas that are hard to reach."
+    ],
+    [
+      "When to bring up a concern with a clinician",
+      "It is a good idea to discuss concerns if cleaning between your teeth causes ongoing pain, repeated bleeding, trouble reaching certain teeth, or confusion about which cleaner fits your mouth. Those issues do not automatically mean something serious is wrong, but they are useful reasons to ask for a technique check or product recommendation. A dental professional can also tell you whether tartar is already present, since hardened deposits cannot be removed at home. If you have been skipping interdental cleaning because it feels difficult, the most practical next step is usually not to “try harder” with the same method, but to ask for a better-fitting option and a quick demonstration. This keeps the focus on prevention without making assumptions about disease."
+    ]
+  ],
+  "checklist": [
+    "Brush twice a day with fluoride toothpaste unless your own clinician has told you differently.",
+    "Clean between your teeth once a day.",
+    "Choose one between-the-teeth tool you can use consistently: floss, floss holder, interdental brush, or water flosser.",
+    "Use gentle technique; if something feels painful or awkward, ask for a demonstration.",
+    "Pay attention to persistent bleeding, pain, or spots you cannot reach well.",
+    "Ask your dental professional if you may already have tartar that needs professional removal."
+  ],
+  "sources": [
+    {
+      "title": "ADA Dental Floss/Interdental Cleaners",
+      "url": "https://www.ada.org/resources/ada-library/oral-health-topics/floss"
+    },
+    {
+      "title": "NIDCR Oral Hygiene",
+      "url": "https://www.nidcr.nih.gov/health-info/oral-hygiene"
+    },
+    {
+      "title": "MedlinePlus Dental Health",
+      "url": "https://medlineplus.gov/dentalhealth.html"
+    },
+    {
+      "title": "NIDCR Ask the Expert: Do I Really Need to Floss?",
+      "url": "https://www.nidcr.nih.gov/health-info/gum-disease/ask-the-expert"
+    }
+  ],
+  "generated": true,
+  "status": "draft",
+  "publishOn": "2026-09-13",
+  "reviewedBy": "",
+  "reviewedOn": "",
+  "generation": {
+    "week": "2026-09-07",
+    "model": "gpt-5.4-mini",
+    "calls": 2,
+    "usage": [
+      {
+        "input_tokens": 14098,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1329,
+        "output_tokens_details": {
+          "reasoning_tokens": 657
+        },
+        "total_tokens": 15427
+      },
+      {
+        "input_tokens": 1519,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1157,
+        "output_tokens_details": {
+          "reasoning_tokens": 92
+        },
+        "total_tokens": 2676
+      }
+    ]
+  }
+}
