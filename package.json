@@ -5,14 +5,17 @@
   "type": "module",
   "homepage": "https://pooledlp.github.io/pannu-holistic",
   "scripts": {
-    "dev": "vite || npx --yes vite",
-    "build": "vite build || npx --yes vite build",
-    "preview": "vite preview || npx --yes vite preview"
+    "dev": "vite",
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node --test scripts/editorial.test.mjs",
+    "preview": "vite preview --host 127.0.0.1 --port 4174"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^6.0.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "vite": "^8.0.1"
-  }
+  },
+  "packageManager": "pnpm@11.19.0"
 }

@@ -1,44 +1,33 @@
-# Pannu Holistic Website
+# Pannu Holistic website
 
-This is a React + Vite single-page website for Pannu Holistic Dental Myology.
+A connected, prerendered React website for pannuholistic.com. The original homepage, hero video, transformation images and captions, biography, products, and selected testimonials remain. Dedicated care, visit, review, patient-story and guide pages have complete HTML, unique metadata, canonical URLs, structured data, a sitemap and RSS.
 
-## Local development
+## Development and checks
 
-```bash
-npm install
-npm run dev
-```
+Use Node 24 and pnpm 11.19.0. Run pnpm install --frozen-lockfile, pnpm build, pnpm check, and pnpm test. Run pnpm preview for the finished site on port 4174. BUILD_DATE=YYYY-MM-DD overrides the publishing date for testing. Do not commit secrets or build output.
 
-The Vite base path is automatic:
-- local/dev builds use `/`
-- GitHub Pages custom domain deploys use root path `/` (configured in `vite.config.js`)
+## Publication
 
-### Troubleshooting
+GitHub Pages must use GitHub Actions. The deploy workflow checks pull requests and publishes main after successful checks. It also rebuilds every Monday at 17:17 UTC to release date-scheduled, approved articles. The first three prepared guides are general appointment preparation, with two queued for September 21 and 28, 2026. The queue is finite; new material requires the editorial connection below or manually authored content.
 
-- If you see `sh: 1: vite: not found`, run `npm install` first (or use `npm run build`, which now falls back to `npx vite build`).
-- If npm warns about `Unknown env config "http-proxy"`, clear that stale setting before install:
+## Weekly article research
 
-```bash
-npm config delete http-proxy
-npm config delete https-proxy
-```
+No new OpenAI account is needed. Add an existing API key privately to this repository's Actions secret named OPENAI_API_KEY (never a VITE_ variable). A key in another repository is not automatically available here. Allow GitHub Actions to create pull requests in repository Actions settings.
 
-## Contact form configuration
+Every Monday at 17:47 UTC, the editorial workflow reserves one drafting attempt for the week, researches primary health sources, validates the draft and opens a draft pull request. It makes at most two OpenAI requests per attempt and never publishes an unreviewed generated article. A failed attempt leaves its reservation to prevent repeated charges. Inspect logs before intentionally deleting a reservation branch to retry.
 
-The contact form submits to a free FormSubmit endpoint and sends to `info@pannuholistic.com` by default:
+A qualified clinical reviewer must read the complete draft and original sources, correct claims and citations, and supply their actual name and review date in reviewedBy and reviewedOn. Set status to approved and publishOn to the intended ISO date, then merge after checks. This is a human review step, not an AI assertion of review. Future articles appear on the next scheduled build on or after their date. Draft and future text is excluded from rendered pages, sitemap and RSS; repository files remain public.
 
-```bash
-VITE_CONTACT_ENDPOINT=https://formsubmit.co/ajax/info@pannuholistic.com
-```
+The workflow is installed but cannot generate articles until this repository has its own secret and pull-request permission. Do not describe generation as activated until a real run succeeds.
 
-If you prefer a different free SMTP/form relay provider, set `VITE_CONTACT_ENDPOINT` to that provider's POST URL in your local `.env` file.
+## Reviews and social
 
-## Google reviews configuration
+No aggregator account, API key or paid widget is required. Existing selected testimonials are retained with source attribution. Google and Yelp buttons lead to current reviews on the original platforms; the on-site cards do not automatically refresh. No combined live feed is claimed. Instagram and Facebook are profile links only. Update selected testimonials manually only with accurate attribution and permission where required. Avoid copying platform pages or manufacturing ratings.
 
-The Reviews section now uses an embedded Google Maps reviews view (no API key required).
+## Contact and privacy
 
-```bash
-VITE_GOOGLE_PLACE_ID=ChIJUY5WJ9qDhYARJs7fpxLgji4
-```
+Forms use the existing FormSubmit endpoint for info@pannuholistic.com. VITE_CONTACT_ENDPOINT can override it at build time. Confirm delivery with the office; local checks do not send test emails. Requests are not confirmed bookings. Keep sensitive medical information out of the general inquiry form.
 
-If `VITE_GOOGLE_PLACE_ID` is not set, the app defaults to `ChIJUY5WJ9qDhYARJs7fpxLgji4`.
+## Search and rollback
+
+Sitemap: https://pannuholistic.com/sitemap.xml. RSS: https://pannuholistic.com/resources/feed.xml. Search Console ownership/submission is separate and is not automatically configured by this repository. No ranking guarantee or fabricated review-rich-result markup is included. Revert the redesign commit on main and rerun deployment to restore the previous version; leave public/CNAME and original media intact.

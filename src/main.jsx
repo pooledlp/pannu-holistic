@@ -1,5 +1,5 @@
 import React, { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { hydrateRoot, createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
@@ -31,10 +31,12 @@ class RootErrorBoundary extends React.Component {
   }
 }
 
-createRoot(document.getElementById('root')).render(
+const app = (
   <StrictMode>
     <RootErrorBoundary>
-      <App />
+      <App pathname={window.location.pathname.endsWith("/")?window.location.pathname:window.location.pathname+"/"} />
     </RootErrorBoundary>
-  </StrictMode>,
-)
+  </StrictMode>
+);
+const root=document.getElementById("root");
+if(root.hasChildNodes())hydrateRoot(root,app);else createRoot(root).render(app);

@@ -1,0 +1,89 @@
+name: Research a weekly patient guide for clinical review
+on:
+  schedule:
+    - cron: '47 17 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+concurrency:
+  group: pannu-editorial
+  cancel-in-progress: false
+jobs:
+  draft:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.19.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: pnpm
+      - name: Check connection before reserving paid work
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo '::error::Add the existing OpenAI API key as OPENAI_API_KEY in this repository. No new OpenAI account is needed.'
+            exit 1
+          fi
+      - name: Reserve one attempt per week
+        id: reserve
+        run: |
+          WEEK=$(date -u -d "$(date -u +%F) -$(( $(date -u +%u) - 1 )) days" +%F)
+          BRANCH="editorial/$WEEK"
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+          if git ls-remote --exit-code --heads origin "$BRANCH"; then
+            echo 'run=false' >> "$GITHUB_OUTPUT"
+          else
+            git config user.name 'pannu-editorial[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git checkout -b "$BRANCH"
+            mkdir -p editorial/runs
+            printf 'Reserved one weekly drafting attempt. Run %s\n' "$GITHUB_RUN_ID" > "editorial/runs/$WEEK.txt"
+            git add editorial/runs
+            git commit -m 'Reserve weekly patient guide draft'
+            git push -u origin "$BRANCH"
+            echo 'run=true' >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.reserve.outputs.run == 'true'
+        run: pnpm install --frozen-lockfile
+      - if: steps.reserve.outputs.run == 'true'
+        run: pnpm build
+      - name: Research and draft using primary health sources
+        if: steps.reserve.outputs.run == 'true'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node scripts/draft-article.mjs
+      - name: Check that the draft stays unpublished
+        if: steps.reserve.outputs.run == 'true'
+        run: |
+          pnpm build
+          pnpm check
+          pnpm test
+      - name: Save the draft and open clinical review
+        if: steps.reserve.outputs.run == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EDITORIAL_BRANCH: ${{ steps.reserve.outputs.branch }}
+        run: |
+          git add src/content/articles
+          git commit -m 'Prepare sourced patient guide for clinical review'
+          git push
+          gh pr create --base main --head "$EDITORIAL_BRANCH" --title 'Patient guide: clinical review required' --body-file editorial/pr-body.md --draft
+      - name: Keep diagnostics out of the website
+        if: always() && steps.reserve.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: patient-guide-draft
+          path: |
+            editorial/pr-body.md
+            src/content/articles/*.json
+          if-no-files-found: ignore
+          retention-days: 14
