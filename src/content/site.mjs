@@ -1,3 +1,4 @@
+import preparedGuides from './prepared-guides.json';
 import {isPublished} from './publication.mjs';
 import original from './original-services.json';
 const additions={
@@ -32,7 +33,7 @@ const authored=[
  {slug:'bring-your-home-care-routine',title:'Bring your home-care routine into the conversation',description:'Prepare a useful snapshot of your current oral-care products and habits so your next appointment starts with your real routine.',service:'gum-care',publishOn:'2026-09-28',status:'approved',sections:[['Make a quick list','Write down the names of the products and tools you currently use. A photograph of the labels may be easier than remembering everything during an appointment.'],['Describe what is realistic','Tell the practitioner what you find easy, confusing, or difficult about your current routine. The aim of this conversation is to make any recommended next steps understandable and practical.'],['Know the reason for a change','If a new product or tool is suggested, ask what it is for, how it would fit your routine, and what alternatives are available. Confirm any instructions with the practitioner before changing care based on general reading.']],checklist:['List current products and tools.','Note questions about your routine.','Explain any practical difficulties.','Ask why each change is recommended.']}
 ];
 const generated=Object.values(import.meta.glob('./articles/*.json',{eager:true,import:'default'}));
-export const allArticles=[...authored,...generated];
+export const allArticles=[...authored,...preparedGuides,...generated];
 const today=import.meta.env.VITE_BUILD_DATE||'2026-09-13';
 export const articles=allArticles.filter(g=>isPublished(g,today)).sort((a,b)=>b.publishOn.localeCompare(a.publishOn));
 export const pages=[...basePages,...servicePages,...articles.map(g=>({...g,path:'/resources/'+g.slug+'/',kind:'article',lead:g.description}))];
