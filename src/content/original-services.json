@@ -1,0 +1,44 @@
+[
+  {
+    "id": "airway",
+    "title": "Airway & sleep concerns",
+    "icon": "jaw",
+    "concern": "Mouth breathing, snoring, or restless sleep?",
+    "text": "Your breathing habits and oral function are worth a closer look. We assess oral signs and discuss whether evaluation by a sleep clinician or other specialist is needed. Sleep apnea requires medical diagnosis; dental support complements your prescribed care."
+  },
+  {
+    "id": "myofunctional",
+    "title": "Myofunctional therapy",
+    "icon": "jaw",
+    "concern": "Help your tongue and mouth work together.",
+    "text": "Guided exercises retrain tongue resting posture, lip closure, and swallowing patterns. An individual plan can support oral function and healthier habits in adults and children. It may complement sleep apnea treatment for selected patients."
+  },
+  {
+    "id": "gums",
+    "title": "Gum inflammation care",
+    "icon": "leaf",
+    "concern": "Bleeding gums deserve attention.",
+    "text": "We look at plaque buildup, home-care habits, dry mouth, and other contributing factors. Professional cleaning and a practical daily routine help control inflammation. Early gingivitis can often be reversed; advanced gum disease needs ongoing treatment and sometimes specialist care."
+  },
+  {
+    "id": "enamel",
+    "title": "Enamel remineralization",
+    "icon": "bio",
+    "concern": "Protect your teeth before damage progresses.",
+    "text": "Remineralization means helping replace minerals lost from the tooth surface. We review your cavity risk, saliva, diet, and home care to guide prevention. Some early, non-cavitated lesions can improve with appropriate care; a cavity with a hole may need restoration."
+  },
+  {
+    "id": "ozone",
+    "title": "Ozone treatments",
+    "icon": "bio",
+    "concern": "Understand your options before choosing.",
+    "text": "Ozone is offered as an additional option within selected dental care plans. We discuss the intended use, risks, alternatives, and limits of the evidence. It does not replace established cavity or gum treatment and is not a treatment for autoimmune disease."
+  },
+  {
+    "id": "whole-body",
+    "title": "Whole-person prevention",
+    "icon": "leaf",
+    "concern": "Your health history belongs in the conversation.",
+    "text": "Oral health and general health are connected. Medications, diabetes, dry mouth, and daily habits can affect your mouth. We consider these factors in your dental care and encourage appropriate medical follow-up, without promising to prevent systemic or autoimmune conditions."
+  }
+]

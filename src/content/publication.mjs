@@ -1,0 +1,2 @@
+const date=s=>typeof s==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(s)&&!Number.isNaN(Date.parse(s))&&new Date(s).toISOString().slice(0,10)===s;
+export function isPublished(article,today){return article.status==='approved'&&date(article.publishOn)&&article.publishOn<=today&&(!article.generated||(typeof article.reviewedBy==='string'&&!!article.reviewedBy.trim()&&date(article.reviewedOn)&&article.reviewedOn<=today));}
