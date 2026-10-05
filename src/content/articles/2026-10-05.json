@@ -1,0 +1,82 @@
+{
+  "slug": "when-should-i-replace-my-toothbrush",
+  "title": "When Should I Replace My Toothbrush?",
+  "description": "A general guide for when to replace a toothbrush, how to store it between uses, and when it may be worth discussing concerns with a dental clinician or other appropriate clinician.",
+  "service": "preventive-care",
+  "sections": [
+    [
+      "A simple rule of thumb",
+      "For most people, a good general rule is to replace a toothbrush about every 3 to 4 months. The American Dental Association also says to replace it sooner if the bristles look matted, bent, or frayed. That matters because worn bristles may not clean as well as a fresh brush, and brushing is meant to remove plaque gently from tooth surfaces and along the gumline.\n\nA soft-bristled toothbrush and gentle pressure are recommended. Pressing too hard can wear the bristles down faster and may make brushing feel less comfortable. If your toothbrush head looks splayed out or the bristles no longer spring back into place, that is a practical sign it may be time for a new one even if three months have not passed yet."
+    ],
+    [
+      "What to do after illness",
+      "People often wonder whether a toothbrush should be replaced after a cold, flu, or other illness. The ADA notes that some viruses or bacteria may linger on a toothbrush for several days, but continuing to use the brush usually does not cause reinfection. In other words, there is not strong evidence that every illness requires an immediate toothbrush change.\n\nThat said, the general replacement rule still applies. Replacing the brush may be a cautious step if the bristles are already worn, if the toothbrush was used while the bristles were badly damaged, or if several people shared a holder while sick and you want to reduce the chance of spread to others. This is general planning information, not a personalized recommendation."
+    ],
+    [
+      "How to store and care for the brush",
+      "The ADA recommends rinsing a toothbrush after use, storing it upright, and letting it air dry. A closed container that stays moist can encourage microbial growth, so a sealed case is not the best everyday storage option unless you need it for travel and can dry the brush promptly afterward.\n\nIt is also worth knowing what the evidence does not show. The ADA says toothbrush sanitizing is not well studied, and there is no evidence that the bacteria found on toothbrushes cause adverse health effects. That does not mean toothbrush hygiene is unimportant; it means people should avoid exaggerated claims about special cleaners or sanitizers. Basic care and timely replacement are the most practical steps supported here."
+    ],
+    [
+      "When to think beyond routine replacement",
+      "A toothbrush change is usually a simple preventive step, but some situations deserve a conversation with a dentist, dental hygienist, or other appropriate clinician. For example, if a toothbrush wears out unusually fast, it may be helpful to ask whether brushing pressure, toothbrush type, or fit is part of the issue. If you have ongoing gum bleeding, pain, or trouble brushing certain areas, a clinician can help you understand whether your technique, your toothbrush, or another oral health issue needs attention.\n\nIf you are worried about repeated illnesses, a toothbrush alone is unlikely to explain them. The sources here do not show that toothbrush bacteria cause disease, and they do not support treating a toothbrush as the main solution to infection risk. If you have a medical concern that seems broader than routine oral care, discuss it with an appropriate clinician rather than relying on toothbrush changes alone."
+    ],
+    [
+      "Bottom line for everyday planning",
+      "A reasonable everyday plan is simple: replace your toothbrush about every 3 to 4 months, or sooner if the bristles are frayed or flattened. Store it upright, let it air dry, and avoid keeping it in a damp closed container. After an illness, replacing the brush can be a cautious choice, but the evidence does not say everyone must do this every time.\n\nIf you are unsure whether a worn brush, brushing technique, or another oral health problem is affecting your mouth, bring the question to a dental clinician. This guidance is meant to help with general planning and prevention, not to diagnose a problem or replace individualized care."
+    ]
+  ],
+  "checklist": [
+    "Check the bristles every few weeks for fraying, flattening, or matting.",
+    "Replace the toothbrush about every 3 to 4 months.",
+    "Replace it sooner if the bristles look worn out before then.",
+    "Use a soft-bristled toothbrush and gentle pressure while brushing.",
+    "Rinse the brush after use.",
+    "Store it upright and let it air dry between uses; avoid a damp closed container for everyday storage."
+  ],
+  "sources": [
+    {
+      "title": "American Dental Association: Toothbrushes",
+      "url": "https://www.ada.org/resources/ada-library/oral-health-topics/toothbrushes"
+    },
+    {
+      "title": "ADA News: When should patients replace their toothbrushes?",
+      "url": "https://adanews.ada.org/huddles/when-should-patients-replace-their-toothbrushes"
+    }
+  ],
+  "generated": true,
+  "status": "draft",
+  "publishOn": "2026-10-05",
+  "reviewedBy": "",
+  "reviewedOn": "",
+  "generation": {
+    "week": "2026-10-05",
+    "model": "gpt-5.4-mini",
+    "calls": 2,
+    "usage": [
+      {
+        "input_tokens": 18268,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1112,
+        "output_tokens_details": {
+          "reasoning_tokens": 634
+        },
+        "total_tokens": 19380
+      },
+      {
+        "input_tokens": 1536,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1089,
+        "output_tokens_details": {
+          "reasoning_tokens": 51
+        },
+        "total_tokens": 2625
+      }
+    ]
+  }
+}
