@@ -495,9 +495,23 @@ function App({pathname="/"}) {
             </h1>
             <p>Your mouth connects to your overall health. Our evidence-informed approach targets contributing causes to help prevent gum disease and decay, reduce oral inflammation and sensitivity, and address airway and jaw function.</p>
             <div className="hero-actions"><a className="button button-light" href="#contact">Request an appointment <span aria-hidden="true">↗</span></a><a className="button button-glass" href="#services">Find care for your concerns</a></div>
+            <a className="hero-book-flag" href="/book/">New: Taren Pannu's book <strong>Teeth Breathe</strong> ↗</a>
             <a className="hero-practitioner" href="/about/"><img src={`${base}Taren2.png`} alt="" /><span>Meet Taren Pannu<strong>RDHAP, BS · Personalized, preventive care</strong></span><span aria-hidden="true">↗</span></a>
 
 
+          </div>
+        </div>
+      </section>
+
+      <section className="book-spotlight" id="book">
+        <div className="container book-showcase-inner">
+          <div className="book-artwork"><img src={`${base}teeth-breathe-cover.webp`} width="320" height="480" loading="lazy" alt="Teeth Breathe book cover by Taren Pannu" /></div>
+          <div className="book-story">
+            <span className="book-eyebrow">New book · Taren Pannu</span>
+            <h2>Teeth Breathe</h2>
+            <p className="book-subtitle">How Breathing, Diet, and the Oral Microbiome Shape Your Teeth, Brain, and Body</p>
+            <p>Our founder is now a published author. In her new book, Taren connects her experience in dentistry, myofunctional therapy, and breathing education with an exploration of the research behind oral and whole-body health.</p>
+            <div className="book-actions"><a className="button button-primary" href="https://a.co/d/0giX3NZO" target="_blank" rel="noopener noreferrer">Get the book on Amazon ↗</a><a className="book-text-link" href="/book/">Discover the book ↗</a></div>
           </div>
         </div>
       </section>
@@ -565,6 +579,7 @@ function App({pathname="/"}) {
 
               <div>
                 <div className="about-name">Taren Pannu, RDHAP, BS</div>
+                <div className="about-role book-author-role">Published author · Myofunctional Therapist · Certified Buteyko Breathing Specialist</div>
               <p>
                 Taren Pannu is a dental and airway health practitioner dedicated
                 to holistic, functional, and integrative dental care. Her
@@ -593,6 +608,7 @@ function App({pathname="/"}) {
               <p>
                 Her focus is helping patients understand the factors behind their oral health concerns. She brings a preventive, airway-centered perspective to dental hygiene and explains treatment choices, evidence, and limitations so patients can make informed decisions.
               </p>
+              <p>In 2026, she published <a className="bio-book-link" href="/book/"><em>Teeth Breathe</em></a>, a book exploring the connections among breathing, diet, the oral microbiome, dental health, and overall well-being. <a className="bio-book-link" href="/book/">Explore her book ↗</a></p>
               </div>
             </div>
           </div>

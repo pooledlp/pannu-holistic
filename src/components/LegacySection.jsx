@@ -62,6 +62,7 @@ if(kind==="/about/")return (<section className="about-section" id="about">
 
               <div>
                 <div className="about-name">Taren Pannu, RDHAP, BS</div>
+                <div className="about-role book-author-role">Published author · Myofunctional Therapist · Certified Buteyko Breathing Specialist</div>
               <p>
                 Taren Pannu is a dental and airway health practitioner dedicated
                 to holistic, functional, and integrative dental care. Her
@@ -90,6 +91,7 @@ if(kind==="/about/")return (<section className="about-section" id="about">
               <p>
                 Her focus is helping patients understand the factors behind their oral health concerns. She brings a preventive, airway-centered perspective to dental hygiene and explains treatment choices, evidence, and limitations so patients can make informed decisions.
               </p>
+              <p>In 2026, she published <a className="bio-book-link" href="/book/"><em>Teeth Breathe</em></a>, a book exploring the connections among breathing, diet, the oral microbiome, dental health, and overall well-being. <a className="bio-book-link" href="/book/">Explore her book ↗</a></p>
               </div>
             </div>
           </div>
