@@ -18,6 +18,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0
       - uses: pnpm/action-setup@v4
         with:
           version: 11.19.0
@@ -33,25 +34,12 @@ jobs:
             echo '::error::Add the existing OpenAI API key as OPENAI_API_KEY in this repository. No new OpenAI account is needed.'
             exit 1
           fi
-      - name: Reserve one attempt per week
+      - name: Reserve weekly draft or bounded manual recovery
         id: reserve
         run: |
-          WEEK=$(date -u -d "$(date -u +%F) -$(( $(date -u +%u) - 1 )) days" +%F)
-          BRANCH="editorial/$WEEK"
-          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
-          if git ls-remote --exit-code --heads origin "$BRANCH"; then
-            echo 'run=false' >> "$GITHUB_OUTPUT"
-          else
-            git config user.name 'pannu-editorial[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git checkout -b "$BRANCH"
-            mkdir -p editorial/runs
-            printf 'Reserved one weekly drafting attempt. Run %s\n' "$GITHUB_RUN_ID" > "editorial/runs/$WEEK.txt"
-            git add editorial/runs
-            git commit -m 'Reserve weekly patient guide draft'
-            git push -u origin "$BRANCH"
-            echo 'run=true' >> "$GITHUB_OUTPUT"
-          fi
+          git config user.name 'pannu-editorial[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          node scripts/reserve-editorial.mjs
       - if: steps.reserve.outputs.run == 'true'
         run: pnpm install --frozen-lockfile
       - if: steps.reserve.outputs.run == 'true'
@@ -60,7 +48,10 @@ jobs:
         if: steps.reserve.outputs.run == 'true'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: node scripts/draft-article.mjs
+          EDITORIAL_DATE: ${{ steps.reserve.outputs.date }}
+        run: |
+          set -o pipefail
+          node scripts/draft-article.mjs 2>&1 | tee editorial/diagnostics.log
       - name: Check that the draft stays unpublished
         if: steps.reserve.outputs.run == 'true'
         run: |
@@ -87,6 +78,7 @@ jobs:
         with:
           name: patient-guide-draft
           path: |
+            editorial/diagnostics.log
             editorial/pr-body.md
             src/content/articles/*.json
           if-no-files-found: ignore
